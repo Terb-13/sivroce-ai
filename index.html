@@ -1,140 +1,240 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Sirvoce is a boutique AI consulting firm for mid-sized manufacturers. We build practical AI systems, train your team, and hand off everything so you own the outcome." />
+  <meta name="description" content="Sirvoce — practitioner-led AI consulting for mid-sized manufacturers. Working systems in weeks, full handoff, zero lock-in." />
   <title>Sirvoce — Practical AI for Mid-Sized Manufacturers</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <script src="/assets/js/tailwind-config.js"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            navy: { DEFAULT: '#1F3A5F', 50: '#F0F4F8', 100: '#D9E2EC', 200: '#BCCCDC', 300: '#9FB3C8', 400: '#829AB1', 500: '#627D98', 600: '#486581', 700: '#334E68', 800: '#243B53', 900: '#1F3A5F', 950: '#102A43' },
+            teal: { DEFAULT: '#0D9488', 50: '#F0FDFA', 100: '#CCFBF1', 200: '#99F6E4', 300: '#5EEAD4', 400: '#2DD4BF', 500: '#14B8A6', 600: '#0D9488', 700: '#0F766E', 800: '#115E59', 900: '#134E4A' },
+          },
+          fontFamily: { sans: ['Inter', 'system-ui', 'sans-serif'] },
+          boxShadow: { soft: '0 4px 24px -4px rgba(31,58,95,0.08)', card: '0 8px 32px -8px rgba(31,58,95,0.12)', nav: '0 1px 0 0 rgba(31,58,95,0.06)' },
+        },
+      },
+    };
+  </script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
   <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
-  <link rel="stylesheet" href="/assets/css/site.css" />
 </head>
-<body data-page="home" class="font-sans text-navy-800 bg-white antialiased">
-  <div id="site-header"></div>
+<body class="font-sans text-navy-800 bg-white antialiased">
+
+  <!-- Component: Navbar -->
+  <header class="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md shadow-nav">
+    <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" aria-label="Main navigation">
+      <div class="flex items-center justify-between h-16 lg:h-20">
+        <a href="index.html" class="flex items-center gap-3 group" aria-label="Sirvoce home">
+          <div class="w-[36px] h-[36px] rounded-[9px] bg-navy group-hover:bg-navy-700 transition-colors flex items-center justify-center overflow-hidden shrink-0">
+            <svg width="36" height="36" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="19" cy="19" r="4" fill="#14B8A6"/>
+              <circle cx="19" cy="19" r="7.5" fill="none" stroke="#14B8A6" stroke-width="0.9" opacity="0.3"/>
+              <circle cx="11" cy="11" r="2" fill="#5EEAD4"/>
+              <circle cx="27" cy="11" r="2" fill="#5EEAD4"/>
+              <circle cx="11" cy="27" r="2" fill="#5EEAD4"/>
+              <circle cx="27" cy="27" r="2" fill="#5EEAD4"/>
+              <line x1="19" y1="15" x2="13.2" y2="13.2" stroke="#14B8A6" stroke-width="1.5" stroke-linecap="round"/>
+              <line x1="19" y1="15" x2="24.8" y2="13.2" stroke="#14B8A6" stroke-width="1.5" stroke-linecap="round"/>
+              <line x1="19" y1="23" x2="13.2" y2="24.8" stroke="#14B8A6" stroke-width="1.5" stroke-linecap="round"/>
+              <line x1="19" y1="23" x2="24.8" y2="24.8" stroke="#14B8A6" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <span class="text-navy font-bold text-xl tracking-[-0.02em]">Sirvoce</span>
+        </a>
+        <div class="hidden xl:flex items-center gap-6">
+          <a href="index.html" class="text-sm font-semibold text-teal">Home</a>
+          <a href="challenge.html" class="text-sm font-medium text-navy-600 hover:text-teal transition-colors">The Challenge</a>
+          <a href="approach.html" class="text-sm font-medium text-navy-600 hover:text-teal transition-colors">Our Approach</a>
+          <a href="solutions.html" class="text-sm font-medium text-navy-600 hover:text-teal transition-colors">Solutions &amp; Demos</a>
+          <a href="proof.html" class="text-sm font-medium text-navy-600 hover:text-teal transition-colors">Proof &amp; Results</a>
+          <a href="about.html" class="text-sm font-medium text-navy-600 hover:text-teal transition-colors">About</a>
+          <a href="engage.html" class="text-sm font-medium text-navy-600 hover:text-teal transition-colors">Engage</a>
+        </div>
+        <div class="flex items-center gap-3">
+          <a href="engage.html" class="hidden sm:inline-flex items-center gap-2 px-5 py-2.5 bg-teal text-white text-sm font-semibold rounded-lg hover:bg-teal-700 transition-all">
+            Book Your Strategy Workshop <i data-lucide="arrow-right" class="w-4 h-4"></i>
+          </a>
+          <button id="mobile-menu-btn" type="button" class="xl:hidden p-2 rounded-lg text-navy-600 hover:bg-navy-50" aria-expanded="false" aria-controls="mobile-menu" aria-label="Open menu">
+            <i data-lucide="menu" class="w-6 h-6" id="menu-icon"></i>
+          </button>
+        </div>
+      </div>
+      <div id="mobile-menu" class="hidden xl:hidden pb-4 border-t border-navy-100">
+        <div class="flex flex-col gap-1 pt-3">
+          <a href="index.html" class="mobile-nav-link px-3 py-2.5 text-sm font-semibold text-teal rounded-lg">Home</a>
+          <a href="challenge.html" class="mobile-nav-link px-3 py-2.5 text-sm font-medium text-navy-600 hover:bg-navy-50 rounded-lg">The Challenge</a>
+          <a href="approach.html" class="mobile-nav-link px-3 py-2.5 text-sm font-medium text-navy-600 hover:bg-navy-50 rounded-lg">Our Approach</a>
+          <a href="solutions.html" class="mobile-nav-link px-3 py-2.5 text-sm font-medium text-navy-600 hover:bg-navy-50 rounded-lg">Solutions &amp; Demos</a>
+          <a href="proof.html" class="mobile-nav-link px-3 py-2.5 text-sm font-medium text-navy-600 hover:bg-navy-50 rounded-lg">Proof &amp; Results</a>
+          <a href="about.html" class="mobile-nav-link px-3 py-2.5 text-sm font-medium text-navy-600 hover:bg-navy-50 rounded-lg">About</a>
+          <a href="engage.html" class="mobile-nav-link px-3 py-2.5 text-sm font-medium text-navy-600 hover:bg-navy-50 rounded-lg">Engage</a>
+          <a href="engage.html" class="mobile-nav-link px-3 py-2.5 text-sm font-semibold text-teal rounded-lg">Book Your Strategy Workshop</a>
+        </div>
+      </div>
+    </nav>
+  </header>
 
   <main>
+    <!-- Hero -->
     <section class="relative pt-28 lg:pt-36 pb-20 lg:pb-28 overflow-hidden">
       <div class="absolute inset-0 -z-10">
-        <div class="absolute inset-0 bg-gradient-to-br from-navy-50 via-white to-teal-50/40"></div>
-        <div class="absolute top-0 right-0 w-1/2 h-full opacity-[0.03]" style="background-image: url('data:image/svg+xml,%3Csvg width=&quot;60&quot; height=&quot;60&quot; viewBox=&quot;0 0 60 60&quot; xmlns=&quot;http://www.w3.org/2000/svg&quot;%3E%3Cg fill=&quot;none&quot; fill-rule=&quot;evenodd&quot;%3E%3Cg fill=&quot;%231F3A5F&quot; fill-opacity=&quot;1&quot;%3E%3Cpath d=&quot;M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z&quot;/%3E%3C/g%3E%3C/g%3E%3C/svg%3E');"></div>
+        <img src="assets/images/hero-factory.jpg" alt="Modern manufacturing facility" class="w-full h-full object-cover" />
+        <div class="absolute inset-0 bg-gradient-to-r from-navy-950/95 via-navy-900/85 to-navy-900/40"></div>
       </div>
-
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-          <div>
-            <div class="inline-flex items-center gap-2 px-3 py-1.5 bg-teal-50 text-teal-700 text-xs font-semibold uppercase tracking-wider rounded-full mb-6 border border-teal-100">
-              <i data-lucide="shield-check" class="w-3.5 h-3.5" stroke-width="2"></i>
-              Built for mid-sized manufacturers
-            </div>
-
-            <h1 class="text-4xl sm:text-5xl lg:text-[3.25rem] font-extrabold text-navy leading-[1.1] tracking-tight mb-6">
-              Your operations deserve AI that works — and a team that can run it.
-            </h1>
-
-            <p class="text-lg sm:text-xl text-navy-600 leading-relaxed mb-8 max-w-xl">
-              You carry the weight of rising cost-to-serve, slow quoting and scheduling, and legacy systems that weren't built for what's next. We partner with manufacturing leaders to deploy practical AI — then train your people and hand off everything, so you own the outcome.
-            </p>
-
-            <div class="flex flex-col sm:flex-row gap-4 mb-10">
-              <a href="/contact" class="inline-flex items-center justify-center gap-2 px-7 py-3.5 bg-teal text-white font-semibold rounded-lg hover:bg-teal-700 transition-all hover:shadow-card focus:outline-none focus:ring-2 focus:ring-teal focus:ring-offset-2">
-                Book a Strategy Alignment Workshop
-                <i data-lucide="calendar" class="w-5 h-5" stroke-width="2"></i>
-              </a>
-              <a href="/proof" class="inline-flex items-center justify-center gap-2 px-7 py-3.5 bg-white text-navy font-semibold rounded-lg border-2 border-navy-200 hover:border-teal hover:text-teal transition-all focus:outline-none focus:ring-2 focus:ring-navy focus:ring-offset-2">
-                See a Working Prototype
-                <i data-lucide="play-circle" class="w-5 h-5" stroke-width="2"></i>
-              </a>
-            </div>
-
-            <div class="flex flex-wrap items-center gap-x-8 gap-y-3 text-sm text-navy-500">
-              <span class="flex items-center gap-2"><i data-lucide="check-circle" class="w-4 h-4 text-teal" stroke-width="2"></i> Working systems in weeks, not years</span>
-              <span class="flex items-center gap-2"><i data-lucide="check-circle" class="w-4 h-4 text-teal" stroke-width="2"></i> Full training &amp; handoff included</span>
-              <span class="flex items-center gap-2"><i data-lucide="check-circle" class="w-4 h-4 text-teal" stroke-width="2"></i> You own every asset we build</span>
-            </div>
+        <div class="max-w-2xl">
+          <p class="text-teal-300 font-semibold text-sm uppercase tracking-wider mb-4">Practical AI for Mid-Sized Manufacturers</p>
+          <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white leading-tight tracking-tight mb-6">
+            Build it. Train it. Own it.
+          </h1>
+          <p class="text-lg sm:text-xl text-navy-100 leading-relaxed mb-8">
+            We are manufacturing operators who can deliver a full working system with training and handoff — so you own everything permanently — or provide a clear strategy, prioritized roadmap, and implementation outline your team can execute. Our flagship is build + ownership transfer; strategy support is there when you need it.
+          </p>
+          <div class="flex flex-col sm:flex-row gap-4 mb-10">
+            <a href="engage.html" class="inline-flex items-center justify-center gap-2 px-7 py-3.5 bg-teal text-white font-semibold rounded-lg hover:bg-teal-600 transition-all">
+              Book Your Strategy Alignment Workshop <i data-lucide="calendar" class="w-5 h-5"></i>
+            </a>
+            <a href="solutions.html" class="inline-flex items-center justify-center gap-2 px-7 py-3.5 bg-white/10 text-white font-semibold rounded-lg border border-white/30 hover:bg-white/20 transition-all backdrop-blur">
+              See a Working Prototype <i data-lucide="play-circle" class="w-5 h-5"></i>
+            </a>
           </div>
+          <div class="flex flex-wrap gap-x-6 gap-y-2 text-sm text-navy-200">
+            <span class="flex items-center gap-2"><i data-lucide="check-circle" class="w-4 h-4 text-teal-300"></i> Practitioner-led, not slide-deck consulting</span>
+            <span class="flex items-center gap-2"><i data-lucide="check-circle" class="w-4 h-4 text-teal-300"></i> 100% code &amp; documentation transfer</span>
+            <span class="flex items-center gap-2"><i data-lucide="check-circle" class="w-4 h-4 text-teal-300"></i> Zero ongoing license fees</span>
+          </div>
+        </div>
+        <div class="hidden lg:block">
+          <img src="assets/images/operations-leader.jpg" alt="Operations leader reviewing a manufacturing dashboard" class="rounded-2xl shadow-card border border-white/10 w-full object-cover aspect-[4/3]" />
+        </div>
+        </div>
+      </div>
+    </section>
 
-          <div class="relative">
-            <div class="relative bg-navy rounded-2xl p-6 sm:p-8 shadow-card overflow-hidden">
-              <div class="absolute top-0 right-0 w-64 h-64 bg-teal/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/4"></div>
-              <div class="relative space-y-4">
-                <div class="flex items-center justify-between mb-6">
-                  <span class="text-teal-300 text-xs font-semibold uppercase tracking-wider">Operations Dashboard</span>
-                  <span class="flex items-center gap-1.5 text-teal-400 text-xs"><span class="w-2 h-2 bg-teal-400 rounded-full animate-pulse"></span> Live</span>
-                </div>
-                <div class="grid grid-cols-2 gap-3">
-                  <div class="bg-white/10 backdrop-blur rounded-xl p-4 border border-white/10"><p class="text-teal-300 text-xs font-medium mb-1">Quote Turnaround</p><p class="text-white text-2xl font-bold">-47%</p><p class="text-navy-300 text-xs mt-1">vs. prior quarter</p></div>
-                  <div class="bg-white/10 backdrop-blur rounded-xl p-4 border border-white/10"><p class="text-teal-300 text-xs font-medium mb-1">Cost-to-Serve</p><p class="text-white text-2xl font-bold">-23%</p><p class="text-navy-300 text-xs mt-1">per active SKU</p></div>
-                  <div class="bg-white/10 backdrop-blur rounded-xl p-4 border border-white/10"><p class="text-teal-300 text-xs font-medium mb-1">Proof Cycles</p><p class="text-white text-2xl font-bold">3.2×</p><p class="text-navy-300 text-xs mt-1">faster approval</p></div>
-                  <div class="bg-white/10 backdrop-blur rounded-xl p-4 border border-white/10"><p class="text-teal-300 text-xs font-medium mb-1">Team Adoption</p><p class="text-white text-2xl font-bold">94%</p><p class="text-navy-300 text-xs mt-1">post-handoff usage</p></div>
-                </div>
-                <div class="bg-teal/20 rounded-xl p-4 border border-teal/30 flex items-start gap-3">
-                  <i data-lucide="bot" class="w-5 h-5 text-teal-300 mt-0.5 shrink-0" stroke-width="1.75"></i>
-                  <div>
-                    <p class="text-white text-sm font-medium">AI-assisted scheduling resolved 12 conflicts this week</p>
-                    <p class="text-navy-300 text-xs mt-1">Your team approved every recommendation — no black box.</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="absolute -bottom-4 -left-4 sm:-left-6 bg-white rounded-xl px-4 py-3 shadow-card border border-navy-100 flex items-center gap-3">
-              <div class="w-10 h-10 rounded-full bg-teal-50 flex items-center justify-center">
-                <i data-lucide="graduation-cap" class="w-5 h-5 text-teal" stroke-width="1.75"></i>
-              </div>
-              <div><p class="text-navy font-semibold text-sm">Full handoff</p><p class="text-navy-500 text-xs">Your team runs it day one</p></div>
-            </div>
+    <!-- Typical Outcomes -->
+    <section class="py-16 lg:py-20 bg-navy-50">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <p class="text-center text-xs font-semibold uppercase tracking-wider text-navy-500 mb-2">Typical results from recent client engagements on similar workflows</p>
+        <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-8">
+          <div class="bg-white rounded-2xl p-6 shadow-soft border border-navy-100 text-center">
+            <p class="text-3xl font-extrabold text-teal mb-1">20–40%</p>
+            <p class="text-sm text-navy-600">Lower cost-to-serve on targeted workflows</p>
+          </div>
+          <div class="bg-white rounded-2xl p-6 shadow-soft border border-navy-100 text-center">
+            <p class="text-3xl font-extrabold text-teal mb-1">2–4×</p>
+            <p class="text-sm text-navy-600">Faster quoting, proofing, or scheduling cycles</p>
+          </div>
+          <div class="bg-white rounded-2xl p-6 shadow-soft border border-navy-100 text-center">
+            <p class="text-3xl font-extrabold text-teal mb-1">6–8 wks</p>
+            <p class="text-sm text-navy-600">Kickoff to production-ready workflow</p>
+          </div>
+          <div class="bg-white rounded-2xl p-6 shadow-soft border border-navy-100 text-center">
+            <p class="text-3xl font-extrabold text-teal mb-1">100%</p>
+            <p class="text-sm text-navy-600">Source, prompts &amp; docs transferred to you</p>
           </div>
         </div>
       </div>
     </section>
 
-    <section class="py-16 lg:py-20 bg-navy-50 border-t border-navy-100">
+    <!-- Why Sirvoce Teaser -->
+    <section class="py-20 lg:py-28">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center max-w-2xl mx-auto mb-10">
-          <h2 class="text-2xl sm:text-3xl font-bold text-navy mb-3">Explore how we work</h2>
-          <p class="text-navy-600">Each part of our approach has its own page — dive into what matters most to you.</p>
+        <div class="grid lg:grid-cols-2 gap-12 items-center">
+          <div>
+            <p class="text-teal font-semibold text-sm uppercase tracking-wider mb-3">Why Sirvoce</p>
+            <h2 class="text-3xl sm:text-4xl font-bold text-navy tracking-tight mb-5">Strategy and implementation support — from roadmap to fully built and handed-off systems.</h2>
+            <p class="text-lg text-navy-600 leading-relaxed mb-6">
+              Mid-sized manufacturers ($10M–$500M) are caught between off-the-shelf SaaS that doesn't fit and enterprise consultancies that never leave the discovery phase. We occupy the practical middle: practitioner-led partners who understand your floor. Our highest-value path is embedded build, train, and full handoff — and we're equally capable of delivering a prioritized roadmap and implementation outline when you're building internally.
+            </p>
+            <a href="about.html" class="inline-flex items-center gap-2 text-teal font-semibold hover:text-teal-700 transition-colors">
+              Meet the team <i data-lucide="arrow-right" class="w-4 h-4"></i>
+            </a>
+          </div>
+          <img src="assets/images/operations-leader.jpg" alt="Operations leader reviewing manufacturing dashboard" class="rounded-2xl shadow-card w-full object-cover aspect-[4/3]" />
         </div>
-        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-          <a href="/challenge" class="group bg-white rounded-xl p-5 border border-navy-100 hover:border-teal/30 hover:shadow-soft transition-all">
-            <i data-lucide="alert-circle" class="w-6 h-6 text-teal mb-3" stroke-width="1.75"></i>
-            <h3 class="font-semibold text-navy group-hover:text-teal transition-colors">The Challenge</h3>
-            <p class="text-sm text-navy-500 mt-1">Why margins erode on the floor today</p>
-          </a>
-          <a href="/who-we-are" class="group bg-white rounded-xl p-5 border border-navy-100 hover:border-teal/30 hover:shadow-soft transition-all">
-            <i data-lucide="users" class="w-6 h-6 text-teal mb-3" stroke-width="1.75"></i>
-            <h3 class="font-semibold text-navy group-hover:text-teal transition-colors">Who We Are</h3>
-            <p class="text-sm text-navy-500 mt-1">Your guide, not another vendor</p>
-          </a>
-          <a href="/process" class="group bg-white rounded-xl p-5 border border-navy-100 hover:border-teal/30 hover:shadow-soft transition-all">
-            <i data-lucide="route" class="w-6 h-6 text-teal mb-3" stroke-width="1.75"></i>
-            <h3 class="font-semibold text-navy group-hover:text-teal transition-colors">Our Process</h3>
-            <p class="text-sm text-navy-500 mt-1">Three steps from assessment to ownership</p>
-          </a>
-          <a href="/proof" class="group bg-white rounded-xl p-5 border border-navy-100 hover:border-teal/30 hover:shadow-soft transition-all">
-            <i data-lucide="layout-dashboard" class="w-6 h-6 text-teal mb-3" stroke-width="1.75"></i>
-            <h3 class="font-semibold text-navy group-hover:text-teal transition-colors">Proof</h3>
-            <p class="text-sm text-navy-500 mt-1">Interactive demos with fake data</p>
-          </a>
-          <a href="/handoff" class="group bg-white rounded-xl p-5 border border-navy-100 hover:border-teal/30 hover:shadow-soft transition-all">
-            <i data-lucide="key" class="w-6 h-6 text-teal mb-3" stroke-width="1.75"></i>
-            <h3 class="font-semibold text-navy group-hover:text-teal transition-colors">Handoff</h3>
-            <p class="text-sm text-navy-500 mt-1">When we leave, you own everything</p>
-          </a>
-          <a href="/contact" class="group bg-teal text-white rounded-xl p-5 hover:bg-teal-700 transition-all">
-            <i data-lucide="calendar-check" class="w-6 h-6 mb-3" stroke-width="1.75"></i>
-            <h3 class="font-semibold">Book a Workshop</h3>
-            <p class="text-sm text-teal-100 mt-1">90-minute strategy alignment session</p>
-          </a>
+        <div class="grid sm:grid-cols-3 gap-6 mt-16">
+          <div class="p-6 rounded-2xl border border-navy-100 hover:border-teal/30 hover:shadow-soft transition-all">
+            <i data-lucide="map" class="w-8 h-8 text-teal mb-4"></i>
+            <h3 class="font-bold text-navy mb-2">Flexible engagement, one standard</h3>
+            <p class="text-sm text-navy-600">Flagship: working systems in weeks with full handoff. Also available: strategy, prioritized roadmap, and implementation outline — practitioner-quality either way.</p>
+          </div>
+          <div class="p-6 rounded-2xl border border-navy-100 hover:border-teal/30 hover:shadow-soft transition-all">
+            <i data-lucide="key" class="w-8 h-8 text-teal mb-4"></i>
+            <h3 class="font-bold text-navy mb-2">Ownership by design</h3>
+            <p class="text-sm text-navy-600">Full source code, prompts, documentation, and runbooks are transferred to you. No lock-in.</p>
+          </div>
+          <div class="p-6 rounded-2xl border border-navy-100 hover:border-teal/30 hover:shadow-soft transition-all">
+            <i data-lucide="layers" class="w-8 h-8 text-teal mb-4"></i>
+            <h3 class="font-bold text-navy mb-2">Ready for what's next</h3>
+            <p class="text-sm text-navy-600">Every project creates clean data foundations for robotics, vision, and physical automation.</p>
+          </div>
         </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="py-20 bg-navy text-white">
+      <div class="max-w-4xl mx-auto px-4 text-center">
+        <h2 class="text-3xl sm:text-4xl font-bold mb-5">Ready to own your AI future — not rent it?</h2>
+        <p class="text-navy-200 text-lg mb-8">Book your Strategy Alignment Workshop. We'll map your highest-impact workflow and show you a path to production — handoff and ownership designed in from the start.</p>
+        <a href="engage.html" class="inline-flex items-center gap-2 px-8 py-4 bg-teal text-white text-lg font-semibold rounded-xl hover:bg-teal-600 transition-all">
+          Book Your Strategy Alignment Workshop <i data-lucide="calendar-check" class="w-5 h-5"></i>
+        </a>
       </div>
     </section>
   </main>
 
-  <div id="site-footer"></div>
-  <script src="/assets/js/layout.js"></script>
-  <script src="/assets/js/site.js"></script>
+  <!-- Component: Footer -->
+  <footer class="bg-navy-950 text-navy-300 py-12">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid md:grid-cols-3 gap-8 mb-8">
+        <div>
+          <div class="flex items-center gap-2.5 mb-3">
+            <svg width="28" height="28" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg" class="shrink-0">
+              <circle cx="19" cy="19" r="4" fill="#14B8A6"/>
+              <circle cx="19" cy="19" r="7.5" fill="none" stroke="#14B8A6" stroke-width="0.9" opacity="0.3"/>
+              <circle cx="11" cy="11" r="2" fill="#5EEAD4"/>
+              <circle cx="27" cy="11" r="2" fill="#5EEAD4"/>
+              <circle cx="11" cy="27" r="2" fill="#5EEAD4"/>
+              <circle cx="27" cy="27" r="2" fill="#5EEAD4"/>
+              <line x1="19" y1="15" x2="13.2" y2="13.2" stroke="#14B8A6" stroke-width="1.4" stroke-linecap="round"/>
+              <line x1="19" y1="15" x2="24.8" y2="13.2" stroke="#14B8A6" stroke-width="1.4" stroke-linecap="round"/>
+              <line x1="19" y1="23" x2="13.2" y2="24.8" stroke="#14B8A6" stroke-width="1.4" stroke-linecap="round"/>
+              <line x1="19" y1="23" x2="24.8" y2="24.8" stroke="#14B8A6" stroke-width="1.4" stroke-linecap="round"/>
+            </svg>
+            <span class="text-white font-semibold">Sirvoce</span>
+          </div>
+          <p class="text-sm">Practical AI for Mid-Sized Manufacturers. Build it. Train it. Own it.</p>
+        </div>
+        <div class="grid grid-cols-2 gap-4 text-sm">
+          <div class="space-y-2">
+            <a href="challenge.html" class="block hover:text-teal-300 transition-colors">The Challenge</a>
+            <a href="approach.html" class="block hover:text-teal-300 transition-colors">Our Approach</a>
+            <a href="solutions.html" class="block hover:text-teal-300 transition-colors">Solutions &amp; Demos</a>
+          </div>
+          <div class="space-y-2">
+            <a href="proof.html" class="block hover:text-teal-300 transition-colors">Proof &amp; Results</a>
+            <a href="about.html" class="block hover:text-teal-300 transition-colors">About</a>
+            <a href="engage.html" class="block hover:text-teal-300 transition-colors">Engage</a>
+          </div>
+        </div>
+        <div class="text-sm">
+          <a href="mailto:hello@sirvoce.com" class="flex items-center gap-2 hover:text-teal-300 transition-colors mb-2">
+            <i data-lucide="mail" class="w-4 h-4"></i> hello@sirvoce.com
+          </a>
+          <p class="text-navy-500 text-xs mt-4">&copy; 2026 Sirvoce. All rights reserved.</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <script src="assets/js/site.js"></script>
 </body>
 </html>

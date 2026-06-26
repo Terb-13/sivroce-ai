@@ -1,34 +1,23 @@
-# Sirvoce AI
+# SIVROCE AI
 
-Multi-page marketing site for Sirvoce — a boutique AI consulting firm for mid-sized manufacturers.
+Static multi-page marketing site for SIVROCE AI.
 
 ## Pages
 
-| Route | Page |
-|-------|------|
-| `/` | Home |
-| `/challenge` | The Challenge |
-| `/who-we-are` | Who We Are |
-| `/process` | Our Process |
-| `/proof` | Proof & interactive demos |
-| `/handoff` | Handoff |
-| `/contact` | Book a Workshop |
+| Page | File | Description |
+|------|------|-------------|
+| Home | `index.html` | Landing page and primary narrative |
+| Challenge | `challenge.html` | Problem framing and operational pain points |
+| Approach | `approach.html` | Methodology and how we work |
+| Solutions | `solutions.html` | Product and service offerings; **interactive demos live here** |
+| Proof | `proof.html` | Results, case context, and credibility |
+| About | `about.html` | Team and company background |
+| Engage | `engage.html` | Contact and next steps |
 
 ## Demos
 
-The Proof page embeds two interactive demos with fake data:
-
-- `/demos/customer-portal.html` — order & proof tracking portal
-- `/demos/quoting-agent.html` — quoting & scheduling chat assistant
-
-## Local development
-
-```bash
-npx serve .
-```
-
-Then open [http://localhost:3000](http://localhost:3000).
+Interactive demos (portal and agent experiences) are implemented as **inline JavaScript** on `solutions.html`, backed by scripts in `assets/js/` (`portal-demo.js`, `agent-demo.js`, and shared `site.js`).
 
 ## Deploy
 
-Configured for [Vercel](https://vercel.com) static hosting. No build command required.
+Configured for [Vercel](https://vercel.com) with `cleanUrls` and security headers in `vercel.json`.

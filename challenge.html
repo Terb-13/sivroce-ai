@@ -1,115 +1,142 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Legacy systems and manual workflows are quietly eroding margins for mid-sized manufacturers. See the operational challenges Sirvoce helps you solve." />
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="The operational challenges mid-sized manufacturers face — rising cost-to-serve, manual processes, legacy systems, and failed AI pilots." />
   <title>The Challenge — Sirvoce</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <script src="/assets/js/tailwind-config.js"></script>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <script>tailwind.config={theme:{extend:{colors:{navy:{DEFAULT:'#1F3A5F',50:'#F0F4F8',100:'#D9E2EC',200:'#BCCCDC',500:'#627D98',600:'#486581',800:'#243B53',900:'#1F3A5F',950:'#102A43'},teal:{DEFAULT:'#0D9488',50:'#F0FDFA',100:'#CCFBF1',600:'#0D9488',700:'#0F766E'}},fontFamily:{sans:['Inter','system-ui','sans-serif']},boxShadow:{soft:'0 4px 24px -4px rgba(31,58,95,0.08)',card:'0 8px 32px -8px rgba(31,58,95,0.12)',nav:'0 1px 0 0 rgba(31,58,95,0.06)'}}}}</script>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
   <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
-  <link rel="stylesheet" href="/assets/css/site.css" />
 </head>
-<body data-page="challenge" class="font-sans text-navy-800 bg-white antialiased">
-  <div id="site-header"></div>
-  <main>
-    <div class="pt-24 lg:pt-28 pb-8 bg-navy-50 border-b border-navy-100">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <p class="text-teal font-semibold text-sm uppercase tracking-wider mb-2">The reality on your floor</p>
-        <h1 class="text-3xl sm:text-4xl font-bold text-navy tracking-tight">Legacy systems and manual workflows are quietly eroding your margins.</h1>
-      </div>
-    </div>
-
-    <section id="problem" class="py-20 lg:py-28 bg-navy-50">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <p class="text-lg text-navy-600 leading-relaxed text-center max-w-3xl mx-auto mb-14">
-          Every hour your estimators re-key data, your schedulers chase updates, and your customer service team hunts for proof status — you're paying a tax that competitors are starting to eliminate.
-        </p>
-
-        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
-          <div class="group bg-white rounded-2xl p-7 shadow-soft border border-navy-100 hover:border-teal/30 hover:shadow-card transition-all duration-300">
-            <div class="w-12 h-12 rounded-xl bg-red-50 flex items-center justify-center mb-5 group-hover:scale-105 transition-transform">
-              <i data-lucide="trending-up" class="w-6 h-6 text-red-500" stroke-width="1.75"></i>
-            </div>
-            <h3 class="text-lg font-bold text-navy mb-2">Rising cost-to-serve</h3>
-            <p class="text-navy-600 text-sm leading-relaxed">
-              SKU proliferation, custom orders, and exception-heavy workflows drive up the cost of every transaction — while customers expect faster turnaround at the same price.
-            </p>
-          </div>
-
-          <div class="group bg-white rounded-2xl p-7 shadow-soft border border-navy-100 hover:border-teal/30 hover:shadow-card transition-all duration-300">
-            <div class="w-12 h-12 rounded-xl bg-amber-50 flex items-center justify-center mb-5 group-hover:scale-105 transition-transform">
-              <i data-lucide="clock" class="w-6 h-6 text-amber-600" stroke-width="1.75"></i>
-            </div>
-            <h3 class="text-lg font-bold text-navy mb-2">Slow, manual core processes</h3>
-            <p class="text-navy-600 text-sm leading-relaxed">
-              Quoting, estimating, scheduling, and proofing still run on spreadsheets, email chains, and tribal knowledge. Cycle times stretch while errors compound.
-            </p>
-          </div>
-
-          <div class="group bg-white rounded-2xl p-7 shadow-soft border border-navy-100 hover:border-teal/30 hover:shadow-card transition-all duration-300">
-            <div class="w-12 h-12 rounded-xl bg-navy-100 flex items-center justify-center mb-5 group-hover:scale-105 transition-transform">
-              <i data-lucide="server-off" class="w-6 h-6 text-navy-600" stroke-width="1.75"></i>
-            </div>
-            <h3 class="text-lg font-bold text-navy mb-2">Legacy systems &amp; digital friction</h3>
-            <p class="text-navy-600 text-sm leading-relaxed">
-              Your ERP and MES weren't designed for intelligent automation. Data lives in silos, integrations are fragile, and "digital transformation" projects stall before production.
-            </p>
-          </div>
-
-          <div class="group bg-white rounded-2xl p-7 shadow-soft border border-navy-100 hover:border-teal/30 hover:shadow-card transition-all duration-300">
-            <div class="w-12 h-12 rounded-xl bg-orange-50 flex items-center justify-center mb-5 group-hover:scale-105 transition-transform">
-              <i data-lucide="users" class="w-6 h-6 text-orange-600" stroke-width="1.75"></i>
-            </div>
-            <h3 class="text-lg font-bold text-navy mb-2">Talent stretched thin</h3>
-            <p class="text-navy-600 text-sm leading-relaxed">
-              Your best people spend their days on repetitive coordination instead of high-value problem solving. Burnout rises as automation pressure builds.
-            </p>
-          </div>
-
-          <div class="group bg-white rounded-2xl p-7 shadow-soft border border-navy-100 hover:border-teal/30 hover:shadow-card transition-all duration-300">
-            <div class="w-12 h-12 rounded-xl bg-purple-50 flex items-center justify-center mb-5 group-hover:scale-105 transition-transform">
-              <i data-lucide="alert-triangle" class="w-6 h-6 text-purple-600" stroke-width="1.75"></i>
-            </div>
-            <h3 class="text-lg font-bold text-navy mb-2">AI pilots that never ship</h3>
-            <p class="text-navy-600 text-sm leading-relaxed">
-              Big consultancies deliver slide decks. Internal teams lack bandwidth. Proof-of-concepts sit in sandbox environments while the shop floor keeps running the old way.
-            </p>
-          </div>
-
-          <div class="group bg-white rounded-2xl p-7 shadow-soft border border-navy-100 hover:border-teal/30 hover:shadow-card transition-all duration-300">
-            <div class="w-12 h-12 rounded-xl bg-teal-50 flex items-center justify-center mb-5 group-hover:scale-105 transition-transform">
-              <i data-lucide="rocket" class="w-6 h-6 text-teal" stroke-width="1.75"></i>
-            </div>
-            <h3 class="text-lg font-bold text-navy mb-2">Automation readiness gap</h3>
-            <p class="text-navy-600 text-sm leading-relaxed">
-              Robotics and advanced automation are on the horizon — but without clean data, documented workflows, and internal AI capability, you won't be ready when the time comes.
-            </p>
-          </div>
+<body class="font-sans text-navy-800 bg-white antialiased">
+  <header class="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md shadow-nav">
+    <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" aria-label="Main navigation">
+      <div class="flex items-center justify-between h-16 lg:h-20">
+        <a href="index.html" class="flex items-center gap-3"><div class="w-[36px] h-[36px] rounded-[9px] bg-navy flex items-center justify-center overflow-hidden shrink-0"><svg width="36" height="36" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="19" cy="19" r="4" fill="#14B8A6"/><circle cx="19" cy="19" r="7.5" fill="none" stroke="#14B8A6" stroke-width="0.9" opacity="0.3"/><circle cx="11" cy="11" r="2" fill="#5EEAD4"/><circle cx="27" cy="11" r="2" fill="#5EEAD4"/><circle cx="11" cy="27" r="2" fill="#5EEAD4"/><circle cx="27" cy="27" r="2" fill="#5EEAD4"/><line x1="19" y1="15" x2="13.2" y2="13.2" stroke="#14B8A6" stroke-width="1.5" stroke-linecap="round"/><line x1="19" y1="15" x2="24.8" y2="13.2" stroke="#14B8A6" stroke-width="1.5" stroke-linecap="round"/><line x1="19" y1="23" x2="13.2" y2="24.8" stroke="#14B8A6" stroke-width="1.5" stroke-linecap="round"/><line x1="19" y1="23" x2="24.8" y2="24.8" stroke="#14B8A6" stroke-width="1.5" stroke-linecap="round"/></svg></div><span class="text-navy font-bold text-xl tracking-[-0.02em]">Sirvoce</span></a>
+        <div class="hidden xl:flex items-center gap-6">
+          <a href="index.html" class="text-sm font-medium text-navy-600 hover:text-teal transition-colors">Home</a>
+          <a href="challenge.html" class="text-sm font-semibold text-teal">The Challenge</a>
+          <a href="approach.html" class="text-sm font-medium text-navy-600 hover:text-teal transition-colors">Our Approach</a>
+          <a href="solutions.html" class="text-sm font-medium text-navy-600 hover:text-teal transition-colors">Solutions &amp; Demos</a>
+          <a href="proof.html" class="text-sm font-medium text-navy-600 hover:text-teal transition-colors">Proof &amp; Results</a>
+          <a href="about.html" class="text-sm font-medium text-navy-600 hover:text-teal transition-colors">About</a>
+          <a href="engage.html" class="text-sm font-medium text-navy-600 hover:text-teal transition-colors">Engage</a>
         </div>
+        <div class="flex items-center gap-3">
+          <a href="engage.html" class="hidden sm:inline-flex items-center gap-2 px-5 py-2.5 bg-teal text-white text-sm font-semibold rounded-lg hover:bg-teal-700">Book Your Strategy Workshop <i data-lucide="arrow-right" class="w-4 h-4"></i></a>
+          <button id="mobile-menu-btn" type="button" class="xl:hidden p-2 rounded-lg text-navy-600 hover:bg-navy-50 transition-colors" aria-expanded="false" aria-controls="mobile-menu" aria-label="Open menu"><i data-lucide="menu" class="w-6 h-6" id="menu-icon"></i></button>
+        </div>
+      </div>
+      <div id="mobile-menu" class="hidden xl:hidden pb-4 border-t border-navy-100"><div class="flex flex-col gap-1 pt-3">
+        <a href="index.html" class="mobile-nav-link px-3 py-2.5 text-sm text-navy-600 rounded-lg">Home</a>
+        <a href="challenge.html" class="mobile-nav-link px-3 py-2.5 text-sm font-semibold text-teal rounded-lg">The Challenge</a>
+        <a href="approach.html" class="mobile-nav-link px-3 py-2.5 text-sm text-navy-600 rounded-lg">Our Approach</a>
+        <a href="solutions.html" class="mobile-nav-link px-3 py-2.5 text-sm text-navy-600 rounded-lg">Solutions &amp; Demos</a>
+        <a href="proof.html" class="mobile-nav-link px-3 py-2.5 text-sm text-navy-600 rounded-lg">Proof &amp; Results</a>
+        <a href="about.html" class="mobile-nav-link px-3 py-2.5 text-sm text-navy-600 rounded-lg">About</a>
+        <a href="engage.html" class="mobile-nav-link px-3 py-2.5 text-sm text-navy-600 rounded-lg">Engage</a>
+        <a href="engage.html" class="mobile-nav-link px-3 py-2.5 text-sm font-semibold text-teal rounded-lg">Book Your Strategy Workshop</a>
+      </div></div>
+    </nav>
+  </header>
 
-        <p class="text-center text-navy-600 mt-12 text-lg max-w-2xl mx-auto">
-          You don't need another strategy document. You need a partner who has been on the plant floor and knows how to make AI stick.
-        </p>
-
-        <div class="flex flex-col sm:flex-row gap-4 justify-center mt-12">
-          <a href="/process" class="inline-flex items-center justify-center gap-2 px-7 py-3.5 bg-teal text-white font-semibold rounded-lg hover:bg-teal-700 transition-all hover:shadow-card focus:outline-none focus:ring-2 focus:ring-teal focus:ring-offset-2">
-            See Our Process
-            <i data-lucide="route" class="w-5 h-5" stroke-width="2"></i>
-          </a>
-          <a href="/contact" class="inline-flex items-center justify-center gap-2 px-7 py-3.5 bg-white text-navy font-semibold rounded-lg border-2 border-navy-200 hover:border-teal hover:text-teal transition-all focus:outline-none focus:ring-2 focus:ring-navy focus:ring-offset-2">
-            Book a Workshop
-            <i data-lucide="calendar" class="w-5 h-5" stroke-width="2"></i>
-          </a>
+  <main class="pt-28 lg:pt-36">
+    <section class="pb-16">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="max-w-3xl">
+          <p class="text-teal font-semibold text-sm uppercase tracking-wider mb-3">The Challenge</p>
+          <h1 class="text-4xl sm:text-5xl font-extrabold text-navy tracking-tight mb-6">Legacy workflows are quietly eroding your margins.</h1>
+          <p class="text-xl text-navy-600 leading-relaxed">Mid-sized manufacturers ($10M–$500M) carry a unique burden: complex enough operations to need custom solutions, but without the enterprise budget or IT bench to absorb another failed transformation project.</p>
         </div>
       </div>
     </section>
+
+    <section class="pb-20 lg:pb-28 bg-navy-50">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+          <article class="bg-white rounded-2xl p-7 shadow-soft border border-navy-100 hover:border-teal/30 hover:shadow-card transition-all">
+            <div class="w-12 h-12 rounded-xl bg-red-50 flex items-center justify-center mb-5"><i data-lucide="trending-up" class="w-6 h-6 text-red-500"></i></div>
+            <h2 class="text-lg font-bold text-navy mb-2">Rising cost-to-serve</h2>
+            <p class="text-navy-600 text-sm leading-relaxed">SKU proliferation, custom orders, and exception-heavy workflows drive up the cost of every transaction while customers expect faster turnaround at the same price.</p>
+          </article>
+          <article class="bg-white rounded-2xl p-7 shadow-soft border border-navy-100 hover:border-teal/30 hover:shadow-card transition-all">
+            <div class="w-12 h-12 rounded-xl bg-amber-50 flex items-center justify-center mb-5"><i data-lucide="clock" class="w-6 h-6 text-amber-600"></i></div>
+            <h2 class="text-lg font-bold text-navy mb-2">Manual core processes</h2>
+            <p class="text-navy-600 text-sm leading-relaxed">Quoting, estimating, scheduling, and proofing run on spreadsheets, email chains, and tribal knowledge. Cycle times stretch while errors compound.</p>
+          </article>
+          <article class="bg-white rounded-2xl p-7 shadow-soft border border-navy-100 hover:border-teal/30 hover:shadow-card transition-all">
+            <div class="w-12 h-12 rounded-xl bg-navy-100 flex items-center justify-center mb-5"><i data-lucide="server-off" class="w-6 h-6 text-navy-600"></i></div>
+            <h2 class="text-lg font-bold text-navy mb-2">Legacy systems &amp; digital friction</h2>
+            <p class="text-navy-600 text-sm leading-relaxed">Your ERP and MES weren't designed for intelligent automation. Data lives in silos and integrations are fragile.</p>
+          </article>
+          <article class="bg-white rounded-2xl p-7 shadow-soft border border-navy-100 hover:border-teal/30 hover:shadow-card transition-all">
+            <div class="w-12 h-12 rounded-xl bg-orange-50 flex items-center justify-center mb-5"><i data-lucide="users" class="w-6 h-6 text-orange-600"></i></div>
+            <h2 class="text-lg font-bold text-navy mb-2">Talent stretched thin</h2>
+            <p class="text-navy-600 text-sm leading-relaxed">Your best people spend days on repetitive coordination instead of high-value problem solving. Burnout rises as automation pressure builds.</p>
+          </article>
+          <article class="bg-white rounded-2xl p-7 shadow-soft border border-navy-100 hover:border-teal/30 hover:shadow-card transition-all">
+            <div class="w-12 h-12 rounded-xl bg-purple-50 flex items-center justify-center mb-5"><i data-lucide="alert-triangle" class="w-6 h-6 text-purple-600"></i></div>
+            <h2 class="text-lg font-bold text-navy mb-2">AI pilots that never ship</h2>
+            <p class="text-navy-600 text-sm leading-relaxed">Big consultancies deliver slide decks. Internal teams lack bandwidth. Proof-of-concepts sit in sandboxes while the shop floor keeps running the old way.</p>
+          </article>
+          <article class="bg-white rounded-2xl p-7 shadow-soft border border-navy-100 hover:border-teal/30 hover:shadow-card transition-all">
+            <div class="w-12 h-12 rounded-xl bg-teal-50 flex items-center justify-center mb-5"><i data-lucide="rocket" class="w-6 h-6 text-teal"></i></div>
+            <h2 class="text-lg font-bold text-navy mb-2">Automation readiness gap</h2>
+            <p class="text-navy-600 text-sm leading-relaxed">Robotics and advanced automation are on the horizon — but without clean data, documented workflows, and internal AI capability, you won't be ready.</p>
+          </article>
+        </div>
+        <div class="mt-16 grid lg:grid-cols-2 gap-12 items-center">
+          <img src="assets/images/collaboration.jpg" alt="Manufacturing team reviewing workflow" class="rounded-2xl shadow-card w-full object-cover aspect-[4/3]" />
+          <div>
+            <h2 class="text-2xl font-bold text-navy mb-4">You don't need another strategy document.</h2>
+            <p class="text-navy-600 leading-relaxed mb-6">You need a practitioner who has been on the plant floor, understands your constraints, and can deliver a working system your team will own permanently.</p>
+            <a href="approach.html" class="inline-flex items-center gap-2 text-teal font-semibold hover:text-teal-700">See our approach <i data-lucide="arrow-right" class="w-4 h-4"></i></a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="py-20 bg-navy text-white text-center">
+      <div class="max-w-3xl mx-auto px-4">
+        <h2 class="text-3xl font-bold mb-5">The path forward starts with clarity.</h2>
+        <p class="text-navy-200 mb-8">Book your Strategy Alignment Workshop to identify your highest-impact workflow and a realistic path to production.</p>
+        <a href="engage.html" class="inline-flex items-center gap-2 px-8 py-4 bg-teal font-semibold rounded-xl hover:bg-teal-600">Book Your Strategy Alignment Workshop <i data-lucide="calendar-check" class="w-5 h-5"></i></a>
+      </div>
+    </section>
   </main>
-  <div id="site-footer"></div>
-  <script src="/assets/js/layout.js"></script>
-  <script src="/assets/js/site.js"></script>
+
+  <footer class="bg-navy-950 text-navy-300 py-12">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid md:grid-cols-3 gap-8 mb-8">
+        <div>
+          <div class="flex items-center gap-2.5 mb-3">
+            <svg width="28" height="28" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg" class="shrink-0"><circle cx="19" cy="19" r="4" fill="#14B8A6"/><circle cx="19" cy="19" r="7.5" fill="none" stroke="#14B8A6" stroke-width="0.9" opacity="0.3"/><circle cx="11" cy="11" r="2" fill="#5EEAD4"/><circle cx="27" cy="11" r="2" fill="#5EEAD4"/><circle cx="11" cy="27" r="2" fill="#5EEAD4"/><circle cx="27" cy="27" r="2" fill="#5EEAD4"/><line x1="19" y1="15" x2="13.2" y2="13.2" stroke="#14B8A6" stroke-width="1.4" stroke-linecap="round"/><line x1="19" y1="15" x2="24.8" y2="13.2" stroke="#14B8A6" stroke-width="1.4" stroke-linecap="round"/><line x1="19" y1="23" x2="13.2" y2="24.8" stroke="#14B8A6" stroke-width="1.4" stroke-linecap="round"/><line x1="19" y1="23" x2="24.8" y2="24.8" stroke="#14B8A6" stroke-width="1.4" stroke-linecap="round"/></svg>
+            <span class="text-white font-semibold">Sirvoce</span>
+          </div>
+          <p class="text-sm">Practical AI for Mid-Sized Manufacturers. Build it. Train it. Own it.</p>
+        </div>
+        <div class="grid grid-cols-2 gap-4 text-sm">
+          <div class="space-y-2">
+            <a href="challenge.html" class="block hover:text-teal-300 transition-colors">The Challenge</a>
+            <a href="approach.html" class="block hover:text-teal-300 transition-colors">Our Approach</a>
+            <a href="solutions.html" class="block hover:text-teal-300 transition-colors">Solutions &amp; Demos</a>
+          </div>
+          <div class="space-y-2">
+            <a href="proof.html" class="block hover:text-teal-300 transition-colors">Proof &amp; Results</a>
+            <a href="about.html" class="block hover:text-teal-300 transition-colors">About</a>
+            <a href="engage.html" class="block hover:text-teal-300 transition-colors">Engage</a>
+          </div>
+        </div>
+        <div class="text-sm">
+          <a href="mailto:hello@sirvoce.com" class="flex items-center gap-2 hover:text-teal-300 transition-colors mb-2">
+            <i data-lucide="mail" class="w-4 h-4"></i> hello@sirvoce.com
+          </a>
+          <p class="text-navy-500 text-xs mt-4">&copy; 2026 Sirvoce. All rights reserved.</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <script src="assets/js/site.js"></script>
 </body>
 </html>

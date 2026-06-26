@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Sirvoce' 3-step approach: Assess & Align, Build & Deploy, Train & Handoff. Embedded builders with value-gated delivery." />
+  <title>Our Approach — Sirvoce</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>tailwind.config={theme:{extend:{colors:{navy:{DEFAULT:'#1F3A5F',50:'#F0F4F8',100:'#D9E2EC',200:'#BCCCDC',500:'#627D98',600:'#486581',800:'#243B53',900:'#1F3A5F',950:'#102A43'},teal:{DEFAULT:'#0D9488',50:'#F0FDFA',100:'#CCFBF1',600:'#0D9488',700:'#0F766E'}},fontFamily:{sans:['Inter','system-ui','sans-serif']},boxShadow:{soft:'0 4px 24px -4px rgba(31,58,95,0.08)',card:'0 8px 32px -8px rgba(31,58,95,0.12)',nav:'0 1px 0 0 rgba(31,58,95,0.06)'}}}}</script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+  <style>[data-step-panel]{display:none}[data-step-panel].active{display:block}.step-tab.active{background-color:#1F3A5F;color:#fff;border-color:#1F3A5F}</style>
+</head>
+<body class="font-sans text-navy-800 bg-white antialiased">
+  <header class="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md shadow-nav">
+    <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" aria-label="Main navigation">
+      <div class="flex items-center justify-between h-16 lg:h-20">
+        <a href="index.html" class="flex items-center gap-3"><div class="w-[36px] h-[36px] rounded-[9px] bg-navy flex items-center justify-center overflow-hidden shrink-0"><svg width="36" height="36" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="19" cy="19" r="4" fill="#14B8A6"/><circle cx="19" cy="19" r="7.5" fill="none" stroke="#14B8A6" stroke-width="0.9" opacity="0.3"/><circle cx="11" cy="11" r="2" fill="#5EEAD4"/><circle cx="27" cy="11" r="2" fill="#5EEAD4"/><circle cx="11" cy="27" r="2" fill="#5EEAD4"/><circle cx="27" cy="27" r="2" fill="#5EEAD4"/><line x1="19" y1="15" x2="13.2" y2="13.2" stroke="#14B8A6" stroke-width="1.5" stroke-linecap="round"/><line x1="19" y1="15" x2="24.8" y2="13.2" stroke="#14B8A6" stroke-width="1.5" stroke-linecap="round"/><line x1="19" y1="23" x2="13.2" y2="24.8" stroke="#14B8A6" stroke-width="1.5" stroke-linecap="round"/><line x1="19" y1="23" x2="24.8" y2="24.8" stroke="#14B8A6" stroke-width="1.5" stroke-linecap="round"/></svg></div><span class="text-navy font-bold text-xl tracking-[-0.02em]">Sirvoce</span></a>
+        <div class="hidden xl:flex items-center gap-6">
+          <a href="index.html" class="text-sm font-medium text-navy-600 hover:text-teal">Home</a>
+          <a href="challenge.html" class="text-sm font-medium text-navy-600 hover:text-teal">The Challenge</a>
+          <a href="approach.html" class="text-sm font-semibold text-teal">Our Approach</a>
+          <a href="solutions.html" class="text-sm font-medium text-navy-600 hover:text-teal">Solutions &amp; Demos</a>
+          <a href="proof.html" class="text-sm font-medium text-navy-600 hover:text-teal">Proof &amp; Results</a>
+          <a href="about.html" class="text-sm font-medium text-navy-600 hover:text-teal">About</a>
+          <a href="engage.html" class="text-sm font-medium text-navy-600 hover:text-teal">Engage</a>
+        </div>
+        <div class="flex items-center gap-3">
+          <a href="engage.html" class="hidden sm:inline-flex items-center gap-2 px-5 py-2.5 bg-teal text-white text-sm font-semibold rounded-lg hover:bg-teal-700">Book Your Strategy Workshop <i data-lucide="arrow-right" class="w-4 h-4"></i></a>
+          <button id="mobile-menu-btn" type="button" class="xl:hidden p-2 rounded-lg text-navy-600 hover:bg-navy-50" aria-expanded="false" aria-controls="mobile-menu" aria-label="Open menu"><i data-lucide="menu" class="w-6 h-6" id="menu-icon"></i></button>
+        </div>
+      </div>
+      <div id="mobile-menu" class="hidden xl:hidden pb-4 border-t border-navy-100"><div class="flex flex-col gap-1 pt-3">
+        <a href="index.html" class="mobile-nav-link px-3 py-2.5 text-sm text-navy-600 rounded-lg">Home</a>
+        <a href="challenge.html" class="mobile-nav-link px-3 py-2.5 text-sm text-navy-600 rounded-lg">The Challenge</a>
+        <a href="approach.html" class="mobile-nav-link px-3 py-2.5 text-sm font-semibold text-teal rounded-lg">Our Approach</a>
+        <a href="solutions.html" class="mobile-nav-link px-3 py-2.5 text-sm text-navy-600 rounded-lg">Solutions &amp; Demos</a>
+        <a href="proof.html" class="mobile-nav-link px-3 py-2.5 text-sm text-navy-600 rounded-lg">Proof &amp; Results</a>
+        <a href="about.html" class="mobile-nav-link px-3 py-2.5 text-sm text-navy-600 rounded-lg">About</a>
+        <a href="engage.html" class="mobile-nav-link px-3 py-2.5 text-sm text-navy-600 rounded-lg">Engage</a>
+        <a href="engage.html" class="mobile-nav-link px-3 py-2.5 text-sm font-semibold text-teal rounded-lg">Book Your Strategy Workshop</a>
+      </div></div>
+    </nav>
+  </header>
+
+  <main class="pt-28 lg:pt-36">
+    <section class="pb-12">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 max-w-3xl">
+        <p class="text-teal font-semibold text-sm uppercase tracking-wider mb-3">Our Approach</p>
+        <h1 class="text-4xl sm:text-5xl font-extrabold text-navy tracking-tight mb-6">Three steps from assessment to ownership.</h1>
+        <p class="text-xl text-navy-600 leading-relaxed">Handoff and ownership are designed in from the start. We embed as builders inside your operation — not observers writing reports from the sidelines.</p>
+      </div>
+    </section>
+
+    <section class="pb-12">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="bg-navy-50 rounded-2xl p-8 lg:p-10 border border-navy-100">
+          <h2 class="text-xl font-bold text-navy mb-4">Philosophy: embedded builders, value-gated delivery</h2>
+          <p class="text-navy-600 leading-relaxed mb-4">We don't bill for open-ended discovery. Each phase has defined deliverables and a clear gate before moving forward. You see working software early. Your team's feedback shapes every iteration. And we structure every engagement so your team gains the capability to own, maintain, and extend the work at any point.</p>
+          <p class="text-navy-600 leading-relaxed">Built so your team can take over seamlessly — we leave when you are ready.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="pb-20 lg:pb-28 bg-gradient-to-b from-navy-50 to-white">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex flex-col sm:flex-row gap-3 justify-center mb-10" role="tablist">
+          <button type="button" class="step-tab active flex items-center gap-3 px-6 py-4 rounded-xl border-2 border-navy-200 bg-white font-semibold" data-step="1" role="tab" aria-selected="true"><span class="step-badge w-8 h-8 rounded-full bg-teal text-white text-sm font-bold flex items-center justify-center">1</span>Assess &amp; Align</button>
+          <button type="button" class="step-tab flex items-center gap-3 px-6 py-4 rounded-xl border-2 border-navy-200 bg-white font-semibold" data-step="2" role="tab" aria-selected="false"><span class="step-badge w-8 h-8 rounded-full bg-navy-100 text-navy text-sm font-bold flex items-center justify-center">2</span>Build &amp; Deploy</button>
+          <button type="button" class="step-tab flex items-center gap-3 px-6 py-4 rounded-xl border-2 border-navy-200 bg-white font-semibold" data-step="3" role="tab" aria-selected="false"><span class="step-badge w-8 h-8 rounded-full bg-navy-100 text-navy text-sm font-bold flex items-center justify-center">3</span>Train &amp; Handoff</button>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-card border border-navy-100 overflow-hidden">
+          <div id="step-panel-1" data-step-panel class="active p-8 lg:p-12">
+            <div class="grid lg:grid-cols-2 gap-10">
+              <div>
+                <h3 class="text-2xl font-bold text-navy mb-4">Map the real workflow. Align on highest-ROI starting point.</h3>
+                <p class="text-navy-600 mb-6">We embed with your team to understand how work actually flows. Together we identify where AI delivers measurable impact fastest and define success metrics your leadership agrees on.</p>
+                <ul class="space-y-3 text-sm text-navy-600">
+                  <li class="flex gap-3"><i data-lucide="check" class="w-5 h-5 text-teal shrink-0"></i>Workflow mapping sessions on-site or virtual</li>
+                  <li class="flex gap-3"><i data-lucide="check" class="w-5 h-5 text-teal shrink-0"></i>Data readiness assessment across ERP, files, tribal knowledge</li>
+                  <li class="flex gap-3"><i data-lucide="check" class="w-5 h-5 text-teal shrink-0"></i>Prioritized roadmap with timeline and expected ROI</li>
+                </ul>
+              </div>
+              <div class="bg-navy-50 rounded-xl p-6 border border-navy-100">
+                <p class="text-xs font-semibold uppercase tracking-wider text-navy-500 mb-4">Deliverables</p>
+                <ul class="space-y-3 text-sm font-medium text-navy"><li class="flex gap-2"><i data-lucide="file-text" class="w-4 h-4 text-teal"></i>Workflow opportunity brief</li><li class="flex gap-2"><i data-lucide="target" class="w-4 h-4 text-teal"></i>Aligned success metrics</li><li class="flex gap-2"><i data-lucide="map" class="w-4 h-4 text-teal"></i>Implementation plan with value gates</li></ul>
+                <p class="text-xs text-navy-500 mt-4">Typical duration: 1–2 weeks</p>
+              </div>
+            </div>
+          </div>
+          <div id="step-panel-2" data-step-panel class="p-8 lg:p-12">
+            <div class="grid lg:grid-cols-2 gap-10">
+              <div>
+                <h3 class="text-2xl font-bold text-navy mb-4">Build the system. Integrate with what you have. Ship to production.</h3>
+                <p class="text-navy-600 mb-6">Custom AI workflows connected to your ERP, email, file shares, and shop floor systems. Working software early and often — no rip-and-replace required.</p>
+                <ul class="space-y-3 text-sm text-navy-600">
+                  <li class="flex gap-3"><i data-lucide="check" class="w-5 h-5 text-teal shrink-0"></i>AI agents, automations, and decision-support tools</li>
+                  <li class="flex gap-3"><i data-lucide="check" class="w-5 h-5 text-teal shrink-0"></i>Integration with existing systems</li>
+                  <li class="flex gap-3"><i data-lucide="check" class="w-5 h-5 text-teal shrink-0"></i>Pilot with real data, phased production rollout</li>
+                </ul>
+              </div>
+              <div class="bg-navy-50 rounded-xl p-6 border border-navy-100">
+                <p class="text-xs font-semibold uppercase tracking-wider text-navy-500 mb-4">Deliverables</p>
+                <ul class="space-y-3 text-sm font-medium text-navy"><li class="flex gap-2"><i data-lucide="cpu" class="w-4 h-4 text-teal"></i>Production AI workflow(s)</li><li class="flex gap-2"><i data-lucide="plug" class="w-4 h-4 text-teal"></i>System integrations &amp; APIs</li><li class="flex gap-2"><i data-lucide="bar-chart-3" class="w-4 h-4 text-teal"></i>Performance monitoring dashboard</li></ul>
+                <p class="text-xs text-navy-500 mt-4">Typical duration: 4–6 weeks</p>
+              </div>
+            </div>
+          </div>
+          <div id="step-panel-3" data-step-panel class="p-8 lg:p-12">
+            <div class="grid lg:grid-cols-2 gap-10">
+              <div>
+                <h3 class="text-2xl font-bold text-navy mb-4">Train your team. Transfer everything. You own it completely.</h3>
+                <p class="text-navy-600 mb-6">Full source code, prompts, documentation, and runbooks are transferred to you. We run hands-on training, build internal champions, and offer a defined transition support window if you want a safety net.</p>
+                <ul class="space-y-3 text-sm text-navy-600">
+                  <li class="flex gap-3"><i data-lucide="check" class="w-5 h-5 text-teal shrink-0"></i>Role-based training for operators, supervisors, and IT</li>
+                  <li class="flex gap-3"><i data-lucide="check" class="w-5 h-5 text-teal shrink-0"></i>Complete documentation and troubleshooting guides</li>
+                  <li class="flex gap-3"><i data-lucide="check" class="w-5 h-5 text-teal shrink-0"></i>Repository access and deployment guides in your accounts</li>
+                </ul>
+              </div>
+              <div class="bg-navy-50 rounded-xl p-6 border border-navy-100">
+                <p class="text-xs font-semibold uppercase tracking-wider text-navy-500 mb-4">Deliverables</p>
+                <ul class="space-y-3 text-sm font-medium text-navy"><li class="flex gap-2"><i data-lucide="book-open" class="w-4 h-4 text-teal"></i>Operations playbook &amp; training materials</li><li class="flex gap-2"><i data-lucide="git-branch" class="w-4 h-4 text-teal"></i>Full source &amp; infrastructure transfer</li><li class="flex gap-2"><i data-lucide="user-check" class="w-4 h-4 text-teal"></i>Certified internal champions</li></ul>
+                <p class="text-xs text-navy-500 mt-4">Typical duration: 1–2 weeks</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="pb-20">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid lg:grid-cols-2 gap-12 items-center">
+        <img src="assets/images/handoff-training.jpg" alt="Team knowledge transfer and training session" class="rounded-2xl shadow-card w-full object-cover aspect-[4/3]" />
+        <div>
+          <h2 class="text-2xl font-bold text-navy mb-4">Every engagement ends with independence.</h2>
+          <p class="text-navy-600 leading-relaxed">The goal is never retention — it's capability. Built so your team can take over seamlessly — we leave when you are ready. Your team gains the capability to own, maintain, and extend the work at any point. Every project also creates clean data foundations for future robotics, vision, and physical automation.</p>
+          <a href="solutions.html" class="inline-flex items-center gap-2 mt-6 text-teal font-semibold hover:text-teal-700">Explore solutions &amp; live demos <i data-lucide="arrow-right" class="w-4 h-4"></i></a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="bg-navy-950 text-navy-300 py-12">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid md:grid-cols-3 gap-8 mb-8">
+        <div>
+          <div class="flex items-center gap-2.5 mb-3">
+            <svg width="28" height="28" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg" class="shrink-0"><circle cx="19" cy="19" r="4" fill="#14B8A6"/><circle cx="19" cy="19" r="7.5" fill="none" stroke="#14B8A6" stroke-width="0.9" opacity="0.3"/><circle cx="11" cy="11" r="2" fill="#5EEAD4"/><circle cx="27" cy="11" r="2" fill="#5EEAD4"/><circle cx="11" cy="27" r="2" fill="#5EEAD4"/><circle cx="27" cy="27" r="2" fill="#5EEAD4"/><line x1="19" y1="15" x2="13.2" y2="13.2" stroke="#14B8A6" stroke-width="1.4" stroke-linecap="round"/><line x1="19" y1="15" x2="24.8" y2="13.2" stroke="#14B8A6" stroke-width="1.4" stroke-linecap="round"/><line x1="19" y1="23" x2="13.2" y2="24.8" stroke="#14B8A6" stroke-width="1.4" stroke-linecap="round"/><line x1="19" y1="23" x2="24.8" y2="24.8" stroke="#14B8A6" stroke-width="1.4" stroke-linecap="round"/></svg>
+            <span class="text-white font-semibold">Sirvoce</span>
+          </div>
+          <p class="text-sm">Practical AI for Mid-Sized Manufacturers. Build it. Train it. Own it.</p>
+        </div>
+        <div class="grid grid-cols-2 gap-4 text-sm">
+          <div class="space-y-2">
+            <a href="challenge.html" class="block hover:text-teal-300 transition-colors">The Challenge</a>
+            <a href="approach.html" class="block hover:text-teal-300 transition-colors">Our Approach</a>
+            <a href="solutions.html" class="block hover:text-teal-300 transition-colors">Solutions &amp; Demos</a>
+          </div>
+          <div class="space-y-2">
+            <a href="proof.html" class="block hover:text-teal-300 transition-colors">Proof &amp; Results</a>
+            <a href="about.html" class="block hover:text-teal-300 transition-colors">About</a>
+            <a href="engage.html" class="block hover:text-teal-300 transition-colors">Engage</a>
+          </div>
+        </div>
+        <div class="text-sm">
+          <a href="mailto:hello@sirvoce.com" class="flex items-center gap-2 hover:text-teal-300 transition-colors mb-2">
+            <i data-lucide="mail" class="w-4 h-4"></i> hello@sirvoce.com
+          </a>
+          <p class="text-navy-500 text-xs mt-4">&copy; 2026 Sirvoce. All rights reserved.</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <script src="assets/js/site.js"></script>
+</body>
+</html>

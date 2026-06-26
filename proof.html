@@ -1,136 +1,166 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Explore interactive Sirvoce prototypes — a customer portal and AI quoting assistant — built for mid-sized manufacturers." />
-  <title>Proof — Sirvoce</title>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Anonymized case studies, client testimonials, and typical outcomes from Sirvoce manufacturing AI engagements." />
+  <title>Proof &amp; Results — Sirvoce</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <script src="/assets/js/tailwind-config.js"></script>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <script>tailwind.config={theme:{extend:{colors:{navy:{DEFAULT:'#1F3A5F',50:'#F0F4F8',100:'#D9E2EC',200:'#BCCCDC',500:'#627D98',600:'#486581',800:'#243B53',900:'#1F3A5F',950:'#102A43'},teal:{DEFAULT:'#0D9488',50:'#F0FDFA',100:'#CCFBF1',600:'#0D9488',700:'#0F766E'}},fontFamily:{sans:['Inter','system-ui','sans-serif']},boxShadow:{soft:'0 4px 24px -4px rgba(31,58,95,0.08)',card:'0 8px 32px -8px rgba(31,58,95,0.12)',nav:'0 1px 0 0 rgba(31,58,95,0.06)'}}}}</script>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
   <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
-  <link rel="stylesheet" href="/assets/css/site.css" />
 </head>
-<body data-page="proof" class="font-sans text-navy-800 bg-white antialiased">
-  <div id="site-header"></div>
-  <main>
-    <div class="pt-24 lg:pt-28 pb-8 bg-navy-50 border-b border-navy-100">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <p class="text-teal font-semibold text-sm uppercase tracking-wider mb-2">Proof, not promises</p>
-        <h1 class="text-3xl sm:text-4xl font-bold text-navy tracking-tight">See what we build — and what your team could run.</h1>
+<body class="font-sans text-navy-800 bg-white antialiased">
+  <header class="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md shadow-nav">
+    <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" aria-label="Main navigation">
+      <div class="flex items-center justify-between h-16 lg:h-20">
+        <a href="index.html" class="flex items-center gap-3"><div class="w-[36px] h-[36px] rounded-[9px] bg-navy flex items-center justify-center overflow-hidden shrink-0"><svg width="36" height="36" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="19" cy="19" r="4" fill="#14B8A6"/><circle cx="19" cy="19" r="7.5" fill="none" stroke="#14B8A6" stroke-width="0.9" opacity="0.3"/><circle cx="11" cy="11" r="2" fill="#5EEAD4"/><circle cx="27" cy="11" r="2" fill="#5EEAD4"/><circle cx="11" cy="27" r="2" fill="#5EEAD4"/><circle cx="27" cy="27" r="2" fill="#5EEAD4"/><line x1="19" y1="15" x2="13.2" y2="13.2" stroke="#14B8A6" stroke-width="1.5" stroke-linecap="round"/><line x1="19" y1="15" x2="24.8" y2="13.2" stroke="#14B8A6" stroke-width="1.5" stroke-linecap="round"/><line x1="19" y1="23" x2="13.2" y2="24.8" stroke="#14B8A6" stroke-width="1.5" stroke-linecap="round"/><line x1="19" y1="23" x2="24.8" y2="24.8" stroke="#14B8A6" stroke-width="1.5" stroke-linecap="round"/></svg></div><span class="text-navy font-bold text-xl tracking-[-0.02em]">Sirvoce</span></a>
+        <div class="hidden xl:flex items-center gap-6">
+          <a href="index.html" class="text-sm font-medium text-navy-600 hover:text-teal">Home</a>
+          <a href="challenge.html" class="text-sm font-medium text-navy-600 hover:text-teal">The Challenge</a>
+          <a href="approach.html" class="text-sm font-medium text-navy-600 hover:text-teal">Our Approach</a>
+          <a href="solutions.html" class="text-sm font-medium text-navy-600 hover:text-teal">Solutions &amp; Demos</a>
+          <a href="proof.html" class="text-sm font-semibold text-teal">Proof &amp; Results</a>
+          <a href="about.html" class="text-sm font-medium text-navy-600 hover:text-teal">About</a>
+          <a href="engage.html" class="text-sm font-medium text-navy-600 hover:text-teal">Engage</a>
+        </div>
+        <div class="flex items-center gap-3">
+          <a href="engage.html" class="hidden sm:inline-flex items-center gap-2 px-5 py-2.5 bg-teal text-white text-sm font-semibold rounded-lg hover:bg-teal-700">Book Your Strategy Workshop <i data-lucide="arrow-right" class="w-4 h-4"></i></a>
+          <button id="mobile-menu-btn" type="button" class="xl:hidden p-2 rounded-lg text-navy-600 hover:bg-navy-50" aria-expanded="false" aria-controls="mobile-menu" aria-label="Open menu"><i data-lucide="menu" class="w-6 h-6" id="menu-icon"></i></button>
+        </div>
       </div>
-    </div>
+      <div id="mobile-menu" class="hidden xl:hidden pb-4 border-t border-navy-100"><div class="flex flex-col gap-1 pt-3">
+        <a href="index.html" class="mobile-nav-link px-3 py-2.5 text-sm text-navy-600 rounded-lg">Home</a>
+        <a href="challenge.html" class="mobile-nav-link px-3 py-2.5 text-sm text-navy-600 rounded-lg">The Challenge</a>
+        <a href="approach.html" class="mobile-nav-link px-3 py-2.5 text-sm text-navy-600 rounded-lg">Our Approach</a>
+        <a href="solutions.html" class="mobile-nav-link px-3 py-2.5 text-sm text-navy-600 rounded-lg">Solutions &amp; Demos</a>
+        <a href="proof.html" class="mobile-nav-link px-3 py-2.5 text-sm font-semibold text-teal rounded-lg">Proof &amp; Results</a>
+        <a href="about.html" class="mobile-nav-link px-3 py-2.5 text-sm text-navy-600 rounded-lg">About</a>
+        <a href="engage.html" class="mobile-nav-link px-3 py-2.5 text-sm text-navy-600 rounded-lg">Engage</a>
+        <a href="engage.html" class="mobile-nav-link px-3 py-2.5 text-sm font-semibold text-teal rounded-lg">Book Your Strategy Workshop</a>
+      </div></div>
+    </nav>
+  </header>
 
-    <section id="proof" class="py-20 lg:py-28">
+  <main class="pt-28 lg:pt-36">
+    <section class="pb-12">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <p class="text-lg text-navy-600 text-center max-w-3xl mx-auto mb-14">
-          Real workflows. Real interfaces. Interactive prototypes you can explore right here.
-        </p>
+        <p class="text-teal font-semibold text-sm uppercase tracking-wider mb-3">Proof &amp; Results</p>
+        <h1 class="text-4xl sm:text-5xl font-extrabold text-navy tracking-tight mb-6 max-w-3xl">Real outcomes from real manufacturing workflows.</h1>
+        <p class="text-xl text-navy-600 max-w-2xl">Anonymized case studies from mid-sized manufacturers. Handoff and ownership are designed in from the start — your team gains the capability to own, maintain, and extend the work at any point.</p>
+      </div>
+    </section>
 
-        <div class="grid lg:grid-cols-3 gap-8">
-          <div class="lg:col-span-2 bg-white rounded-2xl shadow-card border border-navy-100 overflow-hidden group hover:border-teal/30 transition-colors">
-            <div class="p-6 lg:p-8 border-b border-navy-100">
-              <div class="flex items-start justify-between gap-4">
-                <div>
-                  <div class="inline-flex items-center gap-2 px-2.5 py-1 bg-teal-50 text-teal-700 text-xs font-semibold rounded-md mb-3">
-                    <i data-lucide="layout-dashboard" class="w-3.5 h-3.5" stroke-width="2"></i>
-                    Customer Portal
-                  </div>
-                  <h3 class="text-xl font-bold text-navy mb-2">Self-service order &amp; proof tracking portal</h3>
-                  <p class="text-navy-600 text-sm leading-relaxed">
-                    Reduces inbound status calls by giving customers real-time visibility into orders, proofs, and shipments — integrated with your existing order management data.
-                  </p>
-                </div>
-                <div class="hidden sm:flex items-center gap-2 text-xs text-navy-500 shrink-0">
-                  <span class="w-2 h-2 bg-teal rounded-full"></span>
-                  Interactive demo
-                </div>
-              </div>
-            </div>
-
-            <iframe src="/demos/customer-portal.html" class="demo-frame" title="Customer Portal Demo" loading="lazy"></iframe>
-
-            <div class="px-6 lg:px-8 py-4 bg-navy-50 flex flex-wrap items-center gap-4 text-xs text-navy-600">
-              <span class="flex items-center gap-1.5"><i data-lucide="zap" class="w-3.5 h-3.5 text-teal"></i> -38% status inquiry volume</span>
-              <span class="flex items-center gap-1.5"><i data-lucide="clock" class="w-3.5 h-3.5 text-teal"></i> Live in 5 weeks</span>
-              <span class="flex items-center gap-1.5"><i data-lucide="users" class="w-3.5 h-3.5 text-teal"></i> CS team trained &amp; owning</span>
-            </div>
-          </div>
-
-          <div class="bg-navy rounded-2xl p-7 lg:p-8 text-white shadow-card flex flex-col">
-            <h3 class="text-lg font-bold mb-6 text-teal-100">Typical outcomes</h3>
-            <div class="space-y-5 flex-1">
-              <div>
-                <p class="text-3xl font-extrabold text-teal">20–40%</p>
-                <p class="text-sm text-navy-200 mt-1">Reduction in cost-to-serve on targeted workflows</p>
-              </div>
-              <div>
-                <p class="text-3xl font-extrabold text-teal">2–4×</p>
-                <p class="text-sm text-navy-200 mt-1">Faster quoting, proofing, or scheduling cycles</p>
-              </div>
-              <div>
-                <p class="text-3xl font-extrabold text-teal">6–8 wks</p>
-                <p class="text-sm text-navy-200 mt-1">From kickoff to production with trained team</p>
-              </div>
-            </div>
-            <div class="mt-8 pt-6 border-t border-white/10">
-              <p class="text-sm text-navy-300 leading-relaxed">
-                Every engagement ends with internal capability — not a support ticket to us.
-              </p>
-            </div>
-          </div>
-
-          <div class="lg:col-span-2 bg-white rounded-2xl shadow-card border border-navy-100 overflow-hidden group hover:border-teal/30 transition-colors">
-            <div class="p-6 lg:p-8 border-b border-navy-100">
-              <div class="flex items-start justify-between gap-4">
-                <div>
-                  <div class="inline-flex items-center gap-2 px-2.5 py-1 bg-teal-50 text-teal-700 text-xs font-semibold rounded-md mb-3">
-                    <i data-lucide="message-square" class="w-3.5 h-3.5" stroke-width="2"></i>
-                    AI Agent
-                  </div>
-                  <h3 class="text-xl font-bold text-navy mb-2">Intelligent quoting &amp; scheduling assistant</h3>
-                  <p class="text-navy-600 text-sm leading-relaxed">
-                    A chat and voice-enabled agent that helps estimators and planners pull data, draft quotes, and resolve scheduling conflicts — with full audit trails your team trusts.
-                  </p>
-                </div>
-                <div class="hidden sm:flex items-center gap-2 text-xs text-navy-500 shrink-0">
-                  <span class="w-2 h-2 bg-teal rounded-full"></span>
-                  Interactive demo
-                </div>
-              </div>
-            </div>
-
-            <iframe src="/demos/quoting-agent.html" class="demo-frame min-h-[480px]" title="Quoting Agent Demo" loading="lazy" allow="clipboard-write"></iframe>
-
-            <div class="px-6 lg:px-8 py-4 bg-navy-50 flex flex-wrap items-center gap-4 text-xs text-navy-600">
-              <span class="flex items-center gap-1.5"><i data-lucide="zap" class="w-3.5 h-3.5 text-teal"></i> -52% quote prep time</span>
-              <span class="flex items-center gap-1.5"><i data-lucide="shield" class="w-3.5 h-3.5 text-teal"></i> Full audit trail</span>
-              <span class="flex items-center gap-1.5"><i data-lucide="mic" class="w-3.5 h-3.5 text-teal"></i> Voice + chat ready</span>
-            </div>
-          </div>
-
-          <div class="bg-white rounded-2xl p-7 lg:p-8 shadow-soft border border-navy-100 hover:shadow-card transition-shadow">
-            <div class="w-12 h-12 rounded-xl bg-teal-50 flex items-center justify-center mb-5">
-              <i data-lucide="file-check" class="w-6 h-6 text-teal" stroke-width="1.75"></i>
-            </div>
-            <h3 class="text-lg font-bold text-navy mb-2">Proof approval automation</h3>
-            <p class="text-navy-600 text-sm leading-relaxed mb-4">
-              A custom packaging manufacturer reduced proof revision cycles from 4.2 days to 1.1 days with an AI-assisted proof comparison and routing workflow.
-            </p>
-            <div class="flex items-center gap-4 text-xs font-medium text-teal">
-              <span>3.8× faster</span>
-              <span class="text-navy-300">|</span>
-              <span>7-week delivery</span>
-            </div>
-          </div>
+    <!-- Typical outcomes -->
+    <section class="pb-16 bg-navy-50">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <p class="text-center text-xs font-semibold uppercase tracking-wider text-navy-500 mb-8">Typical results from recent client engagements on similar workflows</p>
+        <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div class="bg-white rounded-2xl p-6 shadow-soft text-center border border-navy-100"><p class="text-3xl font-extrabold text-teal">20–40%</p><p class="text-sm text-navy-600 mt-1">Cost-to-serve reduction</p></div>
+          <div class="bg-white rounded-2xl p-6 shadow-soft text-center border border-navy-100"><p class="text-3xl font-extrabold text-teal">2–4×</p><p class="text-sm text-navy-600 mt-1">Faster cycle times</p></div>
+          <div class="bg-white rounded-2xl p-6 shadow-soft text-center border border-navy-100"><p class="text-3xl font-extrabold text-teal">6–8 wks</p><p class="text-sm text-navy-600 mt-1">Kickoff to production</p></div>
+          <div class="bg-white rounded-2xl p-6 shadow-soft text-center border border-navy-100"><p class="text-3xl font-extrabold text-teal">100%</p><p class="text-sm text-navy-600 mt-1">Asset transfer at handoff</p></div>
         </div>
       </div>
     </section>
+
+    <!-- Case studies -->
+    <section class="pb-20">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+        <article class="bg-white rounded-2xl shadow-card border border-navy-100 overflow-hidden grid lg:grid-cols-3">
+          <img src="assets/images/results-dashboard.jpg" alt="Manufacturing analytics dashboard" class="lg:col-span-1 w-full h-48 lg:h-auto object-cover" />
+          <div class="lg:col-span-2 p-8">
+            <p class="text-xs font-semibold uppercase tracking-wider text-teal mb-2">Case Study — Custom Packaging</p>
+            <h2 class="text-xl font-bold text-navy mb-3">Proof approval automation</h2>
+            <p class="text-navy-600 text-sm leading-relaxed mb-4">A $45M custom packaging manufacturer struggled with 4+ day proof revision cycles driven by manual comparison and email routing. We deployed an AI-assisted proof comparison and routing workflow integrated with their existing order system.</p>
+            <p class="text-xs text-navy-500 mb-4">Example outcomes from this engagement:</p>
+            <div class="flex flex-wrap gap-4 text-sm font-semibold text-teal">
+              <span>3.8× faster proof cycles</span><span>7-week delivery</span><span>CS team owns system post-handoff</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="bg-white rounded-2xl shadow-card border border-navy-100 p-8">
+          <p class="text-xs font-semibold uppercase tracking-wider text-teal mb-2">Case Study — Precision Components</p>
+          <h2 class="text-xl font-bold text-navy mb-3">Customer self-service portal</h2>
+          <p class="text-navy-600 text-sm leading-relaxed mb-4">A $120M precision components manufacturer fielded 200+ weekly status calls. We built a customer portal with order, proof, and shipment visibility connected to their ERP order index.</p>
+          <p class="text-xs text-navy-500 mb-4">Example outcomes from this engagement:</p>
+          <div class="flex flex-wrap gap-4 text-sm font-semibold text-teal">
+            <span>38% fewer status inquiries</span><span>5-week delivery</span><span>Zero ongoing license fees</span>
+          </div>
+        </article>
+
+        <article class="bg-white rounded-2xl shadow-card border border-navy-100 p-8">
+          <p class="text-xs font-semibold uppercase tracking-wider text-teal mb-2">Case Study — Industrial Fabrication</p>
+          <h2 class="text-xl font-bold text-navy mb-3">Quoting &amp; scheduling assistant</h2>
+          <p class="text-navy-600 text-sm leading-relaxed mb-4">A $80M fabrication shop's estimators spent 60% of their time on data gathering. We deployed an intelligent assistant with full audit trails and human-in-the-loop approval for all quote and schedule recommendations.</p>
+          <p class="text-xs text-navy-500 mb-4">Example outcomes from this engagement:</p>
+          <div class="flex flex-wrap gap-4 text-sm font-semibold text-teal">
+            <span>52% less quote prep time</span><span>8-week delivery incl. training</span><span>Full source transferred</span>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="pb-20 bg-navy text-white">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 class="text-2xl font-bold text-center mb-12">What operations leaders say</h2>
+        <div class="grid md:grid-cols-3 gap-8">
+          <blockquote class="bg-white/5 rounded-2xl p-6 border border-white/10">
+            <p class="text-navy-100 text-sm leading-relaxed italic mb-4">"They spoke our language from the first conversation — pallets, changeovers, and customer lead times, not just algorithms. And when they left, our team actually knew how to run it."</p>
+            <footer class="text-teal-300 text-xs font-medium">VP Operations — Precision components, $120M revenue</footer>
+          </blockquote>
+          <blockquote class="bg-white/5 rounded-2xl p-6 border border-white/10">
+            <p class="text-navy-100 text-sm leading-relaxed italic mb-4">"Every other AI vendor wanted a multi-year subscription. Sirvoce transferred everything — code, prompts, docs. We own it outright."</p>
+            <footer class="text-teal-300 text-xs font-medium">Director of IT — Custom packaging, $45M revenue</footer>
+          </blockquote>
+          <blockquote class="bg-white/5 rounded-2xl p-6 border border-white/10">
+            <p class="text-navy-100 text-sm leading-relaxed italic mb-4">"Six weeks from kickoff to production. Our estimators use the assistant daily, but they still approve every quote before it goes out. That's the right balance."</p>
+            <footer class="text-teal-300 text-xs font-medium">General Manager — Industrial fabrication, $80M revenue</footer>
+          </blockquote>
+        </div>
+      </div>
+    </section>
+
+    <section class="py-20 text-center">
+      <div class="max-w-3xl mx-auto px-4">
+        <h2 class="text-3xl font-bold text-navy mb-5">See the prototypes yourself.</h2>
+        <a href="solutions.html" class="inline-flex items-center gap-2 px-8 py-4 bg-teal text-white font-semibold rounded-xl hover:bg-teal-700">Try Live Demos <i data-lucide="play-circle" class="w-5 h-5"></i></a>
+      </div>
+    </section>
   </main>
-  <div id="site-footer"></div>
-  <script src="/assets/js/layout.js"></script>
-  <script src="/assets/js/site.js"></script>
+
+  <footer class="bg-navy-950 text-navy-300 py-12">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid md:grid-cols-3 gap-8 mb-8">
+        <div>
+          <div class="flex items-center gap-2.5 mb-3">
+            <svg width="28" height="28" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg" class="shrink-0"><circle cx="19" cy="19" r="4" fill="#14B8A6"/><circle cx="19" cy="19" r="7.5" fill="none" stroke="#14B8A6" stroke-width="0.9" opacity="0.3"/><circle cx="11" cy="11" r="2" fill="#5EEAD4"/><circle cx="27" cy="11" r="2" fill="#5EEAD4"/><circle cx="11" cy="27" r="2" fill="#5EEAD4"/><circle cx="27" cy="27" r="2" fill="#5EEAD4"/><line x1="19" y1="15" x2="13.2" y2="13.2" stroke="#14B8A6" stroke-width="1.4" stroke-linecap="round"/><line x1="19" y1="15" x2="24.8" y2="13.2" stroke="#14B8A6" stroke-width="1.4" stroke-linecap="round"/><line x1="19" y1="23" x2="13.2" y2="24.8" stroke="#14B8A6" stroke-width="1.4" stroke-linecap="round"/><line x1="19" y1="23" x2="24.8" y2="24.8" stroke="#14B8A6" stroke-width="1.4" stroke-linecap="round"/></svg>
+            <span class="text-white font-semibold">Sirvoce</span>
+          </div>
+          <p class="text-sm">Practical AI for Mid-Sized Manufacturers. Build it. Train it. Own it.</p>
+        </div>
+        <div class="grid grid-cols-2 gap-4 text-sm">
+          <div class="space-y-2">
+            <a href="challenge.html" class="block hover:text-teal-300 transition-colors">The Challenge</a>
+            <a href="approach.html" class="block hover:text-teal-300 transition-colors">Our Approach</a>
+            <a href="solutions.html" class="block hover:text-teal-300 transition-colors">Solutions &amp; Demos</a>
+          </div>
+          <div class="space-y-2">
+            <a href="proof.html" class="block hover:text-teal-300 transition-colors">Proof &amp; Results</a>
+            <a href="about.html" class="block hover:text-teal-300 transition-colors">About</a>
+            <a href="engage.html" class="block hover:text-teal-300 transition-colors">Engage</a>
+          </div>
+        </div>
+        <div class="text-sm">
+          <a href="mailto:hello@sirvoce.com" class="flex items-center gap-2 hover:text-teal-300 transition-colors mb-2">
+            <i data-lucide="mail" class="w-4 h-4"></i> hello@sirvoce.com
+          </a>
+          <p class="text-navy-500 text-xs mt-4">&copy; 2026 Sirvoce. All rights reserved.</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <script src="assets/js/site.js"></script>
 </body>
 </html>
