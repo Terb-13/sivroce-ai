@@ -1,23 +1,34 @@
 # Sirvoce AI
 
-Marketing site for Sirvoce — a boutique AI consulting firm for mid-sized manufacturers.
+Multi-page marketing site for Sirvoce — a boutique AI consulting firm for mid-sized manufacturers.
+
+## Pages
+
+| Route | Page |
+|-------|------|
+| `/` | Home |
+| `/challenge` | The Challenge |
+| `/who-we-are` | Who We Are |
+| `/process` | Our Process |
+| `/proof` | Proof & interactive demos |
+| `/handoff` | Handoff |
+| `/contact` | Book a Workshop |
+
+## Demos
+
+The Proof page embeds two interactive demos with fake data:
+
+- `/demos/customer-portal.html` — order & proof tracking portal
+- `/demos/quoting-agent.html` — quoting & scheduling chat assistant
 
 ## Local development
 
-Serve the static site locally:
-
 ```bash
 npx serve .
-```
-
-Or with Python:
-
-```bash
-python3 -m http.server 3000
 ```
 
 Then open [http://localhost:3000](http://localhost:3000).
 
 ## Deploy
 
-This project is configured for [Vercel](https://vercel.com) static hosting. Connect the GitHub repository and deploy with default settings — no build command required.
+Configured for [Vercel](https://vercel.com) static hosting. No build command required.

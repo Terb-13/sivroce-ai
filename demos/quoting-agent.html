@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Quoting Agent Demo</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="../assets/js/tailwind-config.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    body { font-family: Inter, system-ui, sans-serif; }
+    .typing-dot { animation: bounce 1.2s infinite; }
+    .typing-dot:nth-child(2) { animation-delay: 0.15s; }
+    .typing-dot:nth-child(3) { animation-delay: 0.3s; }
+    @keyframes bounce { 0%, 60%, 100% { transform: translateY(0); } 30% { transform: translateY(-4px); } }
+  </style>
+</head>
+<body class="bg-navy-50 text-navy-800 antialiased h-screen flex flex-col">
+  <header class="bg-navy text-white px-4 py-3 flex items-center justify-between shrink-0">
+    <div class="flex items-center gap-3">
+      <div class="w-8 h-8 rounded-full bg-teal flex items-center justify-center">
+        <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+      </div>
+      <div>
+        <p class="text-sm font-semibold">Sirvoce Quote Assistant</p>
+        <p class="text-xs text-navy-300">Estimator &amp; scheduling copilot · Demo mode</p>
+      </div>
+    </div>
+    <span class="text-xs bg-white/10 px-2 py-1 rounded-full">Audit trail enabled</span>
+  </header>
+
+  <div class="flex-1 flex flex-col max-w-3xl w-full mx-auto p-4 min-h-0">
+    <div id="chat-messages" class="flex-1 overflow-y-auto space-y-4 mb-4 pr-1"></div>
+
+    <div class="shrink-0">
+      <p class="text-xs text-navy-400 mb-2">Try a prompt:</p>
+      <div class="flex flex-wrap gap-2 mb-3" id="suggestions"></div>
+      <form id="chat-form" class="flex gap-2">
+        <input type="text" id="chat-input" placeholder="Ask about quotes, orders, or scheduling…" class="flex-1 px-4 py-2.5 text-sm border border-navy-200 rounded-xl bg-white focus:outline-none focus:ring-2 focus:ring-teal/30" autocomplete="off" />
+        <button type="submit" class="px-4 py-2.5 bg-teal text-white text-sm font-semibold rounded-xl hover:bg-teal-700 shrink-0">Send</button>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    const RESPONSES = {
+      'quote 5000': {
+        match: /quote.*5000|5000.*box|corrugated/i,
+        text: `Here's a draft quote for **5,000 × 12oz Kraft Corrugated Boxes** (SKU CRB-12-KRAFT):\n\n• Unit cost: **$0.42** (based on last 3 runs avg)\n• Tooling: $0 (existing die #D-4412)\n• Lead time: **12 business days** standard · 7 days rush (+18%)\n• Margin suggestion: 32% → **$2,760 total**\n\nI've pulled material costs from your ERP (lot #M-8821) and applied the current board price index (+2.1% vs Q1).\n\nWould you like me to generate the formal PDF quote for PO review?`,
+      },
+      'po-7842': {
+        match: /po-7842|7842|status.*order/i,
+        text: `**PO-7842** — 12oz Kraft Corrugated Box, 5,000 units\n\n• Status: **In production** (Line 2, Job #J-99204)\n• Proof: Approved Jun 20\n• Est. ship: **Jul 8, 2026**\n• Current stage: QC passed — awaiting ship scheduling\n\nNo open exceptions. Customer portal shows green across all milestones.`,
+      },
+      'line 3': {
+        match: /line 3|scheduling|conflict|next week/i,
+        text: `I found **2 scheduling conflicts** on Line 3 for Jul 1–5:\n\n1. **Jul 2** — Job J-99188 (8,000 trays) overlaps changeover window for J-99201. *Recommend moving J-99201 start to Jul 2, 2pm.*\n2. **Jul 4** — Maintenance block (4hr) conflicts with rush order PO-7851. *Recommend shifting PO-7851 to Line 1 (capacity available).*\n\nBoth resolutions keep on-time delivery for 4/4 affected orders. Want me to draft the schedule change for supervisor approval?`,
+      },
+      'rush vs standard': {
+        match: /rush|standard|lead time|compare/i,
+        text: `**Lead time comparison** for CRB-12-KRAFT (5,000 units):\n\n| Option | Ship date | Price | Notes |\n| Standard (12 days) | Jul 14 | $2,760 | Best margin |\n| Rush (7 days) | Jul 7 | $3,257 (+18%) | Requires Line 2 overtime |\n\nStandard aligns with Meridian Foods' typical reorder cadence. Rush needed only if their promo launch moves up.`,
+      },
+      default: {
+        text: `I can help with:\n• Drafting quotes from historical run data\n• Checking order & proof status\n• Spotting scheduling conflicts\n• Comparing rush vs standard lead times\n\nTry one of the suggested prompts below, or ask in plain language.`,
+      },
+    };
+
+    const SUGGESTIONS = [
+      'Quote 5,000 custom corrugated boxes',
+      'What\'s the status of PO-7842?',
+      'Check scheduling conflicts for Line 3 next week',
+      'Compare rush vs standard lead times',
+    ];
+
+    const chatMessages = document.getElementById('chat-messages');
+    const chatForm = document.getElementById('chat-form');
+    const chatInput = document.getElementById('chat-input');
+    const suggestionsEl = document.getElementById('suggestions');
+
+    function formatText(text) {
+      return text
+        .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+        .replace(/\n/g, '<br>')
+        .replace(/\|([^|]+)\|([^|]+)\|([^|]+)\|([^|]+)\|/g, (_, a, b, c, d) => {
+          if (a.includes('Option')) return `<div class="overflow-x-auto mt-2"><table class="text-xs w-full border border-navy-100 rounded"><tr class="bg-navy-50"><th class="px-2 py-1 text-left">${a.trim()}</th><th class="px-2 py-1 text-left">${b.trim()}</th><th class="px-2 py-1 text-left">${c.trim()}</th><th class="px-2 py-1 text-left">${d.trim()}</th></tr>`;
+          return `<tr><td class="px-2 py-1 border-t border-navy-50">${a.trim()}</td><td class="px-2 py-1 border-t border-navy-50">${b.trim()}</td><td class="px-2 py-1 border-t border-navy-50">${c.trim()}</td><td class="px-2 py-1 border-t border-navy-50">${d.trim()}</td></tr>`;
+        });
+    }
+
+    function addMessage(role, html) {
+      const isUser = role === 'user';
+      const bubble = document.createElement('div');
+      bubble.className = `flex ${isUser ? 'justify-end' : 'justify-start'}`;
+      bubble.innerHTML = `
+        <div class="max-w-[85%] ${isUser ? 'bg-navy text-white' : 'bg-white border border-navy-100'} rounded-2xl px-4 py-3 text-sm shadow-soft">
+          ${isUser ? `<p>${html}</p>` : `<div class="text-navy-700 leading-relaxed">${html}</div>`}
+          <p class="text-[10px] mt-2 ${isUser ? 'text-navy-300' : 'text-navy-400'}">${new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })} · ${isUser ? 'You' : 'Sirvoce Agent'}</p>
+        </div>`;
+      chatMessages.appendChild(bubble);
+      chatMessages.scrollTop = chatMessages.scrollHeight;
+    }
+
+    function showTyping() {
+      const el = document.createElement('div');
+      el.id = 'typing-indicator';
+      el.className = 'flex justify-start';
+      el.innerHTML = `<div class="bg-white border border-navy-100 rounded-2xl px-4 py-3 flex gap-1"><span class="typing-dot w-2 h-2 bg-navy-300 rounded-full"></span><span class="typing-dot w-2 h-2 bg-navy-300 rounded-full"></span><span class="typing-dot w-2 h-2 bg-navy-300 rounded-full"></span></div>`;
+      chatMessages.appendChild(el);
+      chatMessages.scrollTop = chatMessages.scrollHeight;
+    }
+
+    function hideTyping() {
+      document.getElementById('typing-indicator')?.remove();
+    }
+
+    function getResponse(text) {
+      for (const key of Object.keys(RESPONSES)) {
+        if (key === 'default') continue;
+        if (RESPONSES[key].match.test(text)) return RESPONSES[key].text;
+      }
+      return RESPONSES.default.text;
+    }
+
+    function sendMessage(text) {
+      if (!text.trim()) return;
+      addMessage('user', text.replace(/</g, '&lt;'));
+      chatInput.value = '';
+      showTyping();
+      setTimeout(() => {
+        hideTyping();
+        addMessage('agent', formatText(getResponse(text)));
+      }, 900 + Math.random() * 600);
+    }
+
+    chatForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      sendMessage(chatInput.value);
+    });
+
+    SUGGESTIONS.forEach((s) => {
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'text-xs px-3 py-1.5 bg-white border border-navy-200 rounded-full text-navy-600 hover:border-teal hover:text-teal transition-colors';
+      btn.textContent = s;
+      btn.addEventListener('click', () => sendMessage(s));
+      suggestionsEl.appendChild(btn);
+    });
+
+    addMessage('agent', formatText(`Hi — I'm your quoting & scheduling assistant. I pull from your ERP, production schedule, and historical run data to draft quotes and flag conflicts.\n\nEverything I suggest is logged for audit. What would you like to look at?`));
+  </script>
+</body>
+</html>

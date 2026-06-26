@@ -1,163 +1,23 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="Sirvoce is a boutique AI consulting firm for mid-sized manufacturers. We build practical AI systems, train your team, and hand off everything so you own the outcome." />
   <title>Sirvoce — Practical AI for Mid-Sized Manufacturers</title>
-
-  <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            navy: {
-              DEFAULT: '#1F3A5F',
-              50: '#F0F4F8',
-              100: '#D9E2EC',
-              200: '#BCCCDC',
-              300: '#9FB3C8',
-              400: '#829AB1',
-              500: '#627D98',
-              600: '#486581',
-              700: '#334E68',
-              800: '#243B53',
-              900: '#1F3A5F',
-              950: '#102A43',
-            },
-            teal: {
-              DEFAULT: '#0D9488',
-              50: '#F0FDFA',
-              100: '#CCFBF1',
-              200: '#99F6E4',
-              300: '#5EEAD4',
-              400: '#2DD4BF',
-              500: '#14B8A6',
-              600: '#0D9488',
-              700: '#0F766E',
-              800: '#115E59',
-              900: '#134E4A',
-            },
-          },
-          fontFamily: {
-            sans: ['Inter', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
-          },
-          boxShadow: {
-            'soft': '0 4px 24px -4px rgba(31, 58, 95, 0.08)',
-            'card': '0 8px 32px -8px rgba(31, 58, 95, 0.12)',
-            'nav': '0 1px 0 0 rgba(31, 58, 95, 0.06)',
-          },
-        },
-      },
-    };
-  </script>
-
-  <!-- Inter font -->
+  <script src="/assets/js/tailwind-config.js"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-
-  <!-- Lucide Icons CDN -->
   <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
-
-  <style>
-    [data-step-panel] { display: none; }
-    [data-step-panel].active { display: block; }
-    .step-tab.active {
-      background-color: #1F3A5F;
-      color: white;
-      border-color: #1F3A5F;
-    }
-    .prototype-embed {
-      background: linear-gradient(135deg, #F0F4F8 0%, #E8F4F3 100%);
-      border: 2px dashed #BCCCDC;
-    }
-  </style>
+  <link rel="stylesheet" href="/assets/css/site.css" />
 </head>
-<body class="font-sans text-navy-800 bg-white antialiased">
-
-  <!-- ============================================================
-       NAVIGATION
-       Component: <Navbar />
-       ============================================================ -->
-  <header class="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md shadow-nav">
-    <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" aria-label="Main navigation">
-      <div class="flex items-center justify-between h-16 lg:h-20">
-        <!-- Logo -->
-        <a href="#" class="flex items-center gap-3 group" aria-label="Sirvoce home">
-          <div class="w-[38px] h-[38px] rounded-[10px] bg-navy group-hover:bg-navy-700 transition-colors flex items-center justify-center overflow-hidden shrink-0">
-            <svg width="38" height="38" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <!-- Modern AI network: central intelligence + connected nodes -->
-              <circle cx="19" cy="19" r="4.2" fill="#14B8A6"/>
-              <circle cx="19" cy="19" r="7.8" fill="none" stroke="#14B8A6" stroke-width="1" opacity="0.28"/>
-              <circle cx="11" cy="11" r="2.15" fill="#5EEAD4"/>
-              <circle cx="27" cy="11" r="2.15" fill="#5EEAD4"/>
-              <circle cx="11" cy="27" r="2.15" fill="#5EEAD4"/>
-              <circle cx="27" cy="27" r="2.15" fill="#5EEAD4"/>
-              <line x1="19" y1="14.8" x2="13.1" y2="13.1" stroke="#14B8A6" stroke-width="1.65" stroke-linecap="round"/>
-              <line x1="19" y1="14.8" x2="24.9" y2="13.1" stroke="#14B8A6" stroke-width="1.65" stroke-linecap="round"/>
-              <line x1="19" y1="23.2" x2="13.1" y2="24.9" stroke="#14B8A6" stroke-width="1.65" stroke-linecap="round"/>
-              <line x1="19" y1="23.2" x2="24.9" y2="24.9" stroke="#14B8A6" stroke-width="1.65" stroke-linecap="round"/>
-            </svg>
-          </div>
-          <span class="text-navy font-bold text-2xl tracking-[-0.03em]">Sirvoce</span>
-        </a>
-
-        <!-- Desktop Nav Links -->
-        <div class="hidden lg:flex items-center gap-8">
-          <a href="#problem" class="text-sm font-medium text-navy-600 hover:text-teal transition-colors">The Challenge</a>
-          <a href="#guide" class="text-sm font-medium text-navy-600 hover:text-teal transition-colors">Who We Are</a>
-          <a href="#plan" class="text-sm font-medium text-navy-600 hover:text-teal transition-colors">Our Process</a>
-          <a href="#proof" class="text-sm font-medium text-navy-600 hover:text-teal transition-colors">Proof</a>
-          <a href="#handoff" class="text-sm font-medium text-navy-600 hover:text-teal transition-colors">Handoff</a>
-        </div>
-
-        <!-- Primary CTA -->
-        <div class="flex items-center gap-3">
-          <a
-            href="#contact"
-            class="inline-flex items-center gap-2 px-5 py-2.5 bg-teal text-white text-sm font-semibold rounded-lg hover:bg-teal-700 transition-all hover:shadow-soft focus:outline-none focus:ring-2 focus:ring-teal focus:ring-offset-2"
-          >
-            Book Workshop
-            <i data-lucide="arrow-right" class="w-4 h-4" stroke-width="2"></i>
-          </a>
-          <!-- Mobile menu button -->
-          <button
-            id="mobile-menu-btn"
-            type="button"
-            class="lg:hidden p-2 rounded-lg text-navy-600 hover:bg-navy-50 transition-colors"
-            aria-expanded="false"
-            aria-controls="mobile-menu"
-            aria-label="Open menu"
-          >
-            <i data-lucide="menu" class="w-6 h-6" id="menu-icon"></i>
-          </button>
-        </div>
-      </div>
-
-      <!-- Mobile Menu -->
-      <div id="mobile-menu" class="hidden lg:hidden pb-4 border-t border-navy-100">
-        <div class="flex flex-col gap-1 pt-3">
-          <a href="#problem" class="mobile-nav-link px-3 py-2.5 text-sm font-medium text-navy-600 hover:bg-navy-50 rounded-lg">The Challenge</a>
-          <a href="#guide" class="mobile-nav-link px-3 py-2.5 text-sm font-medium text-navy-600 hover:bg-navy-50 rounded-lg">Who We Are</a>
-          <a href="#plan" class="mobile-nav-link px-3 py-2.5 text-sm font-medium text-navy-600 hover:bg-navy-50 rounded-lg">Our Process</a>
-          <a href="#proof" class="mobile-nav-link px-3 py-2.5 text-sm font-medium text-navy-600 hover:bg-navy-50 rounded-lg">Proof</a>
-          <a href="#handoff" class="mobile-nav-link px-3 py-2.5 text-sm font-medium text-navy-600 hover:bg-navy-50 rounded-lg">Handoff</a>
-        </div>
-      </div>
-    </nav>
-  </header>
+<body data-page="home" class="font-sans text-navy-800 bg-white antialiased">
+  <div id="site-header"></div>
 
   <main>
-
-    <!-- ============================================================
-         HERO — The Customer Is The Hero
-         Component: <Hero />
-         ============================================================ -->
     <section class="relative pt-28 lg:pt-36 pb-20 lg:pb-28 overflow-hidden">
-      <!-- Background pattern -->
       <div class="absolute inset-0 -z-10">
         <div class="absolute inset-0 bg-gradient-to-br from-navy-50 via-white to-teal-50/40"></div>
         <div class="absolute top-0 right-0 w-1/2 h-full opacity-[0.03]" style="background-image: url('data:image/svg+xml,%3Csvg width=&quot;60&quot; height=&quot;60&quot; viewBox=&quot;0 0 60 60&quot; xmlns=&quot;http://www.w3.org/2000/svg&quot;%3E%3Cg fill=&quot;none&quot; fill-rule=&quot;evenodd&quot;%3E%3Cg fill=&quot;%231F3A5F&quot; fill-opacity=&quot;1&quot;%3E%3Cpath d=&quot;M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z&quot;/%3E%3C/g%3E%3C/g%3E%3C/svg%3E');"></div>
@@ -180,73 +40,36 @@
             </p>
 
             <div class="flex flex-col sm:flex-row gap-4 mb-10">
-              <a
-                href="#contact"
-                class="inline-flex items-center justify-center gap-2 px-7 py-3.5 bg-teal text-white font-semibold rounded-lg hover:bg-teal-700 transition-all hover:shadow-card focus:outline-none focus:ring-2 focus:ring-teal focus:ring-offset-2"
-              >
+              <a href="/contact" class="inline-flex items-center justify-center gap-2 px-7 py-3.5 bg-teal text-white font-semibold rounded-lg hover:bg-teal-700 transition-all hover:shadow-card focus:outline-none focus:ring-2 focus:ring-teal focus:ring-offset-2">
                 Book a Strategy Alignment Workshop
                 <i data-lucide="calendar" class="w-5 h-5" stroke-width="2"></i>
               </a>
-              <a
-                href="#proof"
-                class="inline-flex items-center justify-center gap-2 px-7 py-3.5 bg-white text-navy font-semibold rounded-lg border-2 border-navy-200 hover:border-teal hover:text-teal transition-all focus:outline-none focus:ring-2 focus:ring-navy focus:ring-offset-2"
-              >
+              <a href="/proof" class="inline-flex items-center justify-center gap-2 px-7 py-3.5 bg-white text-navy font-semibold rounded-lg border-2 border-navy-200 hover:border-teal hover:text-teal transition-all focus:outline-none focus:ring-2 focus:ring-navy focus:ring-offset-2">
                 See a Working Prototype
                 <i data-lucide="play-circle" class="w-5 h-5" stroke-width="2"></i>
               </a>
             </div>
 
-            <!-- Trust indicators -->
             <div class="flex flex-wrap items-center gap-x-8 gap-y-3 text-sm text-navy-500">
-              <span class="flex items-center gap-2">
-                <i data-lucide="check-circle" class="w-4 h-4 text-teal" stroke-width="2"></i>
-                Working systems in weeks, not years
-              </span>
-              <span class="flex items-center gap-2">
-                <i data-lucide="check-circle" class="w-4 h-4 text-teal" stroke-width="2"></i>
-                Full training &amp; handoff included
-              </span>
-              <span class="flex items-center gap-2">
-                <i data-lucide="check-circle" class="w-4 h-4 text-teal" stroke-width="2"></i>
-                You own every asset we build
-              </span>
+              <span class="flex items-center gap-2"><i data-lucide="check-circle" class="w-4 h-4 text-teal" stroke-width="2"></i> Working systems in weeks, not years</span>
+              <span class="flex items-center gap-2"><i data-lucide="check-circle" class="w-4 h-4 text-teal" stroke-width="2"></i> Full training &amp; handoff included</span>
+              <span class="flex items-center gap-2"><i data-lucide="check-circle" class="w-4 h-4 text-teal" stroke-width="2"></i> You own every asset we build</span>
             </div>
           </div>
 
-          <!-- Hero visual -->
           <div class="relative">
             <div class="relative bg-navy rounded-2xl p-6 sm:p-8 shadow-card overflow-hidden">
               <div class="absolute top-0 right-0 w-64 h-64 bg-teal/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/4"></div>
               <div class="relative space-y-4">
                 <div class="flex items-center justify-between mb-6">
                   <span class="text-teal-300 text-xs font-semibold uppercase tracking-wider">Operations Dashboard</span>
-                  <span class="flex items-center gap-1.5 text-teal-400 text-xs">
-                    <span class="w-2 h-2 bg-teal-400 rounded-full animate-pulse"></span>
-                    Live
-                  </span>
+                  <span class="flex items-center gap-1.5 text-teal-400 text-xs"><span class="w-2 h-2 bg-teal-400 rounded-full animate-pulse"></span> Live</span>
                 </div>
-                <!-- Metric cards -->
                 <div class="grid grid-cols-2 gap-3">
-                  <div class="bg-white/10 backdrop-blur rounded-xl p-4 border border-white/10">
-                    <p class="text-teal-300 text-xs font-medium mb-1">Quote Turnaround</p>
-                    <p class="text-white text-2xl font-bold">-47%</p>
-                    <p class="text-navy-300 text-xs mt-1">vs. prior quarter</p>
-                  </div>
-                  <div class="bg-white/10 backdrop-blur rounded-xl p-4 border border-white/10">
-                    <p class="text-teal-300 text-xs font-medium mb-1">Cost-to-Serve</p>
-                    <p class="text-white text-2xl font-bold">-23%</p>
-                    <p class="text-navy-300 text-xs mt-1">per active SKU</p>
-                  </div>
-                  <div class="bg-white/10 backdrop-blur rounded-xl p-4 border border-white/10">
-                    <p class="text-teal-300 text-xs font-medium mb-1">Proof Cycles</p>
-                    <p class="text-white text-2xl font-bold">3.2×</p>
-                    <p class="text-navy-300 text-xs mt-1">faster approval</p>
-                  </div>
-                  <div class="bg-white/10 backdrop-blur rounded-xl p-4 border border-white/10">
-                    <p class="text-teal-300 text-xs font-medium mb-1">Team Adoption</p>
-                    <p class="text-white text-2xl font-bold">94%</p>
-                    <p class="text-navy-300 text-xs mt-1">post-handoff usage</p>
-                  </div>
+                  <div class="bg-white/10 backdrop-blur rounded-xl p-4 border border-white/10"><p class="text-teal-300 text-xs font-medium mb-1">Quote Turnaround</p><p class="text-white text-2xl font-bold">-47%</p><p class="text-navy-300 text-xs mt-1">vs. prior quarter</p></div>
+                  <div class="bg-white/10 backdrop-blur rounded-xl p-4 border border-white/10"><p class="text-teal-300 text-xs font-medium mb-1">Cost-to-Serve</p><p class="text-white text-2xl font-bold">-23%</p><p class="text-navy-300 text-xs mt-1">per active SKU</p></div>
+                  <div class="bg-white/10 backdrop-blur rounded-xl p-4 border border-white/10"><p class="text-teal-300 text-xs font-medium mb-1">Proof Cycles</p><p class="text-white text-2xl font-bold">3.2×</p><p class="text-navy-300 text-xs mt-1">faster approval</p></div>
+                  <div class="bg-white/10 backdrop-blur rounded-xl p-4 border border-white/10"><p class="text-teal-300 text-xs font-medium mb-1">Team Adoption</p><p class="text-white text-2xl font-bold">94%</p><p class="text-navy-300 text-xs mt-1">post-handoff usage</p></div>
                 </div>
                 <div class="bg-teal/20 rounded-xl p-4 border border-teal/30 flex items-start gap-3">
                   <i data-lucide="bot" class="w-5 h-5 text-teal-300 mt-0.5 shrink-0" stroke-width="1.75"></i>
@@ -257,794 +80,61 @@
                 </div>
               </div>
             </div>
-            <!-- Floating badge -->
             <div class="absolute -bottom-4 -left-4 sm:-left-6 bg-white rounded-xl px-4 py-3 shadow-card border border-navy-100 flex items-center gap-3">
               <div class="w-10 h-10 rounded-full bg-teal-50 flex items-center justify-center">
                 <i data-lucide="graduation-cap" class="w-5 h-5 text-teal" stroke-width="1.75"></i>
               </div>
-              <div>
-                <p class="text-navy font-semibold text-sm">Full handoff</p>
-                <p class="text-navy-500 text-xs">Your team runs it day one</p>
-              </div>
+              <div><p class="text-navy font-semibold text-sm">Full handoff</p><p class="text-navy-500 text-xs">Your team runs it day one</p></div>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- ============================================================
-         PROBLEM — The Villain
-         Component: <ProblemSection />
-         ============================================================ -->
-    <section id="problem" class="py-20 lg:py-28 bg-navy-50">
+    <section class="py-16 lg:py-20 bg-navy-50 border-t border-navy-100">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="max-w-3xl mx-auto text-center mb-14">
-          <p class="text-teal font-semibold text-sm uppercase tracking-wider mb-3">The reality on your floor</p>
-          <h2 class="text-3xl sm:text-4xl font-bold text-navy tracking-tight mb-5">
-            Legacy systems and manual workflows are quietly eroding your margins.
-          </h2>
-          <p class="text-lg text-navy-600 leading-relaxed">
-            Every hour your estimators re-key data, your schedulers chase updates, and your customer service team hunts for proof status — you're paying a tax that competitors are starting to eliminate.
-          </p>
+        <div class="text-center max-w-2xl mx-auto mb-10">
+          <h2 class="text-2xl sm:text-3xl font-bold text-navy mb-3">Explore how we work</h2>
+          <p class="text-navy-600">Each part of our approach has its own page — dive into what matters most to you.</p>
         </div>
-
-        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
-          <!-- Problem Card 1 -->
-          <div class="group bg-white rounded-2xl p-7 shadow-soft border border-navy-100 hover:border-teal/30 hover:shadow-card transition-all duration-300">
-            <div class="w-12 h-12 rounded-xl bg-red-50 flex items-center justify-center mb-5 group-hover:scale-105 transition-transform">
-              <i data-lucide="trending-up" class="w-6 h-6 text-red-500" stroke-width="1.75"></i>
-            </div>
-            <h3 class="text-lg font-bold text-navy mb-2">Rising cost-to-serve</h3>
-            <p class="text-navy-600 text-sm leading-relaxed">
-              SKU proliferation, custom orders, and exception-heavy workflows drive up the cost of every transaction — while customers expect faster turnaround at the same price.
-            </p>
-          </div>
-
-          <!-- Problem Card 2 -->
-          <div class="group bg-white rounded-2xl p-7 shadow-soft border border-navy-100 hover:border-teal/30 hover:shadow-card transition-all duration-300">
-            <div class="w-12 h-12 rounded-xl bg-amber-50 flex items-center justify-center mb-5 group-hover:scale-105 transition-transform">
-              <i data-lucide="clock" class="w-6 h-6 text-amber-600" stroke-width="1.75"></i>
-            </div>
-            <h3 class="text-lg font-bold text-navy mb-2">Slow, manual core processes</h3>
-            <p class="text-navy-600 text-sm leading-relaxed">
-              Quoting, estimating, scheduling, and proofing still run on spreadsheets, email chains, and tribal knowledge. Cycle times stretch while errors compound.
-            </p>
-          </div>
-
-          <!-- Problem Card 3 -->
-          <div class="group bg-white rounded-2xl p-7 shadow-soft border border-navy-100 hover:border-teal/30 hover:shadow-card transition-all duration-300">
-            <div class="w-12 h-12 rounded-xl bg-navy-100 flex items-center justify-center mb-5 group-hover:scale-105 transition-transform">
-              <i data-lucide="server-off" class="w-6 h-6 text-navy-600" stroke-width="1.75"></i>
-            </div>
-            <h3 class="text-lg font-bold text-navy mb-2">Legacy systems &amp; digital friction</h3>
-            <p class="text-navy-600 text-sm leading-relaxed">
-              Your ERP and MES weren't designed for intelligent automation. Data lives in silos, integrations are fragile, and "digital transformation" projects stall before production.
-            </p>
-          </div>
-
-          <!-- Problem Card 4 -->
-          <div class="group bg-white rounded-2xl p-7 shadow-soft border border-navy-100 hover:border-teal/30 hover:shadow-card transition-all duration-300">
-            <div class="w-12 h-12 rounded-xl bg-orange-50 flex items-center justify-center mb-5 group-hover:scale-105 transition-transform">
-              <i data-lucide="users" class="w-6 h-6 text-orange-600" stroke-width="1.75"></i>
-            </div>
-            <h3 class="text-lg font-bold text-navy mb-2">Talent stretched thin</h3>
-            <p class="text-navy-600 text-sm leading-relaxed">
-              Your best people spend their days on repetitive coordination instead of high-value problem solving. Burnout rises as automation pressure builds.
-            </p>
-          </div>
-
-          <!-- Problem Card 5 -->
-          <div class="group bg-white rounded-2xl p-7 shadow-soft border border-navy-100 hover:border-teal/30 hover:shadow-card transition-all duration-300">
-            <div class="w-12 h-12 rounded-xl bg-purple-50 flex items-center justify-center mb-5 group-hover:scale-105 transition-transform">
-              <i data-lucide="alert-triangle" class="w-6 h-6 text-purple-600" stroke-width="1.75"></i>
-            </div>
-            <h3 class="text-lg font-bold text-navy mb-2">AI pilots that never ship</h3>
-            <p class="text-navy-600 text-sm leading-relaxed">
-              Big consultancies deliver slide decks. Internal teams lack bandwidth. Proof-of-concepts sit in sandbox environments while the shop floor keeps running the old way.
-            </p>
-          </div>
-
-          <!-- Problem Card 6 -->
-          <div class="group bg-white rounded-2xl p-7 shadow-soft border border-navy-100 hover:border-teal/30 hover:shadow-card transition-all duration-300">
-            <div class="w-12 h-12 rounded-xl bg-teal-50 flex items-center justify-center mb-5 group-hover:scale-105 transition-transform">
-              <i data-lucide="rocket" class="w-6 h-6 text-teal" stroke-width="1.75"></i>
-            </div>
-            <h3 class="text-lg font-bold text-navy mb-2">Automation readiness gap</h3>
-            <p class="text-navy-600 text-sm leading-relaxed">
-              Robotics and advanced automation are on the horizon — but without clean data, documented workflows, and internal AI capability, you won't be ready when the time comes.
-            </p>
-          </div>
-        </div>
-
-        <p class="text-center text-navy-600 mt-12 text-lg max-w-2xl mx-auto">
-          You don't need another strategy document. You need a partner who has been on the plant floor and knows how to make AI stick.
-        </p>
-      </div>
-    </section>
-
-    <!-- ============================================================
-         GUIDE — Who We Are
-         Component: <GuideSection />
-         ============================================================ -->
-    <section id="guide" class="py-20 lg:py-28">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
-          <div>
-            <p class="text-teal font-semibold text-sm uppercase tracking-wider mb-3">Your guide, not another vendor</p>
-            <h2 class="text-3xl sm:text-4xl font-bold text-navy tracking-tight mb-6">
-              We've run plants. We build AI your team will actually use.
-            </h2>
-            <p class="text-lg text-navy-600 leading-relaxed mb-6">
-              Sirvoce is a boutique consulting firm built for mid-sized manufacturers — companies too sophisticated for off-the-shelf SaaS, too practical for enterprise AI theater.
-            </p>
-            <p class="text-navy-600 leading-relaxed mb-8">
-              Our team combines deep operational experience in quoting, production planning, quality, and customer operations with hands-on AI engineering. We don't disappear after deployment. We obsess over training, documentation, and handoff — because the only successful project is one your people own completely.
-            </p>
-
-            <div class="space-y-4">
-              <div class="flex items-start gap-4">
-                <div class="w-10 h-10 rounded-lg bg-teal-50 flex items-center justify-center shrink-0 mt-0.5">
-                  <i data-lucide="heart-handshake" class="w-5 h-5 text-teal" stroke-width="1.75"></i>
-                </div>
-                <div>
-                  <h3 class="font-semibold text-navy mb-1">Empathy for your constraints</h3>
-                  <p class="text-sm text-navy-600">We understand capex cycles, union environments, legacy ERP limitations, and the politics of change on the floor.</p>
-                </div>
-              </div>
-              <div class="flex items-start gap-4">
-                <div class="w-10 h-10 rounded-lg bg-teal-50 flex items-center justify-center shrink-0 mt-0.5">
-                  <i data-lucide="award" class="w-5 h-5 text-teal" stroke-width="1.75"></i>
-                </div>
-                <div>
-                  <h3 class="font-semibold text-navy mb-1">Authority you can verify</h3>
-                  <p class="text-sm text-navy-600">Working prototypes in weeks. Documented ROI. References from operations leaders who've been in your chair.</p>
-                </div>
-              </div>
-              <div class="flex items-start gap-4">
-                <div class="w-10 h-10 rounded-lg bg-teal-50 flex items-center justify-center shrink-0 mt-0.5">
-                  <i data-lucide="key" class="w-5 h-5 text-teal" stroke-width="1.75"></i>
-                </div>
-                <div>
-                  <h3 class="font-semibold text-navy mb-1">A clear plan, not ambiguity</h3>
-                  <p class="text-sm text-navy-600">Three steps. Fixed milestones. No open-ended discovery phases that drain budget without shipping.</p>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Guide credentials panel -->
-          <div class="bg-navy rounded-2xl p-8 lg:p-10 text-white shadow-card">
-            <h3 class="text-xl font-bold mb-8 text-teal-100">What sets us apart</h3>
-            <div class="space-y-6">
-              <div class="flex items-center gap-4 pb-6 border-b border-white/10">
-                <span class="text-3xl font-extrabold text-teal">15+</span>
-                <p class="text-navy-200 text-sm">Years combined experience in manufacturing operations &amp; plant leadership</p>
-              </div>
-              <div class="flex items-center gap-4 pb-6 border-b border-white/10">
-                <span class="text-3xl font-extrabold text-teal">6–8</span>
-                <p class="text-navy-200 text-sm">Weeks typical time from kickoff to production-ready AI workflow</p>
-              </div>
-              <div class="flex items-center gap-4 pb-6 border-b border-white/10">
-                <span class="text-3xl font-extrabold text-teal">100%</span>
-                <p class="text-navy-200 text-sm">Of code, models, prompts, and documentation transferred to you at handoff</p>
-              </div>
-              <div class="flex items-center gap-4">
-                <span class="text-3xl font-extrabold text-teal">0</span>
-                <p class="text-navy-200 text-sm">Ongoing license fees for systems we build — you own the stack</p>
-              </div>
-            </div>
-            <div class="mt-8 pt-6 border-t border-white/10">
-              <p class="text-sm text-navy-300 italic leading-relaxed">
-                "They spoke our language from day one — pallets, changeovers, and customer lead times, not just algorithms."
-              </p>
-              <p class="text-xs text-teal-300 mt-2 font-medium">— VP Operations, precision components manufacturer</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ============================================================
-         PLAN — 3-Step Process (Interactive Tabs)
-         Component: <PlanSection />
-         ============================================================ -->
-    <section id="plan" class="py-20 lg:py-28 bg-gradient-to-b from-navy-50 to-white">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center max-w-3xl mx-auto mb-12">
-          <p class="text-teal font-semibold text-sm uppercase tracking-wider mb-3">A plan you can follow</p>
-          <h2 class="text-3xl sm:text-4xl font-bold text-navy tracking-tight mb-5">
-            Three steps from assessment to ownership.
-          </h2>
-          <p class="text-lg text-navy-600">
-            No mystery phases. No vendor lock-in. Just a clear path from where you are today to a team that runs AI independently.
-          </p>
-        </div>
-
-        <!-- Step tabs -->
-        <div class="flex flex-col sm:flex-row gap-3 justify-center mb-10" role="tablist" aria-label="Process steps">
-          <button
-            type="button"
-            class="step-tab active flex items-center gap-3 px-6 py-4 rounded-xl border-2 border-navy-200 bg-white text-navy font-semibold transition-all hover:border-navy"
-            data-step="1"
-            role="tab"
-            aria-selected="true"
-            aria-controls="step-panel-1"
-          >
-            <span class="w-8 h-8 rounded-full bg-teal text-white text-sm font-bold flex items-center justify-center">1</span>
-            Assess &amp; Align
-          </button>
-          <button
-            type="button"
-            class="step-tab flex items-center gap-3 px-6 py-4 rounded-xl border-2 border-navy-200 bg-white text-navy font-semibold transition-all hover:border-navy"
-            data-step="2"
-            role="tab"
-            aria-selected="false"
-            aria-controls="step-panel-2"
-          >
-            <span class="w-8 h-8 rounded-full bg-navy-100 text-navy text-sm font-bold flex items-center justify-center">2</span>
-            Build &amp; Deploy
-          </button>
-          <button
-            type="button"
-            class="step-tab flex items-center gap-3 px-6 py-4 rounded-xl border-2 border-navy-200 bg-white text-navy font-semibold transition-all hover:border-navy"
-            data-step="3"
-            role="tab"
-            aria-selected="false"
-            aria-controls="step-panel-3"
-          >
-            <span class="w-8 h-8 rounded-full bg-navy-100 text-navy text-sm font-bold flex items-center justify-center">3</span>
-            Train &amp; Handoff
-          </button>
-        </div>
-
-        <!-- Step panels -->
-        <div class="bg-white rounded-2xl shadow-card border border-navy-100 overflow-hidden">
-          <!-- Step 1 Panel -->
-          <div id="step-panel-1" data-step-panel class="active p-8 lg:p-12" role="tabpanel">
-            <div class="grid lg:grid-cols-2 gap-10 items-center">
-              <div>
-                <div class="inline-flex items-center gap-2 text-teal font-semibold text-sm mb-4">
-                  <i data-lucide="search" class="w-5 h-5" stroke-width="1.75"></i>
-                  Step 1 — Assess &amp; Align
-                </div>
-                <h3 class="text-2xl font-bold text-navy mb-4">Map the real workflow. Align on the highest-ROI starting point.</h3>
-                <p class="text-navy-600 leading-relaxed mb-6">
-                  We embed with your team to understand how work actually flows — not how the process manual says it should. Together we identify the workflow where AI delivers measurable impact fastest, and define success metrics your leadership team agrees on.
-                </p>
-                <ul class="space-y-3">
-                  <li class="flex items-start gap-3 text-sm text-navy-600">
-                    <i data-lucide="check" class="w-5 h-5 text-teal shrink-0 mt-0.5" stroke-width="2"></i>
-                    On-site or virtual workflow mapping sessions
-                  </li>
-                  <li class="flex items-start gap-3 text-sm text-navy-600">
-                    <i data-lucide="check" class="w-5 h-5 text-teal shrink-0 mt-0.5" stroke-width="2"></i>
-                    Data readiness assessment across ERP, files, and tribal knowledge
-                  </li>
-                  <li class="flex items-start gap-3 text-sm text-navy-600">
-                    <i data-lucide="check" class="w-5 h-5 text-teal shrink-0 mt-0.5" stroke-width="2"></i>
-                    Prioritized roadmap with timeline, investment, and expected ROI
-                  </li>
-                </ul>
-              </div>
-              <div class="bg-navy-50 rounded-xl p-6 border border-navy-100">
-                <p class="text-xs font-semibold text-navy-500 uppercase tracking-wider mb-4">Typical deliverables</p>
-                <div class="space-y-3">
-                  <div class="flex items-center gap-3 bg-white rounded-lg p-3 shadow-soft">
-                    <i data-lucide="file-text" class="w-5 h-5 text-teal" stroke-width="1.75"></i>
-                    <span class="text-sm font-medium text-navy">Workflow opportunity brief</span>
-                  </div>
-                  <div class="flex items-center gap-3 bg-white rounded-lg p-3 shadow-soft">
-                    <i data-lucide="target" class="w-5 h-5 text-teal" stroke-width="1.75"></i>
-                    <span class="text-sm font-medium text-navy">Aligned success metrics &amp; KPIs</span>
-                  </div>
-                  <div class="flex items-center gap-3 bg-white rounded-lg p-3 shadow-soft">
-                    <i data-lucide="map" class="w-5 h-5 text-teal" stroke-width="1.75"></i>
-                    <span class="text-sm font-medium text-navy">90-day implementation plan</span>
-                  </div>
-                </div>
-                <p class="text-xs text-navy-500 mt-4">Duration: 1–2 weeks</p>
-              </div>
-            </div>
-          </div>
-
-          <!-- Step 2 Panel -->
-          <div id="step-panel-2" data-step-panel class="p-8 lg:p-12" role="tabpanel">
-            <div class="grid lg:grid-cols-2 gap-10 items-center">
-              <div>
-                <div class="inline-flex items-center gap-2 text-teal font-semibold text-sm mb-4">
-                  <i data-lucide="hammer" class="w-5 h-5" stroke-width="1.75"></i>
-                  Step 2 — Build &amp; Deploy
-                </div>
-                <h3 class="text-2xl font-bold text-navy mb-4">Build the system. Integrate with what you have. Ship to production.</h3>
-                <p class="text-navy-600 leading-relaxed mb-6">
-                  We develop AI workflows tailored to your environment — connecting to your ERP, email, file shares, and shop floor systems where it matters. You see working software early and often, with your team's feedback shaping every iteration.
-                </p>
-                <ul class="space-y-3">
-                  <li class="flex items-start gap-3 text-sm text-navy-600">
-                    <i data-lucide="check" class="w-5 h-5 text-teal shrink-0 mt-0.5" stroke-width="2"></i>
-                    Custom AI agents, automations, and decision-support tools
-                  </li>
-                  <li class="flex items-start gap-3 text-sm text-navy-600">
-                    <i data-lucide="check" class="w-5 h-5 text-teal shrink-0 mt-0.5" stroke-width="2"></i>
-                    Integration with existing systems — no rip-and-replace required
-                  </li>
-                  <li class="flex items-start gap-3 text-sm text-navy-600">
-                    <i data-lucide="check" class="w-5 h-5 text-teal shrink-0 mt-0.5" stroke-width="2"></i>
-                    Pilot with real data, then phased production rollout
-                  </li>
-                </ul>
-              </div>
-              <div class="bg-navy-50 rounded-xl p-6 border border-navy-100">
-                <p class="text-xs font-semibold text-navy-500 uppercase tracking-wider mb-4">Typical deliverables</p>
-                <div class="space-y-3">
-                  <div class="flex items-center gap-3 bg-white rounded-lg p-3 shadow-soft">
-                    <i data-lucide="cpu" class="w-5 h-5 text-teal" stroke-width="1.75"></i>
-                    <span class="text-sm font-medium text-navy">Production AI workflow(s)</span>
-                  </div>
-                  <div class="flex items-center gap-3 bg-white rounded-lg p-3 shadow-soft">
-                    <i data-lucide="plug" class="w-5 h-5 text-teal" stroke-width="1.75"></i>
-                    <span class="text-sm font-medium text-navy">System integrations &amp; APIs</span>
-                  </div>
-                  <div class="flex items-center gap-3 bg-white rounded-lg p-3 shadow-soft">
-                    <i data-lucide="bar-chart-3" class="w-5 h-5 text-teal" stroke-width="1.75"></i>
-                    <span class="text-sm font-medium text-navy">Performance monitoring dashboard</span>
-                  </div>
-                </div>
-                <p class="text-xs text-navy-500 mt-4">Duration: 4–6 weeks</p>
-              </div>
-            </div>
-          </div>
-
-          <!-- Step 3 Panel -->
-          <div id="step-panel-3" data-step-panel class="p-8 lg:p-12" role="tabpanel">
-            <div class="grid lg:grid-cols-2 gap-10 items-center">
-              <div>
-                <div class="inline-flex items-center gap-2 text-teal font-semibold text-sm mb-4">
-                  <i data-lucide="graduation-cap" class="w-5 h-5" stroke-width="1.75"></i>
-                  Step 3 — Train &amp; Handoff
-                </div>
-                <h3 class="text-2xl font-bold text-navy mb-4">Train your team. Transfer everything. You own it completely.</h3>
-                <p class="text-navy-600 leading-relaxed mb-6">
-                  This is where most AI projects fail — and where we refuse to cut corners. We run hands-on training sessions, build internal champions, document every system, and transfer all code and assets. When we leave, your team runs it without us.
-                </p>
-                <ul class="space-y-3">
-                  <li class="flex items-start gap-3 text-sm text-navy-600">
-                    <i data-lucide="check" class="w-5 h-5 text-teal shrink-0 mt-0.5" stroke-width="2"></i>
-                    Role-based training for operators, supervisors, and IT
-                  </li>
-                  <li class="flex items-start gap-3 text-sm text-navy-600">
-                    <i data-lucide="check" class="w-5 h-5 text-teal shrink-0 mt-0.5" stroke-width="2"></i>
-                    Complete documentation, runbooks, and troubleshooting guides
-                  </li>
-                  <li class="flex items-start gap-3 text-sm text-navy-600">
-                    <i data-lucide="check" class="w-5 h-5 text-teal shrink-0 mt-0.5" stroke-width="2"></i>
-                    Full source code, prompts, and infrastructure-as-code transfer
-                  </li>
-                </ul>
-              </div>
-              <div class="bg-navy-50 rounded-xl p-6 border border-navy-100">
-                <p class="text-xs font-semibold text-navy-500 uppercase tracking-wider mb-4">Typical deliverables</p>
-                <div class="space-y-3">
-                  <div class="flex items-center gap-3 bg-white rounded-lg p-3 shadow-soft">
-                    <i data-lucide="book-open" class="w-5 h-5 text-teal" stroke-width="1.75"></i>
-                    <span class="text-sm font-medium text-navy">Operations playbook &amp; training materials</span>
-                  </div>
-                  <div class="flex items-center gap-3 bg-white rounded-lg p-3 shadow-soft">
-                    <i data-lucide="git-branch" class="w-5 h-5 text-teal" stroke-width="1.75"></i>
-                    <span class="text-sm font-medium text-navy">Repository access &amp; deployment guides</span>
-                  </div>
-                  <div class="flex items-center gap-3 bg-white rounded-lg p-3 shadow-soft">
-                    <i data-lucide="user-check" class="w-5 h-5 text-teal" stroke-width="1.75"></i>
-                    <span class="text-sm font-medium text-navy">Certified internal champions</span>
-                  </div>
-                </div>
-                <p class="text-xs text-navy-500 mt-4">Duration: 1–2 weeks</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ============================================================
-         PROOF & EXAMPLES
-         Component: <ProofSection />
-         ============================================================ -->
-    <section id="proof" class="py-20 lg:py-28">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center max-w-3xl mx-auto mb-14">
-          <p class="text-teal font-semibold text-sm uppercase tracking-wider mb-3">Proof, not promises</p>
-          <h2 class="text-3xl sm:text-4xl font-bold text-navy tracking-tight mb-5">
-            See what we build — and what your team could run.
-          </h2>
-          <p class="text-lg text-navy-600">
-            Real workflows. Real interfaces. Interactive prototypes you can explore right here.
-          </p>
-        </div>
-
-        <div class="grid lg:grid-cols-3 gap-8">
-          <!-- Card 1: Customer Portal Prototype -->
-          <div class="lg:col-span-2 bg-white rounded-2xl shadow-card border border-navy-100 overflow-hidden group hover:border-teal/30 transition-colors">
-            <div class="p-6 lg:p-8 border-b border-navy-100">
-              <div class="flex items-start justify-between gap-4">
-                <div>
-                  <div class="inline-flex items-center gap-2 px-2.5 py-1 bg-teal-50 text-teal-700 text-xs font-semibold rounded-md mb-3">
-                    <i data-lucide="layout-dashboard" class="w-3.5 h-3.5" stroke-width="2"></i>
-                    Customer Portal
-                  </div>
-                  <h3 class="text-xl font-bold text-navy mb-2">Self-service order &amp; proof tracking portal</h3>
-                  <p class="text-navy-600 text-sm leading-relaxed">
-                    Reduces inbound status calls by giving customers real-time visibility into orders, proofs, and shipments — integrated with your existing order management data.
-                  </p>
-                </div>
-                <div class="hidden sm:flex items-center gap-2 text-xs text-navy-500 shrink-0">
-                  <span class="w-2 h-2 bg-teal rounded-full"></span>
-                  Interactive demo
-                </div>
-              </div>
-            </div>
-
-            <!--
-              PROTOTYPE EMBED: Customer Portal
-              Replace this placeholder div with your interactive prototype embed.
-              Options:
-                - <iframe src="https://your-prototype-url.com" ...>
-                - Vercel v0 embed, Lovable, Replit, or custom React app iframe
-                - Script tag for embedded widget
-              Recommended iframe attributes:
-                class="w-full h-full min-h-[400px] border-0"
-                allow="clipboard-write"
-                loading="lazy"
-                title="Customer Portal Prototype"
-            -->
-            <div class="prototype-embed min-h-[320px] sm:min-h-[400px] flex flex-col items-center justify-center p-8 text-center">
-              <div class="w-16 h-16 rounded-2xl bg-white shadow-soft flex items-center justify-center mb-4">
-                <i data-lucide="monitor-smartphone" class="w-8 h-8 text-navy-400" stroke-width="1.5"></i>
-              </div>
-              <p class="text-navy font-semibold mb-2">Customer Portal Prototype</p>
-              <p class="text-navy-500 text-sm max-w-md mb-4">
-                Embed your interactive prototype here. Replace this placeholder with an iframe or script embed pointing to your live demo.
-              </p>
-              <code class="text-xs bg-white px-3 py-1.5 rounded-md text-navy-500 border border-navy-200">
-                &lt;!-- PROTOTYPE EMBED: Customer Portal --&gt;
-              </code>
-            </div>
-
-            <div class="px-6 lg:px-8 py-4 bg-navy-50 flex flex-wrap items-center gap-4 text-xs text-navy-600">
-              <span class="flex items-center gap-1.5"><i data-lucide="zap" class="w-3.5 h-3.5 text-teal"></i> -38% status inquiry volume</span>
-              <span class="flex items-center gap-1.5"><i data-lucide="clock" class="w-3.5 h-3.5 text-teal"></i> Live in 5 weeks</span>
-              <span class="flex items-center gap-1.5"><i data-lucide="users" class="w-3.5 h-3.5 text-teal"></i> CS team trained &amp; owning</span>
-            </div>
-          </div>
-
-          <!-- Card 2: Results summary -->
-          <div class="bg-navy rounded-2xl p-7 lg:p-8 text-white shadow-card flex flex-col">
-            <h3 class="text-lg font-bold mb-6 text-teal-100">Typical outcomes</h3>
-            <div class="space-y-5 flex-1">
-              <div>
-                <p class="text-3xl font-extrabold text-teal">20–40%</p>
-                <p class="text-sm text-navy-200 mt-1">Reduction in cost-to-serve on targeted workflows</p>
-              </div>
-              <div>
-                <p class="text-3xl font-extrabold text-teal">2–4×</p>
-                <p class="text-sm text-navy-200 mt-1">Faster quoting, proofing, or scheduling cycles</p>
-              </div>
-              <div>
-                <p class="text-3xl font-extrabold text-teal">6–8 wks</p>
-                <p class="text-sm text-navy-200 mt-1">From kickoff to production with trained team</p>
-              </div>
-            </div>
-            <div class="mt-8 pt-6 border-t border-white/10">
-              <p class="text-sm text-navy-300 leading-relaxed">
-                Every engagement ends with internal capability — not a support ticket to us.
-              </p>
-            </div>
-          </div>
-
-          <!-- Card 3: Chat/Voice Agent Prototype -->
-          <div class="lg:col-span-2 bg-white rounded-2xl shadow-card border border-navy-100 overflow-hidden group hover:border-teal/30 transition-colors">
-            <div class="p-6 lg:p-8 border-b border-navy-100">
-              <div class="flex items-start justify-between gap-4">
-                <div>
-                  <div class="inline-flex items-center gap-2 px-2.5 py-1 bg-teal-50 text-teal-700 text-xs font-semibold rounded-md mb-3">
-                    <i data-lucide="message-square" class="w-3.5 h-3.5" stroke-width="2"></i>
-                    AI Agent
-                  </div>
-                  <h3 class="text-xl font-bold text-navy mb-2">Intelligent quoting &amp; scheduling assistant</h3>
-                  <p class="text-navy-600 text-sm leading-relaxed">
-                    A chat and voice-enabled agent that helps estimators and planners pull data, draft quotes, and resolve scheduling conflicts — with full audit trails your team trusts.
-                  </p>
-                </div>
-                <div class="hidden sm:flex items-center gap-2 text-xs text-navy-500 shrink-0">
-                  <span class="w-2 h-2 bg-teal rounded-full"></span>
-                  Interactive demo
-                </div>
-              </div>
-            </div>
-
-            <!--
-              PROTOTYPE EMBED: Chat/Voice Agent
-              Replace this placeholder div with your interactive prototype embed.
-              Options:
-                - <iframe src="https://your-agent-demo-url.com" ...>
-                - Voiceflow embed, custom chat widget, or ElevenLabs conversational demo
-                - Vapi / Bland / Retell voice agent embed script
-              Recommended iframe attributes:
-                class="w-full h-full min-h-[400px] border-0"
-                allow="microphone; clipboard-write"
-                loading="lazy"
-                title="AI Agent Prototype"
-            -->
-            <div class="prototype-embed min-h-[320px] sm:min-h-[400px] flex flex-col items-center justify-center p-8 text-center">
-              <div class="w-16 h-16 rounded-2xl bg-white shadow-soft flex items-center justify-center mb-4">
-                <i data-lucide="mic" class="w-8 h-8 text-navy-400" stroke-width="1.5"></i>
-              </div>
-              <p class="text-navy font-semibold mb-2">Chat &amp; Voice Agent Prototype</p>
-              <p class="text-navy-500 text-sm max-w-md mb-4">
-                Embed your conversational AI demo here. Supports chat widget, voice agent, or full iframe embed.
-              </p>
-              <code class="text-xs bg-white px-3 py-1.5 rounded-md text-navy-500 border border-navy-200">
-                &lt;!-- PROTOTYPE EMBED: Chat/Voice Agent --&gt;
-              </code>
-            </div>
-
-            <div class="px-6 lg:px-8 py-4 bg-navy-50 flex flex-wrap items-center gap-4 text-xs text-navy-600">
-              <span class="flex items-center gap-1.5"><i data-lucide="zap" class="w-3.5 h-3.5 text-teal"></i> -52% quote prep time</span>
-              <span class="flex items-center gap-1.5"><i data-lucide="shield" class="w-3.5 h-3.5 text-teal"></i> Full audit trail</span>
-              <span class="flex items-center gap-1.5"><i data-lucide="mic" class="w-3.5 h-3.5 text-teal"></i> Voice + chat ready</span>
-            </div>
-          </div>
-
-          <!-- Card 4: Case study -->
-          <div class="bg-white rounded-2xl p-7 lg:p-8 shadow-soft border border-navy-100 hover:shadow-card transition-shadow">
-            <div class="w-12 h-12 rounded-xl bg-teal-50 flex items-center justify-center mb-5">
-              <i data-lucide="file-check" class="w-6 h-6 text-teal" stroke-width="1.75"></i>
-            </div>
-            <h3 class="text-lg font-bold text-navy mb-2">Proof approval automation</h3>
-            <p class="text-navy-600 text-sm leading-relaxed mb-4">
-              A custom packaging manufacturer reduced proof revision cycles from 4.2 days to 1.1 days with an AI-assisted proof comparison and routing workflow.
-            </p>
-            <div class="flex items-center gap-4 text-xs font-medium text-teal">
-              <span>3.8× faster</span>
-              <span class="text-navy-300">|</span>
-              <span>7-week delivery</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ============================================================
-         HANDOFF — How We Deliver
-         Component: <HandoffSection />
-         ============================================================ -->
-    <section id="handoff" class="py-20 lg:py-28 bg-navy text-white">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="grid lg:grid-cols-2 gap-12 lg:gap-20 items-start">
-          <div>
-            <p class="text-teal-300 font-semibold text-sm uppercase tracking-wider mb-3">How we deliver &amp; handoff</p>
-            <h2 class="text-3xl sm:text-4xl font-bold tracking-tight mb-6">
-              When we leave, you own everything.
-            </h2>
-            <p class="text-navy-200 text-lg leading-relaxed mb-8">
-              We structure every engagement so your team gains permanent capability — not dependency on us. No recurring fees for systems we build. No black-box models you can't inspect. No "call us for every change."
-            </p>
-            <a
-              href="#contact"
-              class="inline-flex items-center gap-2 px-6 py-3 bg-teal text-white font-semibold rounded-lg hover:bg-teal-500 transition-all"
-            >
-              Start with a workshop
-              <i data-lucide="arrow-right" class="w-5 h-5" stroke-width="2"></i>
-            </a>
-          </div>
-
-          <div class="grid sm:grid-cols-2 gap-4">
-            <div class="bg-white/5 backdrop-blur rounded-xl p-5 border border-white/10 hover:bg-white/10 transition-colors">
-              <i data-lucide="code-2" class="w-6 h-6 text-teal-300 mb-3" stroke-width="1.75"></i>
-              <h3 class="font-semibold mb-2">Full source transfer</h3>
-              <p class="text-sm text-navy-300">Repositories, prompts, configs, and infrastructure code — in your accounts, under your control.</p>
-            </div>
-            <div class="bg-white/5 backdrop-blur rounded-xl p-5 border border-white/10 hover:bg-white/10 transition-colors">
-              <i data-lucide="book-marked" class="w-6 h-6 text-teal-300 mb-3" stroke-width="1.75"></i>
-              <h3 class="font-semibold mb-2">Operations documentation</h3>
-              <p class="text-sm text-navy-300">Runbooks, troubleshooting guides, and architecture docs written for your team — not consultants.</p>
-            </div>
-            <div class="bg-white/5 backdrop-blur rounded-xl p-5 border border-white/10 hover:bg-white/10 transition-colors">
-              <i data-lucide="users-round" class="w-6 h-6 text-teal-300 mb-3" stroke-width="1.75"></i>
-              <h3 class="font-semibold mb-2">Champion certification</h3>
-              <p class="text-sm text-navy-300">We identify and train internal power users who can support, extend, and advocate for the system.</p>
-            </div>
-            <div class="bg-white/5 backdrop-blur rounded-xl p-5 border border-white/10 hover:bg-white/10 transition-colors">
-              <i data-lucide="database" class="w-6 h-6 text-teal-300 mb-3" stroke-width="1.75"></i>
-              <h3 class="font-semibold mb-2">Data foundation</h3>
-              <p class="text-sm text-navy-300">Clean, structured data pipelines ready for the next wave of automation — robotics, vision, predictive maintenance.</p>
-            </div>
-            <div class="bg-white/5 backdrop-blur rounded-xl p-5 border border-white/10 hover:bg-white/10 transition-colors sm:col-span-2">
-              <i data-lucide="life-buoy" class="w-6 h-6 text-teal-300 mb-3" stroke-width="1.75"></i>
-              <h3 class="font-semibold mb-2">Optional transition support</h3>
-              <p class="text-sm text-navy-300">Need a safety net? We offer a defined post-handoff support window — but the goal is always independence, not retention.</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- Success outcomes -->
-        <div class="mt-16 pt-12 border-t border-white/10">
-          <h3 class="text-center text-xl font-bold mb-10 text-teal-100">What success looks like for you</h3>
-          <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            <div class="text-center">
-              <div class="w-14 h-14 rounded-2xl bg-teal/20 flex items-center justify-center mx-auto mb-4">
-                <i data-lucide="trending-down" class="w-7 h-7 text-teal-300" stroke-width="1.75"></i>
-              </div>
-              <h4 class="font-semibold mb-1">Lower cost-to-serve</h4>
-              <p class="text-sm text-navy-300">Measurable margin improvement on high-volume workflows</p>
-            </div>
-            <div class="text-center">
-              <div class="w-14 h-14 rounded-2xl bg-teal/20 flex items-center justify-center mx-auto mb-4">
-                <i data-lucide="gauge" class="w-7 h-7 text-teal-300" stroke-width="1.75"></i>
-              </div>
-              <h4 class="font-semibold mb-1">Faster cycles</h4>
-              <p class="text-sm text-navy-300">Quotes, proofs, and schedules move at the speed your customers expect</p>
-            </div>
-            <div class="text-center">
-              <div class="w-14 h-14 rounded-2xl bg-teal/20 flex items-center justify-center mx-auto mb-4">
-                <i data-lucide="brain" class="w-7 h-7 text-teal-300" stroke-width="1.75"></i>
-              </div>
-              <h4 class="font-semibold mb-1">Internal capability</h4>
-              <p class="text-sm text-navy-300">Your people run, maintain, and extend AI without outside help</p>
-            </div>
-            <div class="text-center">
-              <div class="w-14 h-14 rounded-2xl bg-teal/20 flex items-center justify-center mx-auto mb-4">
-                <i data-lucide="layers" class="w-7 h-7 text-teal-300" stroke-width="1.75"></i>
-              </div>
-              <h4 class="font-semibold mb-1">Automation-ready data</h4>
-              <p class="text-sm text-navy-300">A foundation for robotics, vision systems, and predictive ops</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ============================================================
-         FINAL CTA
-         Component: <FinalCTA />
-         ============================================================ -->
-    <section id="contact" class="py-20 lg:py-28 bg-gradient-to-br from-teal-50 via-white to-navy-50">
-      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <h2 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-navy tracking-tight mb-6">
-          Ready to own your AI future — not rent it?
-        </h2>
-        <p class="text-lg sm:text-xl text-navy-600 leading-relaxed mb-10 max-w-2xl mx-auto">
-          Book a Strategy Alignment Workshop. In 90 minutes, we'll map your highest-impact workflow, outline a realistic path to production, and show you a working prototype relevant to your operation.
-        </p>
-
-        <div class="flex flex-col sm:flex-row gap-4 justify-center mb-10">
-          <a
-            href="mailto:hello@sirvoce.com?subject=Strategy%20Alignment%20Workshop%20Request"
-            class="inline-flex items-center justify-center gap-2 px-8 py-4 bg-teal text-white text-lg font-semibold rounded-xl hover:bg-teal-700 transition-all hover:shadow-card focus:outline-none focus:ring-2 focus:ring-teal focus:ring-offset-2"
-          >
-            Book a Strategy Alignment Workshop
-            <i data-lucide="calendar-check" class="w-5 h-5" stroke-width="2"></i>
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          <a href="/challenge" class="group bg-white rounded-xl p-5 border border-navy-100 hover:border-teal/30 hover:shadow-soft transition-all">
+            <i data-lucide="alert-circle" class="w-6 h-6 text-teal mb-3" stroke-width="1.75"></i>
+            <h3 class="font-semibold text-navy group-hover:text-teal transition-colors">The Challenge</h3>
+            <p class="text-sm text-navy-500 mt-1">Why margins erode on the floor today</p>
           </a>
-          <a
-            href="#proof"
-            class="inline-flex items-center justify-center gap-2 px-8 py-4 bg-white text-navy text-lg font-semibold rounded-xl border-2 border-navy-200 hover:border-teal hover:text-teal transition-all"
-          >
-            See a Working Prototype
-            <i data-lucide="external-link" class="w-5 h-5" stroke-width="2"></i>
+          <a href="/who-we-are" class="group bg-white rounded-xl p-5 border border-navy-100 hover:border-teal/30 hover:shadow-soft transition-all">
+            <i data-lucide="users" class="w-6 h-6 text-teal mb-3" stroke-width="1.75"></i>
+            <h3 class="font-semibold text-navy group-hover:text-teal transition-colors">Who We Are</h3>
+            <p class="text-sm text-navy-500 mt-1">Your guide, not another vendor</p>
+          </a>
+          <a href="/process" class="group bg-white rounded-xl p-5 border border-navy-100 hover:border-teal/30 hover:shadow-soft transition-all">
+            <i data-lucide="route" class="w-6 h-6 text-teal mb-3" stroke-width="1.75"></i>
+            <h3 class="font-semibold text-navy group-hover:text-teal transition-colors">Our Process</h3>
+            <p class="text-sm text-navy-500 mt-1">Three steps from assessment to ownership</p>
+          </a>
+          <a href="/proof" class="group bg-white rounded-xl p-5 border border-navy-100 hover:border-teal/30 hover:shadow-soft transition-all">
+            <i data-lucide="layout-dashboard" class="w-6 h-6 text-teal mb-3" stroke-width="1.75"></i>
+            <h3 class="font-semibold text-navy group-hover:text-teal transition-colors">Proof</h3>
+            <p class="text-sm text-navy-500 mt-1">Interactive demos with fake data</p>
+          </a>
+          <a href="/handoff" class="group bg-white rounded-xl p-5 border border-navy-100 hover:border-teal/30 hover:shadow-soft transition-all">
+            <i data-lucide="key" class="w-6 h-6 text-teal mb-3" stroke-width="1.75"></i>
+            <h3 class="font-semibold text-navy group-hover:text-teal transition-colors">Handoff</h3>
+            <p class="text-sm text-navy-500 mt-1">When we leave, you own everything</p>
+          </a>
+          <a href="/contact" class="group bg-teal text-white rounded-xl p-5 hover:bg-teal-700 transition-all">
+            <i data-lucide="calendar-check" class="w-6 h-6 mb-3" stroke-width="1.75"></i>
+            <h3 class="font-semibold">Book a Workshop</h3>
+            <p class="text-sm text-teal-100 mt-1">90-minute strategy alignment session</p>
           </a>
         </div>
-
-        <p class="text-sm text-navy-500">
-          No obligation. No generic pitch deck. Just a focused conversation about your operation.
-        </p>
-
-        <!-- Contact details -->
-        <div class="mt-14 pt-10 border-t border-navy-100 flex flex-col sm:flex-row items-center justify-center gap-6 sm:gap-10 text-sm text-navy-600">
-          <a href="mailto:hello@sirvoce.com" class="flex items-center gap-2 hover:text-teal transition-colors">
-            <i data-lucide="mail" class="w-4 h-4" stroke-width="1.75"></i>
-            hello@sirvoce.com
-          </a>
-          <span class="hidden sm:block text-navy-300">|</span>
-          <span class="flex items-center gap-2">
-            <i data-lucide="map-pin" class="w-4 h-4" stroke-width="1.75"></i>
-            Serving manufacturers across North America
-          </span>
-        </div>
       </div>
     </section>
-
   </main>
 
-  <!-- ============================================================
-       FOOTER
-       Component: <Footer />
-       ============================================================ -->
-  <footer class="bg-navy-950 text-navy-300 py-12">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex flex-col md:flex-row items-center justify-between gap-6">
-        <div class="flex items-center gap-2.5">
-          <svg width="32" height="32" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg" class="shrink-0">
-            <!-- Modern AI network: central intelligence + connected nodes -->
-            <circle cx="19" cy="19" r="4.2" fill="#14B8A6"/>
-            <circle cx="19" cy="19" r="7.8" fill="none" stroke="#14B8A6" stroke-width="1" opacity="0.28"/>
-            <circle cx="11" cy="11" r="2.15" fill="#5EEAD4"/>
-            <circle cx="27" cy="11" r="2.15" fill="#5EEAD4"/>
-            <circle cx="11" cy="27" r="2.15" fill="#5EEAD4"/>
-            <circle cx="27" cy="27" r="2.15" fill="#5EEAD4"/>
-            <line x1="19" y1="14.8" x2="13.1" y2="13.1" stroke="#14B8A6" stroke-width="1.65" stroke-linecap="round"/>
-            <line x1="19" y1="14.8" x2="24.9" y2="13.1" stroke="#14B8A6" stroke-width="1.65" stroke-linecap="round"/>
-            <line x1="19" y1="23.2" x2="13.1" y2="24.9" stroke="#14B8A6" stroke-width="1.65" stroke-linecap="round"/>
-            <line x1="19" y1="23.2" x2="24.9" y2="24.9" stroke="#14B8A6" stroke-width="1.65" stroke-linecap="round"/>
-          </svg>
-          <span class="text-white font-semibold text-lg tracking-tight">Sirvoce</span>
-        </div>
-        <p class="text-sm text-center md:text-left">
-          Practical AI for mid-sized manufacturers. Build it. Train it. Own it.
-        </p>
-        <p class="text-xs text-navy-500">
-          &copy; 2026 Sirvoce. All rights reserved.
-        </p>
-      </div>
-    </div>
-  </footer>
-
-  <!-- ============================================================
-       SCRIPTS — Icons, Mobile Menu, Step Tabs
-       ============================================================ -->
-  <script>
-    // Initialize Lucide icons
-    lucide.createIcons();
-
-    // Mobile menu toggle
-    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-    const mobileMenu = document.getElementById('mobile-menu');
-    const menuIcon = document.getElementById('menu-icon');
-
-    mobileMenuBtn.addEventListener('click', () => {
-      const isOpen = !mobileMenu.classList.contains('hidden');
-      mobileMenu.classList.toggle('hidden');
-      mobileMenuBtn.setAttribute('aria-expanded', String(!isOpen));
-      menuIcon.setAttribute('data-lucide', isOpen ? 'menu' : 'x');
-      lucide.createIcons();
-    });
-
-    // Close mobile menu on nav link click
-    document.querySelectorAll('.mobile-nav-link').forEach(link => {
-      link.addEventListener('click', () => {
-        mobileMenu.classList.add('hidden');
-        mobileMenuBtn.setAttribute('aria-expanded', 'false');
-        menuIcon.setAttribute('data-lucide', 'menu');
-        lucide.createIcons();
-      });
-    });
-
-    // 3-Step Plan tabs
-    const stepTabs = document.querySelectorAll('.step-tab');
-    const stepPanels = document.querySelectorAll('[data-step-panel]');
-
-    stepTabs.forEach(tab => {
-      tab.addEventListener('click', () => {
-        const step = tab.dataset.step;
-
-        stepTabs.forEach(t => {
-          t.classList.remove('active');
-          t.setAttribute('aria-selected', 'false');
-          t.querySelector('span').classList.remove('bg-teal', 'text-white');
-          t.querySelector('span').classList.add('bg-navy-100', 'text-navy');
-        });
-
-        tab.classList.add('active');
-        tab.setAttribute('aria-selected', 'true');
-        tab.querySelector('span').classList.remove('bg-navy-100', 'text-navy');
-        tab.querySelector('span').classList.add('bg-teal', 'text-white');
-
-        stepPanels.forEach(panel => {
-          panel.classList.remove('active');
-        });
-        document.getElementById(`step-panel-${step}`).classList.add('active');
-      });
-    });
-  </script>
-
+  <div id="site-footer"></div>
+  <script src="/assets/js/layout.js"></script>
+  <script src="/assets/js/site.js"></script>
 </body>
 </html>
