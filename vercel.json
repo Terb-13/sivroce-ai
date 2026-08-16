@@ -28,9 +28,14 @@
     { "source": "/demos/quoting-agent", "destination": "/solutions", "permanent": true }
   ],
   "rewrites": [
+    { "source": "/products", "destination": "/api/gone" },
     { "source": "/products/:path*", "destination": "/api/gone" },
+    { "source": "/pages", "destination": "/api/gone" },
     { "source": "/pages/:path*", "destination": "/api/gone" },
+    { "source": "/collections", "destination": "/api/gone" },
     { "source": "/collections/:path*", "destination": "/api/gone" },
+    { "source": "/policies/:path*", "destination": "/api/gone" },
+    { "source": "/blogs/:path*", "destination": "/api/gone" },
     { "source": "/cart", "destination": "/api/gone" },
     { "source": "/account", "destination": "/api/gone" },
     { "source": "/account/:path*", "destination": "/api/gone" },

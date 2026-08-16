@@ -7,15 +7,38 @@ function json(res, status, payload) {
   res.end(JSON.stringify(payload));
 }
 
-function readBody(req) {
-  if (req.body && typeof req.body === 'object') return req.body;
-  if (typeof req.body === 'string') {
+function parseRawBody(text) {
+  const trimmed = String(text || '').trim();
+  if (!trimmed) return {};
+  if (trimmed.startsWith('{') || trimmed.startsWith('[')) {
     try {
-      return JSON.parse(req.body);
+      const parsed = JSON.parse(trimmed);
+      return parsed && typeof parsed === 'object' ? parsed : {};
     } catch {
-      return Object.fromEntries(new URLSearchParams(req.body));
+      return {};
     }
   }
+  return Object.fromEntries(new URLSearchParams(trimmed));
+}
+
+export async function readBody(req) {
+  if (req.body != null) {
+    if (Buffer.isBuffer(req.body)) return parseRawBody(req.body.toString('utf8'));
+    if (typeof req.body === 'string') return parseRawBody(req.body);
+    if (typeof req.body === 'object') {
+      if (typeof req.body.get === 'function' && typeof req.body.entries === 'function') {
+        return Object.fromEntries(req.body.entries());
+      }
+      return req.body;
+    }
+  }
+
+  if (typeof req[Symbol.asyncIterator] === 'function') {
+    const chunks = [];
+    for await (const chunk of req) chunks.push(chunk);
+    if (chunks.length) return parseRawBody(Buffer.concat(chunks).toString('utf8'));
+  }
+
   return {};
 }
 
@@ -29,10 +52,13 @@ export default async function handler(req, res) {
   }
 
   try {
-    const lead = parseLeadBody(readBody(req));
+    const lead = parseLeadBody(await readBody(req));
 
     if (isHoneypot(lead)) {
-      return json(res, 200, { ok: true });
+      return json(res, 400, {
+        ok: false,
+        error: 'We could not deliver your request. Please email hello@sirvoce.com and try again.',
+      });
     }
 
     const validation = validateLead(lead);

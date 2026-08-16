@@ -4,6 +4,7 @@ import { createServer } from 'node:http';
 import { once } from 'node:events';
 import handler from '../api/lead.js';
 import goneHandler from '../api/gone.js';
+import { GONE_MESSAGE } from '../lib/gone-page.js';
 import {
   buildLeadEmail,
   isHoneypot,
@@ -144,7 +145,7 @@ test('POST /api/lead returns 502 when Resend rejects delivery', async () => {
   }
 });
 
-test('POST /api/lead honeypot does not send mail', async () => {
+test('POST /api/lead honeypot does not send mail or claim success', async () => {
   const previous = process.env.RESEND_API_KEY;
   process.env.RESEND_API_KEY = 're_should_not_be_used';
 
@@ -152,8 +153,51 @@ test('POST /api/lead honeypot does not send mail', async () => {
     method: 'POST',
     body: { ...validLead, website: 'http://bots.test' },
   });
-  assert.equal(response.status, 200);
-  assert.equal(response.body.ok, true);
+  assert.equal(response.status, 400);
+  assert.equal(response.body.ok, false);
+
+  if (previous === undefined) delete process.env.RESEND_API_KEY;
+  else process.env.RESEND_API_KEY = previous;
+});
+
+test('POST /api/lead succeeds only after Resend accepts the email', async () => {
+  const previous = process.env.RESEND_API_KEY;
+  process.env.RESEND_API_KEY = 're_test';
+  const originalFetch = globalThis.fetch;
+  let called = 0;
+  globalThis.fetch = async (url, options) => {
+    called += 1;
+    assert.equal(url, 'https://api.resend.com/emails');
+    assert.match(options.headers.Authorization, /Bearer re_test/);
+    return {
+      ok: true,
+      status: 200,
+      text: async () => JSON.stringify({ id: 'email_ok' }),
+    };
+  };
+
+  try {
+    const response = await invoke(handler, { method: 'POST', body: validLead });
+    assert.equal(called, 1);
+    assert.equal(response.status, 200);
+    assert.equal(response.body.ok, true);
+  } finally {
+    globalThis.fetch = originalFetch;
+    if (previous === undefined) delete process.env.RESEND_API_KEY;
+    else process.env.RESEND_API_KEY = previous;
+  }
+});
+
+test('POST /api/lead parses a raw JSON string body', async () => {
+  const previous = process.env.RESEND_API_KEY;
+  delete process.env.RESEND_API_KEY;
+
+  const response = await invoke(handler, {
+    method: 'POST',
+    body: JSON.stringify(validLead),
+  });
+  assert.equal(response.status, 503);
+  assert.equal(response.body.ok, false);
 
   if (previous === undefined) delete process.env.RESEND_API_KEY;
   else process.env.RESEND_API_KEY = previous;
@@ -170,5 +214,6 @@ test('legacy process-serving handler returns 410 HTML', async () => {
   server.close();
 
   assert.equal(response.status, 410);
-  assert.match(body, /practical AI for manufacturers/i);
+  assert.equal(GONE_MESSAGE, 'Sirvoce is now practical AI for manufacturers.');
+  assert.ok(body.includes(GONE_MESSAGE));
 });
