@@ -46,6 +46,11 @@
     { "source": "/process-serving", "destination": "/api/gone" },
     { "source": "/utah-process-service", "destination": "/api/gone" },
     { "source": "/standard-serve", "destination": "/api/gone" },
-    { "source": "/rush-serve", "destination": "/api/gone" }
+    { "source": "/rush-serve", "destination": "/api/gone" },
+    { "source": "/privacy", "destination": "/api/gone" },
+    { "source": "/terms", "destination": "/api/gone" },
+    { "source": "/refund", "destination": "/api/gone" },
+    { "source": "/shipping", "destination": "/api/gone" },
+    { "source": "/legal", "destination": "/api/gone" }
   ]
 }

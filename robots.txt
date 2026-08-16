@@ -1,0 +1,39 @@
+# Index only the current Sirvoce brand pages.
+# Retired ServeAI / Shopify / marketing URLs return 410 and should not be crawled.
+
+User-agent: *
+Allow: /
+Allow: /about
+Allow: /approach
+Allow: /challenge
+Allow: /engage
+Allow: /proof
+Allow: /solutions
+
+Disallow: /pages
+Disallow: /products
+Disallow: /serveai
+Disallow: /cart
+Disallow: /account
+Disallow: /collections
+Disallow: /policies
+Disallow: /blogs
+Disallow: /search
+Disallow: /gone
+Disallow: /contact
+Disallow: /process
+Disallow: /who-we-are
+Disallow: /handoff
+Disallow: /demos
+Disallow: /serve
+Disallow: /process-serving
+Disallow: /utah-process-service
+Disallow: /standard-serve
+Disallow: /rush-serve
+Disallow: /privacy
+Disallow: /terms
+Disallow: /refund
+Disallow: /shipping
+Disallow: /legal
+
+Sitemap: https://www.sirvoce.com/sitemap.xml
