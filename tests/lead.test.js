@@ -4,6 +4,7 @@ import { createServer } from 'node:http';
 import { once } from 'node:events';
 import handler from '../api/lead.js';
 import goneHandler from '../api/gone.js';
+import { GONE_MESSAGE } from '../lib/gone-page.js';
 import {
   buildLeadEmail,
   isHoneypot,
@@ -170,5 +171,6 @@ test('legacy process-serving handler returns 410 HTML', async () => {
   server.close();
 
   assert.equal(response.status, 410);
-  assert.match(body, /practical AI for manufacturers/i);
+  assert.equal(GONE_MESSAGE, 'Sirvoce is now practical AI for manufacturers.');
+  assert.ok(body.includes(GONE_MESSAGE));
 });

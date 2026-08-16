@@ -13,7 +13,6 @@ Static marketing site for Sirvoce — practical AI for mid-sized manufacturers.
 | Proof | `proof.html` | Illustrative prototypes and live demos (not client case studies) |
 | About | `about.html` | Team and company background |
 | Engage | `engage.html` | Strategy Alignment Workshop request |
-| Gone | `gone.html` | Note for leftover legal / process-serving URLs |
 
 ## Lead capture
 
@@ -31,7 +30,7 @@ Copy `.env.example` to `.env.local` for local `vercel dev`.
 
 ## Legacy URLs
 
-Old Shopify process-serving paths (`/pages/*`, `/products/*`, `/serveai`, and similar) rewrite to `/api/gone` and return **410** with a short note: Sirvoce is now practical AI for manufacturers. Earlier marketing paths (`/contact`, `/process`, `/who-we-are`) redirect to the current pages.
+Only the pages in the table above render. Leftover legal, Shopify, ServeAI, and retired marketing paths rewrite to `/api/gone` and return **410** with: “Sirvoce is now practical AI for manufacturers.” That includes `/pages/*`, `/products/*`, `/serveai`, `/gone`, `/contact`, `/process`, and similar. Those URLs are not restored and are not turned into 404s.
 
 ## Demos
 
