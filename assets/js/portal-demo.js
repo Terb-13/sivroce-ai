@@ -103,7 +103,7 @@
     const btn = document.getElementById('proof-update-btn');
     if (btn) {
       btn.addEventListener('click', () => {
-        els.confirmMsg.textContent = `Proof update request logged for ${o.id}. Example outcomes from this engagement: ~38% reduction in status inquiry volume when customers self-serve through the portal.`;
+        els.confirmMsg.textContent = `Proof update request logged for ${o.id}. This is a live prototype — not a client case study.`;
         els.confirm.classList.remove('hidden');
         setTimeout(() => els.confirm.classList.add('hidden'), 5000);
       });

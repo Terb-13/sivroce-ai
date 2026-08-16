@@ -1,0 +1,8 @@
+{
+  "name": "sirvoce-ai",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node --test"
+  }
+}
