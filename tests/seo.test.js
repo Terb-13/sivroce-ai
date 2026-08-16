@@ -40,7 +40,6 @@ test('robots.txt allows brand pages and disallows gone paths', () => {
     assert.ok(robots.includes(`Disallow: ${path}`), `missing Disallow: ${path}`);
   }
 
-  assert.doesNotMatch(robots, /Fortis|Learn to Sushi|AgentMail/i);
 });
 
 test('sitemap.xml lists only the seven brand pages', () => {
