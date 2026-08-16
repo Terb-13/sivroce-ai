@@ -68,7 +68,11 @@
         <!-- Lead capture form -->
         <div class="bg-white rounded-2xl shadow-card border border-navy-100 p-8">
           <h2 class="text-xl font-bold text-navy mb-6">Request a workshop</h2>
-          <form id="lead-form" class="space-y-5" novalidate>
+          <form id="lead-form" class="relative space-y-5" action="/api/lead" method="post" novalidate>
+            <div class="absolute -left-[9999px] h-0 w-0 overflow-hidden" aria-hidden="true">
+              <label for="website">Website</label>
+              <input type="text" id="website" name="website" tabindex="-1" autocomplete="off" />
+            </div>
             <div>
               <label for="name" class="block text-sm font-medium text-navy mb-1.5">Name <span class="text-red-500">*</span></label>
               <input type="text" id="name" name="name" required class="w-full px-4 py-2.5 border border-navy-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-teal focus:border-teal" />
@@ -93,7 +97,11 @@
               <label for="bottleneck" class="block text-sm font-medium text-navy mb-1.5">What's your biggest bottleneck workflow? <span class="text-red-500">*</span></label>
               <textarea id="bottleneck" name="bottleneck" rows="4" required placeholder="e.g., manual quoting takes 3 days, proof revisions cycle through email…" class="w-full px-4 py-2.5 border border-navy-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-teal focus:border-teal resize-y"></textarea>
             </div>
-            <button type="submit" class="w-full py-3.5 bg-teal text-white font-semibold rounded-lg hover:bg-teal-700 transition-colors flex items-center justify-center gap-2">
+            <div id="form-error" class="hidden rounded-lg border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-800" role="alert">
+              <p id="form-error-text"></p>
+              <p class="mt-2"><a href="mailto:hello@sirvoce.com" class="font-semibold underline">Email hello@sirvoce.com</a> if you need to reach us directly.</p>
+            </div>
+            <button type="submit" class="w-full py-3.5 bg-teal text-white font-semibold rounded-lg hover:bg-teal-700 transition-colors flex items-center justify-center gap-2 disabled:opacity-60 disabled:cursor-not-allowed">
               Submit Request <i data-lucide="send" class="w-4 h-4"></i>
             </button>
           </form>
@@ -168,7 +176,7 @@
               How do you measure value?
               <i data-faq-icon data-lucide="plus" class="w-5 h-5 text-teal shrink-0"></i>
             </button>
-            <div class="hidden px-5 pb-4 text-sm text-navy-600 leading-relaxed">During Assess &amp; Align we define success metrics your leadership agrees on — typically cost-to-serve, cycle time, error rate, or inquiry volume. We instrument the system to track these as soon as it goes into production. Typical results from recent client engagements on similar workflows include 20–40% cost-to-serve reduction and 2–4× faster cycles.</div>
+            <div class="hidden px-5 pb-4 text-sm text-navy-600 leading-relaxed">During Assess &amp; Align we define success metrics your leadership agrees on — typically cost-to-serve, cycle time, error rate, or inquiry volume. We instrument the system to track these as soon as it goes into production. The live demos on this site show the kinds of workflows we prototype; measured results are defined with you, not borrowed from someone else's plant.</div>
           </div>
 
           <div class="bg-white rounded-xl border border-navy-100 overflow-hidden">

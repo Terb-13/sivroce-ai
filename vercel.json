@@ -18,5 +18,27 @@
         }
       ]
     }
+  ],
+  "redirects": [
+    { "source": "/contact", "destination": "/engage", "permanent": true },
+    { "source": "/process", "destination": "/approach", "permanent": true },
+    { "source": "/who-we-are", "destination": "/about", "permanent": true },
+    { "source": "/handoff", "destination": "/approach", "permanent": true },
+    { "source": "/demos/customer-portal", "destination": "/solutions", "permanent": true },
+    { "source": "/demos/quoting-agent", "destination": "/solutions", "permanent": true }
+  ],
+  "rewrites": [
+    { "source": "/products/:path*", "destination": "/api/gone" },
+    { "source": "/pages/:path*", "destination": "/api/gone" },
+    { "source": "/collections/:path*", "destination": "/api/gone" },
+    { "source": "/cart", "destination": "/api/gone" },
+    { "source": "/account", "destination": "/api/gone" },
+    { "source": "/account/:path*", "destination": "/api/gone" },
+    { "source": "/serve", "destination": "/api/gone" },
+    { "source": "/serveai", "destination": "/api/gone" },
+    { "source": "/process-serving", "destination": "/api/gone" },
+    { "source": "/utah-process-service", "destination": "/api/gone" },
+    { "source": "/standard-serve", "destination": "/api/gone" },
+    { "source": "/rush-serve", "destination": "/api/gone" }
   ]
 }

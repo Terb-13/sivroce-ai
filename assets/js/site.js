@@ -74,16 +74,94 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Lead form
+  // Lead form — only show success after /api/lead accepts the request
   const leadForm = document.getElementById('lead-form');
   if (leadForm) {
-    leadForm.addEventListener('submit', (e) => {
+    const success = document.getElementById('form-success');
+    const errorBox = document.getElementById('form-error');
+    const errorText = document.getElementById('form-error-text');
+    const submitBtn = leadForm.querySelector('[type="submit"]');
+    const submitLabel = submitBtn ? submitBtn.innerHTML : '';
+
+    const showError = (message) => {
+      if (!errorBox || !errorText) return;
+      errorText.textContent = message;
+      errorBox.classList.remove('hidden');
+      errorBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    };
+
+    const hideError = () => {
+      if (!errorBox) return;
+      errorBox.classList.add('hidden');
+    };
+
+    leadForm.addEventListener('submit', async (e) => {
       e.preventDefault();
-      leadForm.classList.add('hidden');
-      const success = document.getElementById('form-success');
-      if (success) {
-        success.classList.remove('hidden');
-        success.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      hideError();
+      if (success) success.classList.add('hidden');
+
+      if (!leadForm.checkValidity()) {
+        leadForm.reportValidity();
+        showError('Please complete the required fields and try again.');
+        return;
+      }
+
+      const formData = new FormData(leadForm);
+      const field = (key) => String(formData.get(key) || '').trim();
+      const payload = {
+        name: field('name'),
+        company: field('company'),
+        title: field('title'),
+        email: field('email'),
+        phone: field('phone'),
+        bottleneck: field('bottleneck'),
+        website: field('website'),
+      };
+
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.setAttribute('aria-busy', 'true');
+        submitBtn.textContent = 'Sending…';
+      }
+
+      try {
+        const response = await fetch('/api/lead', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+          body: JSON.stringify(payload),
+        });
+
+        let data = {};
+        try {
+          data = await response.json();
+        } catch {
+          data = {};
+        }
+
+        if (!response.ok || !data.ok) {
+          throw new Error(
+            data.error ||
+              'We could not deliver your request. Please email hello@sirvoce.com and try again.'
+          );
+        }
+
+        leadForm.classList.add('hidden');
+        if (success) {
+          success.classList.remove('hidden');
+          success.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+      } catch (err) {
+        showError(
+          err.message ||
+            'We could not deliver your request. Please email hello@sirvoce.com and try again.'
+        );
+      } finally {
+        if (submitBtn) {
+          submitBtn.disabled = false;
+          submitBtn.removeAttribute('aria-busy');
+          submitBtn.innerHTML = submitLabel;
+          if (window.lucide) lucide.createIcons();
+        }
       }
     });
   }
