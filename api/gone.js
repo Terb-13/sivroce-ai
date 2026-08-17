@@ -4,5 +4,6 @@ export default function handler(req, res) {
   res.statusCode = 410;
   res.setHeader('Content-Type', 'text/html; charset=utf-8');
   res.setHeader('Cache-Control', 'public, max-age=300');
+  res.setHeader('X-Robots-Tag', 'noindex, nofollow');
   res.end(GONE_HTML);
 }
