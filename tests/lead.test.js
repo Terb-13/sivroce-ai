@@ -8,6 +8,7 @@ import { GONE_MESSAGE } from '../lib/gone-page.js';
 import {
   buildLeadEmail,
   isHoneypot,
+  leadIdempotencyKey,
   parseLeadBody,
   sendLeadEmail,
   validateLead,
@@ -66,21 +67,23 @@ test('honeypot is treated as a bot fill', () => {
   assert.equal(isHoneypot(validLead), false);
 });
 
-test('buildLeadEmail addresses hello@sirvoce.com', () => {
+test('buildLeadEmail addresses the AgentMail inbox', () => {
   const email = buildLeadEmail(validLead);
-  assert.deepEqual(email.to, ['hello@sirvoce.com']);
-  assert.match(email.from, /hello@sirvoce.com/);
-  assert.equal(email.reply_to, validLead.email);
+  assert.deepEqual(email.to, ['hello@agents.sirvoce.com']);
+  assert.equal(email.from, undefined);
+  assert.deepEqual(email.reply_to, [validLead.email]);
+  assert.equal(email.subject, 'Workshop request — Alex Rivera at Midsize Metals');
   assert.match(email.text, /Manual quoting/);
 });
 
 test('sendLeadEmail fails honestly without an API key', async () => {
   await assert.rejects(() => sendLeadEmail(validLead, { apiKey: '' }), {
     code: 'NOT_CONFIGURED',
+    message: 'AGENTMAIL_API_KEY is not configured.',
   });
 });
 
-test('sendLeadEmail posts to Resend when configured', async () => {
+test('sendLeadEmail posts to AgentMail when configured', async () => {
   const fetchImpl = mock.fn(async () => ({
     ok: true,
     status: 200,
@@ -88,30 +91,37 @@ test('sendLeadEmail posts to Resend when configured', async () => {
   }));
 
   const result = await sendLeadEmail(validLead, {
-    apiKey: 're_test',
+    apiKey: 'am_test',
     fetchImpl,
   });
 
   assert.equal(result.id, 'email_123');
   assert.equal(fetchImpl.mock.calls.length, 1);
   const [url, options] = fetchImpl.mock.calls[0].arguments;
-  assert.equal(url, 'https://api.resend.com/emails');
-  assert.equal(options.headers.Authorization, 'Bearer re_test');
+  assert.equal(
+    url,
+    'https://api.agentmail.to/v0/inboxes/hello%40agents.sirvoce.com/messages/send',
+  );
+  assert.equal(options.headers.Authorization, 'Bearer am_test');
+  assert.equal(options.headers['Content-Type'], 'application/json');
+  assert.equal(options.headers['Idempotency-Key'], leadIdempotencyKey(validLead));
   const payload = JSON.parse(options.body);
-  assert.deepEqual(payload.to, ['hello@sirvoce.com']);
+  assert.deepEqual(payload.to, ['hello@agents.sirvoce.com']);
+  assert.deepEqual(payload.reply_to, [validLead.email]);
+  assert.equal(payload.from, undefined);
 });
 
-test('POST /api/lead returns 503 when Resend is not configured', async () => {
-  const previous = process.env.RESEND_API_KEY;
-  delete process.env.RESEND_API_KEY;
+test('POST /api/lead returns 503 when AgentMail is not configured', async () => {
+  const previous = process.env.AGENTMAIL_API_KEY;
+  delete process.env.AGENTMAIL_API_KEY;
 
   const response = await invoke(handler, { method: 'POST', body: validLead });
   assert.equal(response.status, 503);
   assert.equal(response.body.ok, false);
   assert.match(response.body.error, /hello@sirvoce.com/);
 
-  if (previous === undefined) delete process.env.RESEND_API_KEY;
-  else process.env.RESEND_API_KEY = previous;
+  if (previous === undefined) delete process.env.AGENTMAIL_API_KEY;
+  else process.env.AGENTMAIL_API_KEY = previous;
 });
 
 test('POST /api/lead does not claim success on validation failure', async () => {
@@ -123,14 +133,20 @@ test('POST /api/lead does not claim success on validation failure', async () => 
   assert.equal(response.body.ok, false);
 });
 
-test('POST /api/lead returns 502 when Resend rejects delivery', async () => {
-  const previous = process.env.RESEND_API_KEY;
-  process.env.RESEND_API_KEY = 're_test';
+test('POST /api/lead returns 400 for an empty body', async () => {
+  const response = await invoke(handler, { method: 'POST', body: {} });
+  assert.equal(response.status, 400);
+  assert.equal(response.body.ok, false);
+});
+
+test('POST /api/lead returns 502 when AgentMail rejects delivery', async () => {
+  const previous = process.env.AGENTMAIL_API_KEY;
+  process.env.AGENTMAIL_API_KEY = 'am_test';
   const originalFetch = globalThis.fetch;
   globalThis.fetch = async () => ({
     ok: false,
     status: 403,
-    text: async () => JSON.stringify({ message: 'domain not verified' }),
+    text: async () => JSON.stringify({ message: 'inbox not found' }),
   });
 
   try {
@@ -140,14 +156,14 @@ test('POST /api/lead returns 502 when Resend rejects delivery', async () => {
     assert.match(response.body.error, /hello@sirvoce.com/);
   } finally {
     globalThis.fetch = originalFetch;
-    if (previous === undefined) delete process.env.RESEND_API_KEY;
-    else process.env.RESEND_API_KEY = previous;
+    if (previous === undefined) delete process.env.AGENTMAIL_API_KEY;
+    else process.env.AGENTMAIL_API_KEY = previous;
   }
 });
 
 test('POST /api/lead honeypot does not send mail or claim success', async () => {
-  const previous = process.env.RESEND_API_KEY;
-  process.env.RESEND_API_KEY = 're_should_not_be_used';
+  const previous = process.env.AGENTMAIL_API_KEY;
+  process.env.AGENTMAIL_API_KEY = 'am_should_not_be_used';
 
   const response = await invoke(handler, {
     method: 'POST',
@@ -156,19 +172,26 @@ test('POST /api/lead honeypot does not send mail or claim success', async () => 
   assert.equal(response.status, 400);
   assert.equal(response.body.ok, false);
 
-  if (previous === undefined) delete process.env.RESEND_API_KEY;
-  else process.env.RESEND_API_KEY = previous;
+  if (previous === undefined) delete process.env.AGENTMAIL_API_KEY;
+  else process.env.AGENTMAIL_API_KEY = previous;
 });
 
-test('POST /api/lead succeeds only after Resend accepts the email', async () => {
-  const previous = process.env.RESEND_API_KEY;
-  process.env.RESEND_API_KEY = 're_test';
+test('POST /api/lead succeeds only after AgentMail accepts the email', async () => {
+  const previous = process.env.AGENTMAIL_API_KEY;
+  process.env.AGENTMAIL_API_KEY = 'am_test';
   const originalFetch = globalThis.fetch;
   let called = 0;
   globalThis.fetch = async (url, options) => {
     called += 1;
-    assert.equal(url, 'https://api.resend.com/emails');
-    assert.match(options.headers.Authorization, /Bearer re_test/);
+    assert.equal(
+      url,
+      'https://api.agentmail.to/v0/inboxes/hello%40agents.sirvoce.com/messages/send',
+    );
+    assert.match(options.headers.Authorization, /Bearer am_test/);
+    assert.equal(options.headers['Idempotency-Key'], leadIdempotencyKey(validLead));
+    const payload = JSON.parse(options.body);
+    assert.deepEqual(payload.to, ['hello@agents.sirvoce.com']);
+    assert.deepEqual(payload.reply_to, [validLead.email]);
     return {
       ok: true,
       status: 200,
@@ -183,14 +206,14 @@ test('POST /api/lead succeeds only after Resend accepts the email', async () => 
     assert.equal(response.body.ok, true);
   } finally {
     globalThis.fetch = originalFetch;
-    if (previous === undefined) delete process.env.RESEND_API_KEY;
-    else process.env.RESEND_API_KEY = previous;
+    if (previous === undefined) delete process.env.AGENTMAIL_API_KEY;
+    else process.env.AGENTMAIL_API_KEY = previous;
   }
 });
 
 test('POST /api/lead parses a raw JSON string body', async () => {
-  const previous = process.env.RESEND_API_KEY;
-  delete process.env.RESEND_API_KEY;
+  const previous = process.env.AGENTMAIL_API_KEY;
+  delete process.env.AGENTMAIL_API_KEY;
 
   const response = await invoke(handler, {
     method: 'POST',
@@ -199,8 +222,8 @@ test('POST /api/lead parses a raw JSON string body', async () => {
   assert.equal(response.status, 503);
   assert.equal(response.body.ok, false);
 
-  if (previous === undefined) delete process.env.RESEND_API_KEY;
-  else process.env.RESEND_API_KEY = previous;
+  if (previous === undefined) delete process.env.AGENTMAIL_API_KEY;
+  else process.env.AGENTMAIL_API_KEY = previous;
 });
 
 test('legacy process-serving handler returns 410 HTML', async () => {

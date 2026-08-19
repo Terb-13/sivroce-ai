@@ -70,7 +70,7 @@ export default async function handler(req, res) {
       });
     }
 
-    await sendLeadEmail(lead, { apiKey: process.env.RESEND_API_KEY });
+    await sendLeadEmail(lead, { apiKey: process.env.AGENTMAIL_API_KEY });
     return json(res, 200, { ok: true });
   } catch (err) {
     console.error('Lead submit failed:', err.code || err.message);
