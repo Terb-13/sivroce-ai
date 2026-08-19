@@ -16,28 +16,20 @@ Static marketing site for Sirvoce — practical AI for mid-sized manufacturers.
 
 ## Lead capture
 
-The `/engage` form POSTs JSON to `/api/lead`. That function calls the Resend HTTP API and emails **hello@sirvoce.com**. The thank-you state is shown only after the function returns `{ ok: true }`. Missing configuration, validation errors, and delivery failures show an error and a `mailto:hello@sirvoce.com` fallback.
+The `/engage` form POSTs JSON to `/api/lead`. That function calls the AgentMail HTTP API and emails **hello@agents.sirvoce.com**. The thank-you state is shown only after the function returns `{ ok: true }`. Missing configuration, validation errors, and delivery failures show an error and a `mailto:hello@sirvoce.com` fallback.
 
 ### Environment variables
 
 | Name | Required | Used by | Notes |
 |------|----------|---------|-------|
-| `RESEND_API_KEY` | **Yes** (to deliver leads) | `/api/lead` | Resend secret API key. Mark **Sensitive**. |
+| `AGENTMAIL_API_KEY` | **Yes** (to deliver leads) | `/api/lead` | AgentMail secret API key. Mark **Sensitive**. |
+| `AGENTMAIL_INBOX_ID` | No | `/api/lead` | Sending inbox. Defaults to `hello@agents.sirvoce.com`. |
 
-No other environment variables are read by this site. There is no `RESEND_FROM`, CRM key, or Formspree ID.
+No other environment variables are read by this site. There is no Resend key, CRM key, or Formspree ID.
 
-Set `RESEND_API_KEY` in the Vercel project for **Production**, **Preview**, and **Development**.
+Set `AGENTMAIL_API_KEY` in the Vercel project for **Production**, **Preview**, and **Development**. Do not invent or commit a key.
 
-### Resend account (outside Vercel)
-
-These are not Vercel settings, but the function will fail honestly until they are done:
-
-1. Create a [Resend](https://resend.com) account.
-2. **Domains → Add domain → `sirvoce.com`** and complete the DNS records Resend shows.
-3. Wait until the domain is **Verified**.
-4. The function sends **from** `Sirvoce Website <hello@sirvoce.com>` **to** `hello@sirvoce.com`. That from-address only works after the domain is verified.
-
-Out of scope for this repo: pasting the key into Vercel and completing DNS. Do not change apex MX for this form.
+Internal notify is sent to the AgentMail inbox only (`hello@agents.sirvoce.com`), not Google `hello@sirvoce.com`. Agents own this inbox.
 
 Copy `.env.example` to `.env.local` for local `vercel dev`.
 
@@ -68,4 +60,4 @@ python3 -m http.server 3000
 
 ## Deploy
 
-Configured for [Vercel](https://vercel.com) with `cleanUrls`, security headers, legacy 410 rewrites, and serverless functions in `api/`. After merge, leads stay undelivered until `RESEND_API_KEY` is set and `sirvoce.com` is verified in Resend — the form will show that failure instead of a fake thank-you.
+Configured for [Vercel](https://vercel.com) with `cleanUrls`, security headers, legacy 410 rewrites, and serverless functions in `api/`. After merge, leads stay undelivered until `AGENTMAIL_API_KEY` is set — the form will show that failure instead of a fake thank-you.
