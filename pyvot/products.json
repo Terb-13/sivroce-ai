@@ -1,22 +1,32 @@
 {
-  "note": "Placeholder catalog for the Pyvot packaging order demo. Edit this file to change products, copy, specs, and 3D preview size. shape must be pouch, stickpack, sachet, or rollstock. For pouch, stickpack, and sachet, preview width, height, and depth are the pack. For rollstock, height is the roll width and width is the diameter.",
+  "note": "Placeholder catalog for the Pyvot flexible packaging order demo. Edit this file to change formats, copy, specs, and 3D preview size. shape must be pouch, stickpack, sachet, or rollstock. Include only the specs that format uses. For pouch, stickpack, and sachet, preview width, height, and depth are the pack. For rollstock, height is the roll width and width is the diameter.",
   "products": [
     {
       "id": "pouch",
       "name": "Stand-up pouch",
       "shape": "pouch",
-      "summary": "Resealable stand-up pouch for snacks, powders, and dry goods.",
+      "summary": "Printed stand-up pouch for snacks, powders, and dry goods.",
       "preview": { "width": 2.2, "height": 3.15, "depth": 0.85 },
       "specs": [
         {
-          "id": "size",
-          "label": "Size",
+          "id": "dimensions",
+          "name": "Dimensions",
           "options": ["4 × 6 in", "6 × 9 in", "8 × 12 in"]
         },
         {
+          "id": "film",
+          "name": "Film",
+          "options": ["PET/PE", "MET PET/PE", "PET/ALU/PE"]
+        },
+        {
           "id": "finish",
-          "label": "Finish",
-          "options": ["Matte", "Gloss"]
+          "name": "Finish",
+          "options": ["Gloss", "Matte"]
+        },
+        {
+          "id": "opening",
+          "name": "Zipper or tear notch",
+          "options": ["Zipper", "Tear notch"]
         }
       ]
     },
@@ -24,18 +34,28 @@
       "id": "stickpack",
       "name": "Stickpack",
       "shape": "stickpack",
-      "summary": "Slim single-serve stick for powders, drink mixes, and samples.",
+      "summary": "Printed single-serve stick for powders, drink mixes, and samples.",
       "preview": { "width": 0.72, "height": 3.4, "depth": 0.36 },
       "specs": [
         {
-          "id": "size",
-          "label": "Size",
+          "id": "dimensions",
+          "name": "Dimensions",
           "options": ["0.75 × 4 in", "1 × 6 in"]
         },
         {
-          "id": "seal",
-          "label": "Seal",
-          "options": ["Fin seal", "Lap seal"]
+          "id": "film",
+          "name": "Film",
+          "options": ["PET/PE", "MET PET/PE", "PET/ALU/PE"]
+        },
+        {
+          "id": "finish",
+          "name": "Finish",
+          "options": ["Gloss", "Matte"]
+        },
+        {
+          "id": "opening",
+          "name": "Tear notch",
+          "options": ["Tear notch", "No tear notch"]
         }
       ]
     },
@@ -43,18 +63,28 @@
       "id": "sachet",
       "name": "Sachet",
       "shape": "sachet",
-      "summary": "Flat sachet for portions, samples, and single serves.",
+      "summary": "Printed flat sachet for portions, samples, and single serves.",
       "preview": { "width": 1.9, "height": 2.45, "depth": 0.18 },
       "specs": [
         {
-          "id": "size",
-          "label": "Size",
+          "id": "dimensions",
+          "name": "Dimensions",
           "options": ["2 × 3 in", "3 × 4 in"]
         },
         {
-          "id": "fill",
-          "label": "Fill",
-          "options": ["Powder", "Liquid", "Granule"]
+          "id": "film",
+          "name": "Film",
+          "options": ["PET/PE", "MET PET/PE", "PET/ALU/PE"]
+        },
+        {
+          "id": "finish",
+          "name": "Finish",
+          "options": ["Gloss", "Matte"]
+        },
+        {
+          "id": "opening",
+          "name": "Tear notch",
+          "options": ["Tear notch", "No tear notch"]
         }
       ]
     },
@@ -66,14 +96,24 @@
       "preview": { "width": 2.3, "height": 1.45, "depth": 2.3 },
       "specs": [
         {
-          "id": "width",
-          "label": "Web width",
+          "id": "film",
+          "name": "Film",
+          "options": ["PET/PE", "MET PET/PE", "PET/ALU/PE"]
+        },
+        {
+          "id": "finish",
+          "name": "Finish",
+          "options": ["Gloss", "Matte"]
+        },
+        {
+          "id": "webWidth",
+          "name": "Web width",
           "options": ["8 in", "12 in", "16 in"]
         },
         {
-          "id": "print",
-          "label": "Print",
-          "options": ["Surface", "Reverse"]
+          "id": "repeatLength",
+          "name": "Repeat length",
+          "options": ["6 in", "8 in", "12 in"]
         }
       ]
     }

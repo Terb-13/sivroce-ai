@@ -163,7 +163,7 @@ export function fillSummary(list, product, order) {
   ];
   if (product && Array.isArray(product.specs)) {
     for (const spec of product.specs) {
-      rows.push([spec.label, order.specs?.[spec.id] || '']);
+      rows.push([spec.name, order.specs?.[spec.id] || '']);
     }
   }
   if (order.artworkName) rows.push(['Artwork', order.artworkName]);

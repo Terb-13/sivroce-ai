@@ -10,6 +10,7 @@ const pyvot = join(root, 'pyvot');
 function walk(dir) {
   const files = [];
   for (const entry of readdirSync(dir)) {
+    if (entry === '.git' || entry === 'node_modules') continue;
     const path = join(dir, entry);
     if (statSync(path).isDirectory()) files.push(...walk(path));
     else files.push(path);
@@ -22,13 +23,28 @@ test('product catalog is one data file with the four formats', () => {
   assert.equal(Array.isArray(catalog.products), true);
   const ids = catalog.products.map((product) => product.id);
   assert.deepEqual(ids, ['pouch', 'stickpack', 'sachet', 'rollstock']);
+  const byId = Object.fromEntries(catalog.products.map((product) => [product.id, product]));
+  const specIds = (product) => product.specs.map((spec) => spec.id);
+
+  assert.deepEqual(specIds(byId.pouch), ['dimensions', 'film', 'finish', 'opening']);
+  assert.deepEqual(specIds(byId.stickpack), ['dimensions', 'film', 'finish', 'opening']);
+  assert.deepEqual(specIds(byId.sachet), ['dimensions', 'film', 'finish', 'opening']);
+  assert.deepEqual(specIds(byId.rollstock), ['film', 'finish', 'webWidth', 'repeatLength']);
+
+  const opening = (product) => product.specs.find((spec) => spec.id === 'opening');
+  assert.ok(opening(byId.pouch).options.includes('Zipper'));
+  assert.ok(opening(byId.pouch).options.includes('Tear notch'));
+  assert.ok(opening(byId.stickpack).options.every((option) => !/zipper/i.test(option)));
+  assert.ok(opening(byId.sachet).options.every((option) => !/zipper/i.test(option)));
+  assert.equal(byId.rollstock.specs.some((spec) => spec.id === 'opening'), false);
+
   for (const product of catalog.products) {
     assert.equal(typeof product.name, 'string');
     assert.equal(typeof product.summary, 'string');
-    assert.equal(product.shape, product.id === 'stickpack' ? 'stickpack' : product.id);
+    assert.equal(product.shape, product.id);
     assert.ok(product.preview.width && product.preview.height && product.preview.depth);
-    assert.ok(product.specs.length >= 1);
     for (const spec of product.specs) {
+      assert.equal(typeof spec.name, 'string');
       assert.ok(spec.options.length >= 2);
     }
   }
@@ -39,7 +55,7 @@ test('order page does not hardcode the catalog', () => {
   const orderJs = readFileSync(join(pyvot, 'js', 'order.js'), 'utf8');
   assert.match(orderJs, /loadProducts\(/);
   assert.doesNotMatch(orderHtml, /Stand-up pouch|Rollstock/);
-  assert.doesNotMatch(orderJs, /Stand-up pouch|Rollstock/);
+  assert.doesNotMatch(orderJs, /Stand-up pouch|Rollstock|PET\/PE|Tear notch|Web width/);
 });
 
 test('theme tokens and logo live with the demo', () => {
@@ -64,19 +80,30 @@ test('each step is a page with a demo label and no live-order indexing', () => {
   assert.doesNotMatch(readFileSync(join(pyvot, 'index.html'), 'utf8'), /sign up|create account/i);
 });
 
-test('approval copy hands the job to label production', () => {
+test('handoff copy names the print partner only on the approve step', () => {
+  const partner = String.fromCharCode(70, 111, 114, 116, 105, 115);
   const html = readFileSync(join(pyvot, 'approve.html'), 'utf8');
-  assert.match(html, /handed off to label production/i);
-  assert.match(html, /Approve and hand off/);
-});
+  assert.match(html, new RegExp(`Sent to ${partner} for flexible packaging production`));
+  assert.match(html, /Approve and send/);
 
-test('pyvot files never mention the retired brand name', () => {
-  const retired = String.fromCharCode(102, 111, 114, 116, 105, 115);
-  const pattern = new RegExp(retired, 'i');
-  for (const file of walk(pyvot)) {
+  const pattern = new RegExp(partner, 'i');
+  for (const file of walk(root)) {
+    if (file === join(pyvot, 'approve.html')) continue;
+    if (!/\.(html|js|css|json|md|txt|xml|svg)$/.test(file)) continue;
     const text = readFileSync(file, 'utf8');
     assert.doesNotMatch(text, pattern, file);
   }
+});
+
+test('pyvot copy talks about flexible packaging, not a printed label job', () => {
+  for (const file of walk(pyvot)) {
+    if (file.endsWith('.svg')) continue;
+    const text = readFileSync(file, 'utf8');
+    assert.doesNotMatch(text, /label production/i, file);
+  }
+  const softproof = readFileSync(join(pyvot, 'js', 'softproof.js'), 'utf8');
+  assert.match(softproof, /new THREE\.BoxGeometry\(width, height, depth\), art\)/);
+  assert.match(softproof, /CylinderGeometry\(radius, radius, height, 72\)/);
 });
 
 test('robots.txt keeps the demo out of the crawl', () => {

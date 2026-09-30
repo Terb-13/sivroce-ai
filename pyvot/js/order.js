@@ -42,7 +42,7 @@ async function init(current) {
       const label = document.createElement('label');
       label.className = 'field';
       const title = document.createElement('span');
-      title.textContent = spec.label;
+      title.textContent = spec.name;
       const select = document.createElement('select');
       select.name = spec.id;
       select.required = true;
@@ -106,7 +106,7 @@ async function init(current) {
     for (const spec of product.specs || []) {
       const value = String(data.get(spec.id) || '');
       if (!value) {
-        showError(`Choose a ${spec.label.toLowerCase()}.`);
+        showError(`Choose a ${spec.name.toLowerCase()}.`);
         return;
       }
       specs[spec.id] = value;

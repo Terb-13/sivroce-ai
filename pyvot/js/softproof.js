@@ -147,20 +147,19 @@ function makePack(THREE, product, texture) {
   const width = Number(preview.width) || 2;
   const height = Number(preview.height) || 2.6;
   const depth = Number(preview.depth) || 0.6;
-  const art = new THREE.MeshStandardMaterial({ map: texture, roughness: 0.42, metalness: 0.02 });
-  const film = new THREE.MeshStandardMaterial({ color: '#f6f2ee', roughness: 0.62, metalness: 0.03 });
+  const art = new THREE.MeshStandardMaterial({ map: texture, roughness: 0.45, metalness: 0.02 });
   const seal = new THREE.MeshStandardMaterial({ color: '#efe6df', roughness: 0.7, metalness: 0 });
 
   if (product.shape === 'rollstock') {
     const radius = Math.max(width, depth) / 2;
     const geometry = new THREE.CylinderGeometry(radius, radius, height, 72);
-    const mesh = new THREE.Mesh(geometry, [art, film, film]);
+    const mesh = new THREE.Mesh(geometry, [art, seal, seal]);
     mesh.rotation.z = Math.PI / 2;
     return mesh;
   }
 
   const group = new THREE.Group();
-  const body = new THREE.Mesh(new THREE.BoxGeometry(width, height, depth), [film, film, seal, film, art, art]);
+  const body = new THREE.Mesh(new THREE.BoxGeometry(width, height, depth), art);
   group.add(body);
 
   if (product.shape === 'pouch' || product.shape === 'stickpack') {
