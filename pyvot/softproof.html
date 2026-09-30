@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex, nofollow" />
+  <meta name="description" content="Turn a 3D softproof of the Pyvot packaging format with your artwork applied. Demo only." />
+  <title>Softproof — Pyvot Packaging Demo</title>
+  <link rel="icon" href="assets/logo.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600;700&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="theme.css" />
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js"
+      }
+    }
+  </script>
+</head>
+<body>
+  <div data-shell></div>
+  <main class="wrap">
+    <p class="eyebrow">Step 4</p>
+    <h1>3D softproof</h1>
+    <p class="lede">Turn the pack and check the print on the film.</p>
+    <dl id="order-summary" class="summary"></dl>
+    <p id="softproof-error" class="form-error" hidden></p>
+    <div id="stage" class="stage">
+      <canvas id="softproof-canvas"></canvas>
+      <img id="softproof-fallback" alt="" hidden />
+      <p class="stage-note">Drag to rotate</p>
+    </div>
+    <div class="actions">
+      <a class="button-secondary" href="artwork.html">Back to artwork</a>
+      <button id="reset-view" class="button-secondary" type="button">Reset view</button>
+      <a id="continue-softproof" class="button is-disabled" href="approve.html" aria-disabled="true">Continue to approval</a>
+    </div>
+  </main>
+  <footer class="site-footer" data-footer></footer>
+  <script type="module" src="js/softproof.js"></script>
+</body>
+</html>

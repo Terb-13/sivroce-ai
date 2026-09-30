@@ -45,6 +45,10 @@ Only the pages in the table above render. Leftover legal, Shopify, ServeAI, and 
 
 Interactive demos (portal and agent experiences) are implemented as **inline JavaScript** on `solutions.html`, backed by scripts in `assets/js/` (`portal-demo.js`, `agent-demo.js`, and shared `site.js`).
 
+### Pyvot packaging order demo
+
+`/pyvot` is a separate five-step customer demo: sign in, order, artwork upload, 3D softproof, and approval. It is not a live ordering system. The product catalog is `pyvot/products.json`. Visual tokens are `pyvot/theme.css`. Brand files live in `pyvot/assets/`. Pages send `noindex` and `robots.txt` disallows `/pyvot`.
+
 ## Local development
 
 ```bash
