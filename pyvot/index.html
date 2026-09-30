@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex, nofollow" />
+  <meta name="description" content="Pyvot packaging order demo. Sign in to choose a format, upload artwork, and approve a softproof. Not a live ordering system." />
+  <title>Sign in — Pyvot Packaging Demo</title>
+  <link rel="icon" href="assets/logo.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600;700&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="theme.css" />
+</head>
+<body>
+  <div data-shell></div>
+  <main class="wrap login-layout">
+    <section class="panel login-card">
+      <p class="eyebrow">Customer ordering</p>
+      <h1>Order flexible packaging</h1>
+      <p class="lede">Sign in to choose a format, upload artwork, and approve a softproof before it goes to label production.</p>
+      <div class="credentials">
+        <p><strong>Demo email</strong> customer@pyvott.com</p>
+        <p><strong>Demo password</strong> packaging</p>
+      </div>
+      <p id="returning" hidden>Signed in as <span data-email></span>. <a href="order.html">Continue your order</a>, or sign in again below.</p>
+      <form id="login-form" class="form-stack">
+        <label class="field">
+          <span>Email</span>
+          <input id="email" name="email" type="email" autocomplete="off" required />
+        </label>
+        <label class="field">
+          <span>Password</span>
+          <input id="password" name="password" type="password" autocomplete="off" required />
+        </label>
+        <p id="login-error" class="form-error" hidden></p>
+        <div class="actions">
+          <button class="button" type="submit">Sign in</button>
+          <button id="fill-demo" class="button-secondary" type="button">Use demo credentials</button>
+        </div>
+      </form>
+    </section>
+  </main>
+  <footer class="site-footer" data-footer></footer>
+  <script type="module" src="js/login.js"></script>
+</body>
+</html>

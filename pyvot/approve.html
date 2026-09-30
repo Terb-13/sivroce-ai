@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex, nofollow" />
+  <meta name="description" content="Approve a Pyvot packaging demo order and hand the job to label production." />
+  <title>Approve — Pyvot Packaging Demo</title>
+  <link rel="icon" href="assets/logo.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600;700&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="theme.css" />
+</head>
+<body>
+  <div data-shell></div>
+  <main class="wrap">
+    <p class="eyebrow">Step 5</p>
+    <h1>Approve the job</h1>
+    <p class="lede">Review the format, specs, and artwork. Approval hands this job to label production.</p>
+    <div class="panel">
+      <dl id="order-summary" class="summary"></dl>
+      <div class="preview-frame">
+        <img id="approve-preview" alt="" />
+      </div>
+      <p id="approve-error" class="form-error" hidden></p>
+      <form id="approve-form">
+        <div class="actions">
+          <a class="button-secondary" href="softproof.html">Back to softproof</a>
+          <button class="button" type="submit">Approve and hand off</button>
+        </div>
+      </form>
+      <div id="confirmation" class="confirm" hidden>
+        <h2>Handed off to label production</h2>
+        <p>This job has been handed off to label production. Reference <strong id="job-ref"></strong>.</p>
+        <p>Demo only — nothing was emailed.</p>
+      </div>
+      <div class="actions">
+        <button id="another-order" class="button-secondary" type="button">Start another demo order</button>
+      </div>
+    </div>
+  </main>
+  <footer class="site-footer" data-footer></footer>
+  <script type="module" src="js/approve.js"></script>
+</body>
+</html>
