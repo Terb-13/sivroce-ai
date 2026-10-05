@@ -10,8 +10,6 @@ Allow: /engage
 Allow: /proof
 Allow: /solutions
 
-Disallow: /pages
-Disallow: /products
 Disallow: /cart
 Disallow: /account
 Disallow: /collections
