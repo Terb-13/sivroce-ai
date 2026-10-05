@@ -13,6 +13,8 @@ Static marketing site for Sirvoce — practical AI for mid-sized manufacturers.
 | Proof | `proof.html` | Illustrative prototypes and live demos (not client case studies) |
 | About | `about.html` | Team and company background |
 | Engage | `engage.html` | Strategy Alignment Workshop request |
+| Privacy | `privacy.html` | Privacy Policy for the marketing site and workshop form |
+| Terms | `terms.html` | Terms of Use for the marketing site (not a client agreement) |
 
 ## Lead capture
 
@@ -35,11 +37,11 @@ Copy `.env.example` to `.env.local` for local `vercel dev`.
 
 ## Indexing
 
-`robots.txt` allows the seven brand pages and disallows retired ServeAI / Shopify / marketing paths. `sitemap.xml` lists only `/`, `/about`, `/approach`, `/challenge`, `/engage`, `/proof`, and `/solutions`.
+`robots.txt` allows the seven brand pages plus `/privacy` and `/terms`. Retired ServeAI, process-serving, and Shopify paths (`/pages`, `/products`, and the rest that return 410) stay crawlable — do not Disallow them. `sitemap.xml` lists `/`, `/about`, `/approach`, `/challenge`, `/engage`, `/proof`, `/solutions`, `/privacy`, and `/terms`.
 
 ## Legacy URLs
 
-Only the pages in the table above render. Leftover legal, Shopify, ServeAI, and retired marketing paths rewrite to `/api/gone` and return **410** with: “Sirvoce is now practical AI for manufacturers.” That includes `/pages/*`, `/products/*`, `/serveai`, `/gone`, `/contact`, `/process`, `/privacy`, `/terms`, and similar. Those URLs are not restored and are not turned into 404s. The 410 response also sends `X-Robots-Tag: noindex, nofollow`.
+`/privacy` and `/terms` are live HTML pages. Other leftover Shopify, ServeAI, and retired marketing paths rewrite to `/api/gone` and return **410** with: “Sirvoce is now practical AI for manufacturers.” That includes `/pages/*`, `/products/*`, `/serveai`, `/gone`, `/contact`, `/process`, `/refund`, `/shipping`, `/legal`, and similar. Those URLs are not restored and are not turned into 404s. The 410 response also sends `X-Robots-Tag: noindex, nofollow`.
 
 ## Demos
 
