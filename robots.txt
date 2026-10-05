@@ -1,5 +1,5 @@
 # Index only the current Sirvoce brand pages.
-# Retired ServeAI / Shopify / marketing URLs return 410 and should not be crawled.
+# Retired ServeAI / process-serving URLs return 410 and must remain crawlable; do not Disallow them.
 
 User-agent: *
 Allow: /
@@ -12,7 +12,6 @@ Allow: /solutions
 
 Disallow: /pages
 Disallow: /products
-Disallow: /serveai
 Disallow: /cart
 Disallow: /account
 Disallow: /collections
@@ -21,15 +20,9 @@ Disallow: /blogs
 Disallow: /search
 Disallow: /gone
 Disallow: /contact
-Disallow: /process
 Disallow: /who-we-are
 Disallow: /handoff
 Disallow: /demos
-Disallow: /serve
-Disallow: /process-serving
-Disallow: /utah-process-service
-Disallow: /standard-serve
-Disallow: /rush-serve
 Disallow: /privacy
 Disallow: /terms
 Disallow: /refund
