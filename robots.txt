@@ -27,5 +27,6 @@ Disallow: /demos
 Disallow: /refund
 Disallow: /shipping
 Disallow: /legal
+Disallow: /pyvot
 
 Sitemap: https://www.sirvoce.com/sitemap.xml
