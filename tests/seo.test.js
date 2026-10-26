@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { readFileSync } from 'node:fs';
+import { readFileSync, readdirSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -67,6 +67,54 @@ test('sitemap.xml lists brand pages plus privacy and terms', () => {
   assert.deepEqual(locs, expected);
   assert.equal(locs.length, 9);
   assert.doesNotMatch(sitemap, /\/pages|\/products|\/serveai|\/gone|\/contact|\/process/);
+});
+
+test('homepage and engage share open graph and twitter cards', () => {
+  const image = 'https://www.sirvoce.com/assets/images/og.png';
+  const pages = [
+    { file: 'index.html', url: 'https://www.sirvoce.com/' },
+    { file: 'engage.html', url: 'https://www.sirvoce.com/engage' },
+  ];
+
+  for (const page of pages) {
+    const html = readFileSync(join(root, page.file), 'utf8');
+    const title = html.match(/<title>([^<]*)<\/title>/)[1];
+    const description = html.match(/<meta name="description" content="([^"]*)"\s*\/?>/)[1];
+    const tags = [
+      ['property', 'og:title', title],
+      ['property', 'og:description', description],
+      ['property', 'og:image', image],
+      ['property', 'og:image:width', '1200'],
+      ['property', 'og:image:height', '630'],
+      ['property', 'og:url', page.url],
+      ['name', 'twitter:card', 'summary_large_image'],
+    ];
+
+    for (const [attr, name, value] of tags) {
+      assert.ok(
+        html.includes(`<meta ${attr}="${name}" content="${value}" />`),
+        `${page.file} missing ${name}`,
+      );
+    }
+  }
+
+  const png = readFileSync(join(root, 'assets/images/og.png'));
+  assert.equal(png.readUInt32BE(16), 1200);
+  assert.equal(png.readUInt32BE(20), 630);
+});
+
+test('public pages and client errors use the agent inbox address', () => {
+  const files = [
+    ...readdirSync(root).filter((name) => name.endsWith('.html')),
+    'assets/js/site.js',
+    'api/lead.js',
+  ];
+
+  for (const file of files) {
+    const text = readFileSync(join(root, file), 'utf8');
+    assert.equal(text.includes('hello@sirvoce.com'), false, `${file} still has hello@sirvoce.com`);
+    assert.ok(text.includes('hello@agents.sirvoce.com'), `${file} missing agent inbox`);
+  }
 });
 
 test('vercel.json does not rewrite live privacy or terms to gone', () => {

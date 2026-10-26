@@ -57,7 +57,7 @@ export default async function handler(req, res) {
     if (isHoneypot(lead)) {
       return json(res, 400, {
         ok: false,
-        error: 'We could not deliver your request. Please email hello@sirvoce.com and try again.',
+        error: 'We could not deliver your request. Please email hello@agents.sirvoce.com and try again.',
       });
     }
 
@@ -79,13 +79,13 @@ export default async function handler(req, res) {
       return json(res, 503, {
         ok: false,
         error:
-          'Workshop requests are not configured on this deployment yet. Email hello@sirvoce.com directly.',
+          'Workshop requests are not configured on this deployment yet. Email hello@agents.sirvoce.com directly.',
       });
     }
 
     return json(res, 502, {
       ok: false,
-      error: 'We could not deliver your request. Please email hello@sirvoce.com and try again.',
+      error: 'We could not deliver your request. Please email hello@agents.sirvoce.com and try again.',
     });
   }
 }
