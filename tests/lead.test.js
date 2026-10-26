@@ -118,7 +118,7 @@ test('POST /api/lead returns 503 when AgentMail is not configured', async () => 
   const response = await invoke(handler, { method: 'POST', body: validLead });
   assert.equal(response.status, 503);
   assert.equal(response.body.ok, false);
-  assert.match(response.body.error, /hello@sirvoce.com/);
+  assert.match(response.body.error, /hello@agents.sirvoce.com/);
 
   if (previous === undefined) delete process.env.AGENTMAIL_API_KEY;
   else process.env.AGENTMAIL_API_KEY = previous;
@@ -153,7 +153,7 @@ test('POST /api/lead returns 502 when AgentMail rejects delivery', async () => {
     const response = await invoke(handler, { method: 'POST', body: validLead });
     assert.equal(response.status, 502);
     assert.equal(response.body.ok, false);
-    assert.match(response.body.error, /hello@sirvoce.com/);
+    assert.match(response.body.error, /hello@agents.sirvoce.com/);
   } finally {
     globalThis.fetch = originalFetch;
     if (previous === undefined) delete process.env.AGENTMAIL_API_KEY;

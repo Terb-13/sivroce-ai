@@ -69,6 +69,70 @@ test('sitemap.xml lists brand pages plus privacy and terms', () => {
   assert.doesNotMatch(sitemap, /\/pages|\/products|\/serveai|\/gone|\/contact|\/process/);
 });
 
+test('homepage and engage share open graph and twitter cards', () => {
+  const image = 'https://www.sirvoce.com/assets/images/og.png';
+  const pages = [
+    {
+      file: 'index.html',
+      title: 'Sirvoce — Practical AI for Mid-Sized Manufacturers',
+      description:
+        'Sirvoce — practitioner-led AI consulting for mid-sized manufacturers. Working systems in weeks, full handoff, zero lock-in.',
+      url: 'https://www.sirvoce.com/',
+    },
+    {
+      file: 'engage.html',
+      title: 'Engage — Sirvoce',
+      description:
+        'Book a Strategy Alignment Workshop with Sirvoce. Tell us about your biggest workflow bottleneck.',
+      url: 'https://www.sirvoce.com/engage',
+    },
+  ];
+
+  for (const page of pages) {
+    const html = readFileSync(join(root, page.file), 'utf8');
+    const title = html.match(/<title>([^<]*)<\/title>/)[1];
+    const description = html.match(/<meta name="description" content="([^"]*)"\s*\/?>/)[1];
+    assert.equal(title, page.title);
+    assert.equal(description, page.description);
+    assert.ok(html.includes(`<meta property="og:title" content="${title}" />`));
+    assert.ok(html.includes(`<meta property="og:description" content="${description}" />`));
+    assert.ok(html.includes(`<meta property="og:image" content="${image}" />`));
+    assert.ok(html.includes('<meta property="og:image:width" content="1200" />'));
+    assert.ok(html.includes('<meta property="og:image:height" content="630" />'));
+    assert.ok(html.includes(`<meta property="og:url" content="${page.url}" />`));
+    assert.ok(html.includes('<meta name="twitter:card" content="summary_large_image" />'));
+    assert.ok(html.includes(`<meta name="twitter:title" content="${title}" />`));
+    assert.ok(html.includes(`<meta name="twitter:description" content="${description}" />`));
+    assert.ok(html.includes(`<meta name="twitter:image" content="${image}" />`));
+  }
+
+  const png = readFileSync(join(root, 'assets/images/og.png'));
+  assert.equal(png.readUInt32BE(16), 1200);
+  assert.equal(png.readUInt32BE(20), 630);
+});
+
+test('public pages and client errors use the agent inbox address', () => {
+  const files = [
+    'index.html',
+    'engage.html',
+    'about.html',
+    'approach.html',
+    'challenge.html',
+    'proof.html',
+    'solutions.html',
+    'privacy.html',
+    'terms.html',
+    'assets/js/site.js',
+    'api/lead.js',
+  ];
+
+  for (const file of files) {
+    const text = readFileSync(join(root, file), 'utf8');
+    assert.equal(text.includes('hello@sirvoce.com'), false, `${file} still has hello@sirvoce.com`);
+    assert.ok(text.includes('hello@agents.sirvoce.com'), `${file} missing agent inbox`);
+  }
+});
+
 test('vercel.json does not rewrite live privacy or terms to gone', () => {
   const config = JSON.parse(readFileSync(join(root, 'vercel.json'), 'utf8'));
   const sources = config.rewrites.map((rule) => rule.source);

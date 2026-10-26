@@ -141,7 +141,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!response.ok || !data.ok) {
           throw new Error(
             data.error ||
-              'We could not deliver your request. Please email hello@sirvoce.com and try again.'
+              'We could not deliver your request. Please email hello@agents.sirvoce.com and try again.'
           );
         }
 
@@ -153,7 +153,7 @@ document.addEventListener('DOMContentLoaded', () => {
       } catch (err) {
         showError(
           err.message ||
-            'We could not deliver your request. Please email hello@sirvoce.com and try again.'
+            'We could not deliver your request. Please email hello@agents.sirvoce.com and try again.'
         );
       } finally {
         if (submitBtn) {
