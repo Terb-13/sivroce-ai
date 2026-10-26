@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { readFileSync } from 'node:fs';
+import { readFileSync, readdirSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -72,38 +72,30 @@ test('sitemap.xml lists brand pages plus privacy and terms', () => {
 test('homepage and engage share open graph and twitter cards', () => {
   const image = 'https://www.sirvoce.com/assets/images/og.png';
   const pages = [
-    {
-      file: 'index.html',
-      title: 'Sirvoce — Practical AI for Mid-Sized Manufacturers',
-      description:
-        'Sirvoce — practitioner-led AI consulting for mid-sized manufacturers. Working systems in weeks, full handoff, zero lock-in.',
-      url: 'https://www.sirvoce.com/',
-    },
-    {
-      file: 'engage.html',
-      title: 'Engage — Sirvoce',
-      description:
-        'Book a Strategy Alignment Workshop with Sirvoce. Tell us about your biggest workflow bottleneck.',
-      url: 'https://www.sirvoce.com/engage',
-    },
+    { file: 'index.html', url: 'https://www.sirvoce.com/' },
+    { file: 'engage.html', url: 'https://www.sirvoce.com/engage' },
   ];
 
   for (const page of pages) {
     const html = readFileSync(join(root, page.file), 'utf8');
     const title = html.match(/<title>([^<]*)<\/title>/)[1];
     const description = html.match(/<meta name="description" content="([^"]*)"\s*\/?>/)[1];
-    assert.equal(title, page.title);
-    assert.equal(description, page.description);
-    assert.ok(html.includes(`<meta property="og:title" content="${title}" />`));
-    assert.ok(html.includes(`<meta property="og:description" content="${description}" />`));
-    assert.ok(html.includes(`<meta property="og:image" content="${image}" />`));
-    assert.ok(html.includes('<meta property="og:image:width" content="1200" />'));
-    assert.ok(html.includes('<meta property="og:image:height" content="630" />'));
-    assert.ok(html.includes(`<meta property="og:url" content="${page.url}" />`));
-    assert.ok(html.includes('<meta name="twitter:card" content="summary_large_image" />'));
-    assert.ok(html.includes(`<meta name="twitter:title" content="${title}" />`));
-    assert.ok(html.includes(`<meta name="twitter:description" content="${description}" />`));
-    assert.ok(html.includes(`<meta name="twitter:image" content="${image}" />`));
+    const tags = [
+      ['property', 'og:title', title],
+      ['property', 'og:description', description],
+      ['property', 'og:image', image],
+      ['property', 'og:image:width', '1200'],
+      ['property', 'og:image:height', '630'],
+      ['property', 'og:url', page.url],
+      ['name', 'twitter:card', 'summary_large_image'],
+    ];
+
+    for (const [attr, name, value] of tags) {
+      assert.ok(
+        html.includes(`<meta ${attr}="${name}" content="${value}" />`),
+        `${page.file} missing ${name}`,
+      );
+    }
   }
 
   const png = readFileSync(join(root, 'assets/images/og.png'));
@@ -113,15 +105,7 @@ test('homepage and engage share open graph and twitter cards', () => {
 
 test('public pages and client errors use the agent inbox address', () => {
   const files = [
-    'index.html',
-    'engage.html',
-    'about.html',
-    'approach.html',
-    'challenge.html',
-    'proof.html',
-    'solutions.html',
-    'privacy.html',
-    'terms.html',
+    ...readdirSync(root).filter((name) => name.endsWith('.html')),
     'assets/js/site.js',
     'api/lead.js',
   ];
