@@ -1,5 +1,10 @@
 // Sirvoce — Shared site scripts
+const WORKSHOP_CTA_LABEL = 'Set your interrupt list';
+
 document.addEventListener('DOMContentLoaded', () => {
+  const workshopCtaLabel = document.getElementById('workshop-cta-label');
+  if (workshopCtaLabel) workshopCtaLabel.textContent = WORKSHOP_CTA_LABEL;
+
   if (window.lucide) lucide.createIcons();
 
   const mobileMenuBtn = document.getElementById('mobile-menu-btn');
